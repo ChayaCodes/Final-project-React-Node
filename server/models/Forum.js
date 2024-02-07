@@ -1,29 +1,28 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const forumSchema = new Schema({
-    name: {
-        type: String,
-        required: true
-    },
-    description: {
-        //in HTML format
-        type: String,        
-    },
-    threads: [{
-        type: Schema.Types.ObjectId,
-        ref: 'Thread'
-    }],
-    public: {
-        type: Boolean,
+const ForumSchema = new Schema({
+    name:{
+        type:String,
         required:true,
-        default: true
+        trim:true,
+        minlength:2,
+        maxlength:50,
+        unique:true
     },
-    users: [{
-        type: Schema.Types.ObjectId,
-        ref: 'User'
-    }]
-}, { timestamps: true })
-
-const Forum = mongoose.model('Forum', forumSchema);
-module.exports = Forum;
+    description:{
+        type:String,
+        required:true,
+        trim:true,
+        minlength:2,
+    },
+    threads:{
+        type:[mongoose.Schema.Types.ObjectId],
+        ref:"Thread"
+    },
+    public:{
+        type:Boolean,
+        default:true
+    },
+    
+},{timestamps:true})
