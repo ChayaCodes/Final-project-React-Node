@@ -20,22 +20,15 @@ const Header = () => {
   return (
     <Toolbar disableGutters>
       <Grid container justifyContent="space-between" alignItems="center">
-        <Grid item>
-          <IconButton aria-label="לאיזור האישי" size='small' edge="start" variant="outlined" style={{ padding: '5px' }} onClick={() => { window.location.href = '/login' }}>
-            לאיזור האישי
-            <FontAwesomeIcon icon={faCircleUser} style={{ color: 'black' }} />
-          </IconButton>
-        </Grid>
+        
         {isMobile ? (
           <>
-            <Grid item>
-              <Box>LOGO</Box>
-            </Grid>
+
             <Grid item>
               <IconButton edge="end" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
                 <MenuIcon />
               </IconButton>
-              <Drawer anchor="right" open={drawerOpen} onClose={handleDrawerToggle} transitionDuration={0}>
+              <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle} transitionDuration={0}>
                 <List>
                   {pages.map((page, index) => (
                     <ListItem button key={index} onClick={handleDrawerToggle}>
@@ -47,9 +40,15 @@ const Header = () => {
                 </List>
               </Drawer>
             </Grid>
+            <Grid item>
+              <Box>LOGO</Box>
+            </Grid>
           </>
         ) : (
           <>
+                      <Grid item>
+              <Box>LOGO</Box>
+            </Grid>
             <Grid item xs={8}>
               <Box display="flex"  alignItems="center" justifyContent={'center'} style={{ width: '100%' }}> 
                 {pages.map((page, index) => (
@@ -59,11 +58,15 @@ const Header = () => {
                 ))}
               </Box>
             </Grid>
-            <Grid item>
-              <Box>LOGO</Box>
-            </Grid>
+
           </>
         )}
+        <Grid item>
+          <IconButton aria-label="לאיזור האישי" size='small' edge="start" variant="outlined" style={{ padding: '5px' }} onClick={() => { window.location.href = '/login' }}>
+            לאיזור האישי
+            <FontAwesomeIcon icon={faCircleUser} style={{ color: 'black' }} />
+          </IconButton>
+        </Grid>
       </Grid>
     </Toolbar>
   );

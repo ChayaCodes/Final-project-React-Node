@@ -39,6 +39,9 @@ const Login = () => {
         value={email}
         sx={{ width: "100%", marginTop: 2 }}
         variant="outlined"
+        onChange={handleEmailChange}
+        type="email"
+        
       />
     </div>
             <TextField
