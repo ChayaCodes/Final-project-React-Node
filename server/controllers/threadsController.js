@@ -1,0 +1,147 @@
+const Forum = require('../models/Forum');
+const Thread = require('../models/Thread');
+
+const getthreads = async (req, res) => {
+    try {
+        const threads = await Thread.find();
+        if(req.user.role === 'admin'){
+            return res.json(threads);
+        }
+        
+        res.json(threads.filter(thread => thread.public || req.user.user.forums.includes(thread.forum.id)));
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+const getforumthreads = async (req, res) => {
+    try {
+        const threads = await Thread.find({forum:req.params.id});
+        if(req.user.role === 'admin'){
+            return res.json(threads);
+        }
+        const forum = await Forum.findById(req.params.id)
+        if(forum.public || req.user.forums.includes(req.params.id)){
+            return res.json(threads);
+        }
+        res.json([]);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+const get50forumthreads = async (req, res) => {
+    try {
+        const startIndex = req.params.startIndex || 0;
+        const threads = await Thread.find({ forum: req.params.id }) //מקבל את כל הסרדים של הפורום
+        //סינון לפי הרשאות:
+        if (req.user.role === 'admin'|| res.user.forums.includes(req.params.id) || threads.forum.public) {
+            return res.json(threads.slice(startIndex, startIndex + 50));
+        }
+        res.json([]);
+        
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+
+const getthread = async (req, res) => {
+    try {
+        
+        const thread = await Thread.findById(req.params.id);
+        if(req.user.role !== 'admin' && !req.user.forums.includes(req.params.id) && !thread.forum.public){
+            return res.status(401).json({ message: "You do not have permissions" });
+        }
+        res.json(thread);
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+const createthread = async (req, res) => {
+   
+    try {
+        
+        console.log(req.user)
+        const {title, description, forum, } = req.body
+        if(!title || !description  || !forum){
+            return res.status(400).json({message:"please enter all fields"})
+        }
+        const forumToUpdate = await Forum.findById(forum);
+        const userForums = req.user.user.forums;
+        if(req.user.role !== 'admin' && !userForums.includes(forum)&& !forumToUpdate.public){
+            return res.status(401).json({ message: "You do not have permissions" });
+        }
+        const thread = new Thread({
+            title,
+            description,
+            posts: [],
+            forum,
+            user: req.user.id,
+            open: true,
+            public: forumToUpdate.public,
+        })
+        const newthread = await thread.save();
+        forumToUpdate.threads.push(newthread.id);
+        await forumToUpdate.save();
+        res.status(201).json(newthread);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
+
+
+const updatethread = async (req, res) => {
+    try {
+
+        const thread = await Thread.findById(req.params.id);
+        const forumToUpdate = await Forum.findById(thread.forum);
+        const userForums = req.user.user.forums;
+        if(req.user.role !== 'admin' && !userForums.includes(thread.forum)&& !forumToUpdate.public){
+            return res.status(401).json({ message: "You do not have permissions" });
+        }
+        
+        const {title, content, description} = req.body
+
+        const updatedthread = await thread.save();
+
+        res.json(updatedthread);
+    } catch (err) {
+        res.status(400).json({ message: err.message });
+    }
+}
+
+const deletethread = async (req, res) => {
+    try {
+        const thread = await Thread.findById(req.params.id);
+
+        const forumToUpdate = await Forum.findById(thread.forum);
+        const userForums = req.user.user.forums;
+        if(req.user.role !== 'admin' && !userForums.includes(thread.forum)&& !forumToUpdate.public){
+            return res.status(401).json({ message: "You do not have permissions" });
+        }
+        if (thread) {
+            await thread.deleteOne();
+            forumToUpdate.threads = forumToUpdate.threads.filter(id => id !== thread.id);
+            await forumToUpdate.save();
+            res.json({ message: "Thread deleted" });
+
+        } else {
+            res.json({ message: "Thread not found" });
+        }
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+module.exports = {
+    getthreads,
+    getthread,
+    createthread,
+    updatethread,
+    deletethread,
+    getforumthreads,
+    get50forumthreads
+}
