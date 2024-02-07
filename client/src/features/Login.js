@@ -32,16 +32,15 @@ const Login = () => {
             <Typography variant="h4" sx={{ textAlign: "center" }}>
                 התחברות
             </Typography>
-            <TextField
-                required
-                label="אימייל"
-                variant="outlined"
-                type="email"
-                value={email}
-                onChange={handleEmailChange}
-                direction="rtl"
-                sx={{ width: "100%", marginTop: 2, direction: 'rtl' , textAlign: 'right'}}
-            />
+    <div dir="rtl">
+      <TextField
+        required
+        label="אימייל"
+        value={email}
+        sx={{ width: "100%", marginTop: 2 }}
+        variant="outlined"
+      />
+    </div>
             <TextField
                 required
                 label="סיסמא"
