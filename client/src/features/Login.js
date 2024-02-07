@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
     Box,
     TextField,
@@ -9,11 +9,30 @@ import {
     IconButton,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
+import { useLoginMutation } from "../redux/authApiSlice";
+import { setToken } from "../redux/authSlice";
+import { useDispatch } from "react-redux";
+import { useNavigate } from "react-router";
+
 
 const Login = () => {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
+    const [loginFunc, {isError, error, isLoading, isSuccess, data}] = useLoginMutation();
+
+    useEffect(() => {
+        if (isSuccess) {
+            dispatch(setToken(data.token));
+            navigate("/");
+        }
+        if (isError) {
+            console.log(error);
+        }
+    }, [isSuccess, isError]);
 
     const handleEmailChange = (event) => {
         setEmail(event.target.value);
@@ -62,7 +81,7 @@ const Login = () => {
                     ),
                 }}
             />
-            <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }}>
+            <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }} onClick={() => loginFunc({ email, password })}>
                 התחברות
             </Button>
 

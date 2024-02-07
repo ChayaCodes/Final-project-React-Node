@@ -7,6 +7,7 @@ import Login from './features/Login';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
 
+
 function App() {
   return (
     <div className="App" dir="rtl">
