@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { setUser } from '../redux/userSlice';
+
 import { useDispatch, useSelector } from 'react-redux';
 import { useGetUserQuery } from '../redux/userApiSlice';
 import { IconButton, Link } from '@mui/material';
