@@ -1,13 +1,18 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
 
-import HeaderPesonelArea from "./Header";
+import Header from "./Header";
+import { Box } from "@mui/material";
+import SideBar from "./SideMenu";
 
 const Layout = () => {
     return (
         <div className="page">
-            <HeaderPesonelArea/>
-            <Outlet/>
+            <Header/>
+            <Box sx={{display: "flex"}}>
+            <SideBar/>
+            <Outlet />
+            </Box>
         </div>
     );
 }

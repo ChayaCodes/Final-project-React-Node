@@ -36,7 +36,7 @@ const PersonalArea = () => {
     }
     if (isSuccess) {
         return (
-            <div>
+            <div style={{ width: "100%"}}>
                 <Typography variant='h2'>{`שלום ${user.userName}!`}</Typography>
                 <Box>
                     <IconButton href="/personal-area/edit"><FontAwesomeIcon icon={faPencil} />עריכת פרטים אישיים</IconButton>
