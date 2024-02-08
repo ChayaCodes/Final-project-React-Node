@@ -11,6 +11,7 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginMutation } from "../redux/authApiSlice";
 import { setToken } from "../redux/authSlice";
+import { setUser } from "../redux/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -26,7 +27,9 @@ const Login = () => {
 
     useEffect(() => {
         if (isSuccess) {
+            console.log(data.user.user);
             dispatch(setToken({token:data.accessToken}));
+            dispatch(setUser(data.user.user));
             navigate("/personal-area");
         }
         if (isError) {
