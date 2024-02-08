@@ -3,12 +3,12 @@ import { Typography, IconButton, Link, Toolbar, Box } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
-import { useGetUserQuery } from '../redux/userApiSlice';
+import { useGetUserQuery } from '../../store/user/userApiSlice';
 
 
 
 
-const PersonalAreaHeader = () => {
+const Header = () => {
     const{data: user, isLoading, isError, isSuccess, error} = useGetUserQuery();
 
     if(isLoading){
@@ -48,4 +48,4 @@ const PersonalAreaHeader = () => {
     );}
 };
 
-export default PersonalAreaHeader;
+export default Header;

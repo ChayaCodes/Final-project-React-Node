@@ -1,9 +1,9 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
 
-import HeaderPesonelArea from "./HeaderPersonalArea";
+import HeaderPesonelArea from "./Header";
 
-const LayoutPersonalArea = () => {
+const Layout = () => {
     return (
         <div className="page">
             <HeaderPesonelArea/>
@@ -11,4 +11,4 @@ const LayoutPersonalArea = () => {
         </div>
     );
 }
-export default LayoutPersonalArea;
+export default Layout;

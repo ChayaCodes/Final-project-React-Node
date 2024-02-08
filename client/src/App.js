@@ -1,13 +1,13 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Layout from "./features/Layout"
+import Layout from "./features/main/Layout.js"
 import theme from './theme';
 import { ThemeProvider } from "@mui/material/styles"
-import Login from './features/Login';
+import Login from './features/main/Login.js';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
-import LayoutPersonalArea from './features/LayoutPersonalArea';
-import PersonalArea from "./features/PersonalArea.js"
+import LayoutPersonalArea from './features/personalArea/Layout.js';
+import PersonalArea from "./features/personalArea/PersonalArea.js"
 
 const App = () => {
 
@@ -17,11 +17,11 @@ const App = () => {
 
         <ThemeProvider theme={theme}>
           <Router>
-              <Routes>
-                <Route path='personal-area' element={<LayoutPersonalArea />} >
+            <Routes>
+              <Route path='personal-area' element={<LayoutPersonalArea />} >
                 <Route index element={<PersonalArea />} />
-            </Route>
-
+                <Route path='edit' element={<h1>edit personal detile page</h1>} />
+              </Route>
               <Route path="/" element={<Layout />}>
                 <Route index element={<h1>home page</h1>} />
                 <Route path="about" element={<h1>about page</h1>} />

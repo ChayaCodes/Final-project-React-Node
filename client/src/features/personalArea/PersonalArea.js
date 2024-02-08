@@ -1,10 +1,10 @@
 
 import { useDispatch, useSelector } from 'react-redux';
-import { useGetUserQuery } from '../redux/userApiSlice';
+import { useGetUserQuery } from '../../store/user/userApiSlice';
 import { IconButton, Link } from '@mui/material';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import apiSlice from '../redux/apiSlice';
-import { removeToken } from '../redux/authSlice';
+import apiSlice from '../../store/apiSlice';
+import { removeToken } from '../../store/auth/authSlice';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router';
@@ -27,7 +27,6 @@ const PersonalArea = () => {
 
 
     if (isLoading) {
-        console.log("loading");
         return <div>Loading...</div>
     }
     if (isError) {
