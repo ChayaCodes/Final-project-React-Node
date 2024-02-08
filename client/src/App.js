@@ -21,6 +21,11 @@ const App = () => {
               <Route path='personal-area' element={<LayoutPersonalArea />} >
                 <Route index element={<PersonalArea />} />
                 <Route path='edit' element={<h1>edit personal detile page</h1>} />
+                <Route path='courses' element={<h1>courses page</h1>} />
+                <Route path='tutorials' element={<h1>tutorials page</h1>} />
+                <Route path='community' element={<h1>community page</h1>} />
+                <Route path='zoom' element={<h1>zoom page</h1>} />
+                <Route path='*' element={<h1>404 not found</h1>} />
               </Route>
               <Route path="/" element={<Layout />}>
                 <Route index element={<h1>home page</h1>} />

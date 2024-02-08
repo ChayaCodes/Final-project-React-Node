@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Typography, IconButton, Link, Toolbar, Box } from '@mui/material';
 import Breadcrumbs from '@mui/material/Breadcrumbs';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
