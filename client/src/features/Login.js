@@ -26,7 +26,7 @@ const Login = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            dispatch(setToken(data.token));
+            dispatch(setToken({token:data.accessToken}));
             navigate("/");
         }
         if (isError) {
@@ -47,7 +47,7 @@ const Login = () => {
     };
 
     return (
-        <Box sx={{ width: 400, margin: "auto", marginTop: 10 }}>
+        <Box sx={{ width: "100%", maxWidth: 400, margin: "auto", marginTop: 8 }}>
             <Typography variant="h4" sx={{ textAlign: "center" }}>
                 התחברות
             </Typography>
@@ -81,7 +81,7 @@ const Login = () => {
                     ),
                 }}
             />
-            <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }} onClick={() => loginFunc({ email, password })}>
+            <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }} onClick={() => loginFunc({ userName:email, password })}>
                 התחברות
             </Button>
 

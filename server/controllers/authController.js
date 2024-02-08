@@ -5,18 +5,18 @@ const jwt = require("jsonwebtoken");
 const login = async (req, res) => {
     const {userName,password} = req.body
     if(!userName || !password){
-        return res.status(400).json({message:"please enter all fields"})
+        return res.status(400).json({message:"please enter all fields", data: req.body})
     }
     let user = await User.findOne({userName}).lean()
     if(!user){
         user = await User.findOne({email:userName}).lean()
         if(!user){
-            return res.status(400).json({message:"unauthorized"})
+            return res.status(400).json({message:"unauthorized - user not found"})
         }
     }
     const isMatch = await bcrypt.compare(password,user.password)
     if(!isMatch){
-        return res.status(400).json({message:"unauthorized"})
+        return res.status(400).json({message:"unauthorized - invalid password"})
     }
     const userInfo = {user,password:undefined}
     const token = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
