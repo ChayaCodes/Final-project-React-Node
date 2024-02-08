@@ -14,12 +14,14 @@ const userApiSlice = apiSlice.injectEndpoints({
                 url: 'api/me',
                 method: 'PUT',
                 body: updateUser,
+
             }),
         }),
         deleteUser: build.mutation({
             query: () => ({
                 url: 'api/me',
                 method: 'DELETE',
+
             }),
         }),
     })

@@ -25,8 +25,11 @@ const userSlice = createSlice({
             state.email = "";
             state.role = "";
         },
+
     },
 });
 
+export const selectAlertsCount = state => state.user.alerts.length;
+export const selectUserName = state => state.user.userName;
 export default userSlice.reducer;
 export const { setUser, removeUser } = userSlice.actions;

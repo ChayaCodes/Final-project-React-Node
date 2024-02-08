@@ -18,7 +18,16 @@ const login = async (req, res) => {
     if(!isMatch){
         return res.status(400).json({message:"unauthorized - invalid password"})
     }
-    const userInfo = {user,password:undefined}
+
+    const userInfo = {
+        userName:user.userName,
+        firstName:user.firstName,
+        lastName:user.lastName,
+        email:user.email,
+        role:user.role,
+        id:user._id,
+        forums:user.forums,
+    }
     const token = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
     res.json({message:"logged in successfully",accessToken:token,user:userInfo})
 };

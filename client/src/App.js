@@ -6,16 +6,22 @@ import { ThemeProvider } from "@mui/material/styles"
 import Login from './features/Login';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
+import LayoutPersonalArea from './features/LayoutPersonalArea';
+import PersonalArea from "./features/PersonalArea.js"
 
+const App = () => {
 
-function App() {
   return (
     <div className="App" dir="rtl">
       <CacheProvider value={cacheRtl}>
 
         <ThemeProvider theme={theme}>
           <Router>
-            <Routes>
+              <Routes>
+                <Route path='personal-area' element={<LayoutPersonalArea />} >
+                <Route index element={<PersonalArea />} />
+            </Route>
+
               <Route path="/" element={<Layout />}>
                 <Route index element={<h1>home page</h1>} />
                 <Route path="about" element={<h1>about page</h1>} />
@@ -25,7 +31,6 @@ function App() {
                 <Route path="contact" element={<h1>contact page</h1>} />
                 <Route path="login" element={<Login />} />
                 <Route path='signup' element={<h1>signup page</h1>} />
-                <Route path='personal-area' element={<h1>personal area page</h1>} />
                 <Route path="*" element={<h1>404 not found</h1>} />
               </Route>
             </Routes>
