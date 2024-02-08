@@ -25,6 +25,7 @@ function App() {
                 <Route path="contact" element={<h1>contact page</h1>} />
                 <Route path="login" element={<Login />} />
                 <Route path='signup' element={<h1>signup page</h1>} />
+                <Route path='personal-area' element={<h1>personal area page</h1>} />
                 <Route path="*" element={<h1>404 not found</h1>} />
               </Route>
             </Routes>

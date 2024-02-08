@@ -4,11 +4,17 @@ import { Box, IconButton, Link, Drawer, List, ListItem, ListItemText, useMediaQu
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { setToken } from '../redux/authSlice';
 
 const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר']
 const links = ['/', '/about', '/courses', '/tutorials', '/community', '/contact']
 
 const Header = () => {
+  const dispatch = useDispatch();
+  
+  const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -16,6 +22,21 @@ const Header = () => {
   const handleDrawerToggle = () => {
     setDrawerOpen(!drawerOpen);
   };
+
+  const handleClickToPersonalArea = () => {
+    console.log("click")
+    const token = localStorage.getItem('token');
+    if(token) {
+      //שומר את הטוקן בסטור - רידקס
+      dispatch(setToken({ token }));
+      //מעביר לדף האישי
+      navigate('/personal-area');
+      console.log("click")
+    }else{
+      //מעביר לדף ההתחברות
+      navigate('/login');
+    }
+  }
 
   return (
     <Toolbar disableGutters>
@@ -62,7 +83,7 @@ const Header = () => {
           </>
         )}
         <Grid item>
-          <IconButton aria-label="לאיזור האישי" size='small' edge="start" variant="outlined" style={{ padding: '5px' }} onClick={() => { window.location.href = '/login' }}>
+          <IconButton aria-label="לאיזור האישי" size='small' edge="start" variant="outlined" style={{ padding: '5px' }} onClick={ handleClickToPersonalArea}>
             לאיזור האישי
             <FontAwesomeIcon icon={faCircleUser} style={{ color: 'black' }} />
           </IconButton>

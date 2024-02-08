@@ -27,7 +27,7 @@ const Login = () => {
     useEffect(() => {
         if (isSuccess) {
             dispatch(setToken({token:data.accessToken}));
-            navigate("/");
+            navigate("/personal-area");
         }
         if (isError) {
             console.log(error);

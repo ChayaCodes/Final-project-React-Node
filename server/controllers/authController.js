@@ -20,7 +20,7 @@ const login = async (req, res) => {
     }
     const userInfo = {user,password:undefined}
     const token = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
-    res.json({message:"logged in successfully",accessToken:token})
+    res.json({message:"logged in successfully",accessToken:token,user:userInfo})
 };
 
 
