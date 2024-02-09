@@ -7,6 +7,7 @@ import Login from './features/main/Login.js';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
 import LayoutPersonalArea from './features/personalArea/Layout.js';
+import Forums from './features/personalArea/community/forums.js';
 
 const App = () => {
 
@@ -22,7 +23,7 @@ const App = () => {
                 <Route path='edit' element={<h1>edit personal detile page</h1>} />
                 <Route path='courses' element={<h1>courses page</h1>} />
                 <Route path='tutorials' element={<h1>tutorials page</h1>} />
-                <Route path='community' element={<h1>community page</h1>} />
+                <Route path='community' element={<Forums />} />
                 <Route path='zoom' element={<h1>zoom page</h1>} />
                 <Route path='*' element={<h1>404 not found</h1>} />
               </Route>

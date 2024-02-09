@@ -1,4 +1,4 @@
-import { Breadcrumbs } from '@mui/material';
+import { Breadcrumbs, Link } from '@mui/material';
 import React from 'react';
 import { NavLink } from 'react-router-dom';
 import { useLocation, matchPath } from 'react-router-dom';
@@ -21,15 +21,24 @@ const Crumbs = () => {
   const paths = location.split('/')
   const filteredRoutes = routes.filter(route => paths.includes(route.path));
   filteredRoutes.unshift({ path: '/', breadcrumb: 'ראשי' });
+
   return (
     <Breadcrumbs separator="/">
       {
         filteredRoutes.map((route, index) => {
+          let link = ""
+          for(let i = 1; i <= index; i++){
+            link += "/" + filteredRoutes[i].path;
+          }
+          link+= "/"
           
+
+
           return (
-            <NavLink key={index} to={route.path} style={{ textDecoration: 'none' }}>
-              <div >{route.breadcrumb}</div>
-            </NavLink>
+            <Link key={index} href={link}>
+              {route.breadcrumb}
+            </Link>
+
           );
         })
       }

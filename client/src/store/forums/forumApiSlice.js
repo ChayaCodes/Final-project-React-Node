@@ -1,10 +1,9 @@
 import apiSlice from "../apiSlice";
 
 const forumsApiSlice = apiSlice.injectEndpoints({
-
     endpoints: (build) => ({
-        getAllForums: build.mutation({
-            query: (registerUser) => ({
+        getForums: build.query({
+            query: () => ({
                 url: 'api/forums/',
                 method: 'GET',
             }),
@@ -12,4 +11,4 @@ const forumsApiSlice = apiSlice.injectEndpoints({
     })
 });
 
-export const { getAllForums  } = forumsApiSlice;
+export const { useGetForumsQuery  } = forumsApiSlice;

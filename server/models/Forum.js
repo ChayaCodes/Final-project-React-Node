@@ -26,3 +26,5 @@ const ForumSchema = new Schema({
     },
     
 },{timestamps:true})
+
+module.exports = mongoose.model('Forum', ForumSchema);

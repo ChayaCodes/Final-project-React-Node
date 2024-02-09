@@ -4,7 +4,7 @@ const getforums = async (req, res) => {
     //משתמש מנהל יכול לראות את כל הפורומים
     //משתמש רגיל יכול לראות רק פורומים שהוא רשום אליהם או פורומים ציבוריים
     try {
-        const forums = await Forum.find();
+        const forums = await Forum.find().lean();
 
         if(req.user.role === 'admin'){
             return res.json(forums);
