@@ -1,7 +1,6 @@
 import { Breadcrumbs, Link } from '@mui/material';
 import React from 'react';
-import { NavLink } from 'react-router-dom';
-import { useLocation, matchPath } from 'react-router-dom';
+
 
 const routes = [
   { path: 'personal-area', breadcrumb: 'איזור אישי' },
@@ -32,10 +31,8 @@ const Crumbs = () => {
           }
           link+= "/"
           
-
-
           return (
-            <Link key={index} href={link}>
+            <Link key={index} href={link} underline='hover'>
               {route.breadcrumb}
             </Link>
 
