@@ -1,6 +1,6 @@
 import React from 'react';
 import { Typography, IconButton, Link, Toolbar, Box } from '@mui/material';
-import Breadcrumbs from '@mui/material/Breadcrumbs';
+import Breadcrumbs from './Breadcumb';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell } from '@fortawesome/free-solid-svg-icons';
 import { useGetUserQuery } from '../../store/user/userApiSlice';
@@ -33,15 +33,9 @@ const Header = () => {
             alignItems: "center"
         }}>
             <Typography variant="h6" style={{ flexGrow: 0 }}> LOGO </Typography>
-
-
-            <Breadcrumbs aria-label="breadcrumb">
-                <Link underline="hover" color="inherit" href="/">ראשי</Link>/
-                <Link underline="hover" color="inherit" href="/personal-area">איזור אישי</Link>
-            </Breadcrumbs>
+            <Breadcrumbs/>
             <Box style={{ flexGrow: 0 }}>
                 <IconButton edge="start" color="black" aria-label="menu"><FontAwesomeIcon icon={faBell} /></IconButton>
-
                 <IconButton edge="start" color="black" aria-label="menu">{`היי, ${userName}`}</IconButton>
             </Box>
         </Toolbar>
