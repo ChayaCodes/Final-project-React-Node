@@ -1,13 +1,14 @@
 import { List, ListItemButton, ListItemText } from '@mui/material';
 
-
-
 const SideBar = () => {
-  return (
 
+    return (
+/*
+אני רוצה שכל קישור בתפריט, כאשר הוא פעיל, הטקסט שלו יהיה מודגש (לדוגמא כאשר נמצאים בדף קורסים, הקישור קורסים יהיה בטקסט מודגש)
+*/
       <List>
           <ListItemButton href='/personal-area/courses'>
-            <ListItemText primary="קורסים" />
+            <ListItemText primary="קורסים" isActive/>
           </ListItemButton>
           <ListItemButton href='/personal-area/tutorials'>
             <ListItemText primary="סרטונים " />

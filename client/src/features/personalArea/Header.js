@@ -25,7 +25,7 @@ const Header = () => {
     
     return (
         <Toolbar position="static" style={{
-            backgroundColor: 'white', color: 'black',
+            backgroundColor: 'transparent',color: 'black',
             display: "flex",
             flexDirection: "row",
             justifyContent: "space-between",

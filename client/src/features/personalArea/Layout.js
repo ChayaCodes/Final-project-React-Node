@@ -4,6 +4,7 @@ import {Outlet} from "react-router-dom";
 import Header from "./Header";
 import { Box } from "@mui/material";
 import SideBar from "./SideMenu";
+import PersonalArea from "./PersonalArea";
 
 const Layout = () => {
     return (
@@ -11,7 +12,10 @@ const Layout = () => {
             <Header/>
             <Box sx={{display: "flex"}}>
             <SideBar/>
-            <Outlet />
+            <Box sx={{width: "100%", alignItems: "center"}}>
+                <PersonalArea />
+                <Outlet />
+            </Box>
             </Box>
         </div>
     );

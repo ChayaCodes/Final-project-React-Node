@@ -7,7 +7,6 @@ import Login from './features/main/Login.js';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
 import LayoutPersonalArea from './features/personalArea/Layout.js';
-import PersonalArea from "./features/personalArea/PersonalArea.js"
 
 const App = () => {
 
@@ -19,7 +18,7 @@ const App = () => {
           <Router>
             <Routes>
               <Route path='personal-area' element={<LayoutPersonalArea />} >
-                <Route index element={<PersonalArea />} />
+                <Route index element={""} />
                 <Route path='edit' element={<h1>edit personal detile page</h1>} />
                 <Route path='courses' element={<h1>courses page</h1>} />
                 <Route path='tutorials' element={<h1>tutorials page</h1>} />
