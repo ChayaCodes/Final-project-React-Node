@@ -20,11 +20,13 @@ const getthreads = async (req, res) => {
 
 const getThreadPosts = async (req, res) => {
     try {
+        console.log(req.params.id);
         const thread = await Thread.findById(req.params.id);
         if (req.user.role !== 'admin' && !req.user.forums.includes(thread.forum) && !thread.public) {
             return res.status(401).json({ message: "You do not have permissions" });
         }
         //מחזיר את כל הנתונים של הפוסטים של הסרד
+        if (!thread) return res.status(404).json({ message: "Thread not found" });
         const posts = await Promise.all(thread.posts.map(async (post) => {
             const deepPost = await Post.findById(post);
             if (!deepPost) return null;
