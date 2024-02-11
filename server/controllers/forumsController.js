@@ -1,5 +1,7 @@
 const Forum = require('../models/Forum');
 const Thread = require('../models/Thread');
+const Post = require('../models/Post');
+const User = require('../models/User');
 
 
 const getforums = async (req, res) => {
@@ -13,9 +15,12 @@ const getforums = async (req, res) => {
             if (forum.threads.length > 0) {
                 const lastThreadId = forum.threads[forum.threads.length - 1];
                 const lastThread = await Thread.findById(lastThreadId).lean();
-                return { ...forum, lastThread };
+                const lastThreadUser = await User.findById(lastThread.user).lean();
+                return { ...forum, lastThread, lastThreadUser };
             }
-            return forum;
+            const numThreads = await Thread.countDocuments({ forum: forum._id });
+            const numPosts = await Post.countDocuments({ forum: forum._id });
+            return { ...forum, numThreads, numPosts };
         }));
         
 

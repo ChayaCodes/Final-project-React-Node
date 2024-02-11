@@ -19,4 +19,4 @@ const postsApiSlice = apiSlice.injectEndpoints({
     }),
 });
 
-export const { useGetPostsQuery  } = postsApiSlice;
+export const { useGetPostsQuery , useCreatePostMutation } = postsApiSlice;
