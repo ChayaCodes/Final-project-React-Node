@@ -1,25 +1,26 @@
 const Post = require('../models/Post');
+const Thread = require('../models/Thread');
 
 const getposts = async (req, res) => {
     try {
         let query;
-        if(req.user.role == 'admin'){
+        if (req.user.role == 'admin') {
             query = {};
         }
         // או ש post.forum.public = true
         // או ש post.forum._id נמצא בתוך req.user.forums
-        else{
+        else {
             query = {
                 porum: {
-                $or: [
-                    { public: true },
-                    { _id: { $in: req.user.forums } }
-                ]
-            }
+                    $or: [
+                        { public: true },
+                        { _id: { $in: req.user.forums } }
+                    ]
+                }
             };
         }
         const posts = await Post.find(query);
-        
+
         res.json(posts);
     } catch (err) {
         res.status(500).json({ message: err.message });
@@ -29,7 +30,7 @@ const getposts = async (req, res) => {
 const getpost = async (req, res) => {
     try {
         const post = await Post.findById(req.params.id);
-        if(req.user.role !== 'admin' && !req.user.forums.includes(post.forum) && !post.forum.public){
+        if (req.user.role !== 'admin' && !req.user.forums.includes(post.forum) && !post.forum.public) {
             return res.status(401).json({ message: "You do not have permissions" });
         }
         res.json(post);
@@ -39,13 +40,29 @@ const getpost = async (req, res) => {
 }
 
 const createpost = async (req, res) => {
-    if(req.user.role !== 'admin' && !req.user.forums.includes(req.body.forum)){
+    if (!req.body.content || !req.body.forum || !req.body.thread) {
+        return res.status(400).json({ message: "content, forum and thread are required" });
+    }
+
+    if (req.user.role !== 'admin' && !req.user.forums.includes(req.body.forum)) {
         return res.status(401).json({ message: "You do not have permissions" });
     }
 
-    const { content, user, forum, thread } = req.body;
-    const post = new Post({ content, user, forum, thread });
+
     try {
+        const { content, forum, thread } = req.body;
+
+        const post = new Post({
+            content,
+            user: req.user.id,
+            forum,
+            thread
+        });
+        const threadToSave = await Thread.findById(thread);
+        threadToSave.posts.push(post.id);
+        console.log(threadToSave);
+        await threadToSave.save();
+
         const newpost = await post.save();
         res.status(201).json(newpost);
     } catch (err) {
@@ -54,9 +71,9 @@ const createpost = async (req, res) => {
 }
 
 const updatepost = async (req, res) => {
-    try { 
+    try {
         //רק משתמש שהוא אדמין או שהוא המשתמש שיצר את הפוסט יכול לעדכן אותו
-        if(req.user.role !== 'admin' && !req.user===post.user){
+        if (req.user.role !== 'admin' && !req.user === post.user) {
             return res.status(401).json({ message: "You do not have permissions" });
         }
         const post = await Post.findById(req.params.id);
@@ -76,7 +93,7 @@ const updatepost = async (req, res) => {
 const deletepost = async (req, res) => {
     try {
         //רק משתמש שהוא אדמין או שהוא המשתמש שיצר את הפוסט יכול למחוק אותו
-        if(req.user.role !== 'admin' && !req.user===post.user){
+        if (req.user.role !== 'admin' && !req.user === post.user) {
             return res.status(401).json({ message: "You do not have permissions" });
         }
         const post = await Post.findById(req.params.id);

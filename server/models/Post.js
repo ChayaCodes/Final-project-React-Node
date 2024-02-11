@@ -10,11 +10,13 @@ const PostSchema = new Schema({
     },
     user:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"User"
+        ref:"User",
+        required:true
     },
-    tread:{
+    thread:{
         type:mongoose.Schema.Types.ObjectId,
-        ref:"Tread"
+        ref:"Tread",
+        required:true
     },
     forum:{
         type:mongoose.Schema.Types.ObjectId,

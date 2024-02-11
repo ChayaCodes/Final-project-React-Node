@@ -21,7 +21,8 @@ const Treads = () => {
             {
                 threads.map((thread) => {
                     return (
-                        <Box  style={{ padding: "1rem", margin: "1rem", display: "flex", flexDirection: "row", justifyContent: "space-between" }}>
+                        <Box  style={{ padding: "1rem", margin: "1rem", display: "flex", flexDirection: "row", justifyContent: "space-between" }}
+                        onClick={() => { window.location.href = `/personal-area/community/${forumId}/${thread._id}` }}>
                             <Typography>{thread.title}</Typography>
                             <Box>
                                 <Typography>{new Date(thread.createdAt).toLocaleString('he-IL', { timeZone: 'Asia/Jerusalem' })}</Typography>

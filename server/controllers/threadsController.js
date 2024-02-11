@@ -1,5 +1,7 @@
 const Forum = require('../models/Forum');
 const Thread = require('../models/Thread');
+const User = require('../models/User');
+const Post = require('../models/Post');
 
 const getthreads = async (req, res) => {
     try {
@@ -11,6 +13,29 @@ const getthreads = async (req, res) => {
 
         res.json(threads.filter(thread => thread.public || req.user.user.forums.includes(thread.forum.id)));
 
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
+}
+
+const getThreadPosts = async (req, res) => {
+    try {
+        const thread = await Thread.findById(req.params.id);
+        if (req.user.role !== 'admin' && !req.user.forums.includes(thread.forum) && !thread.public) {
+            return res.status(401).json({ message: "You do not have permissions" });
+        }
+        //מחזיר את כל הנתונים של הפוסטים של הסרד
+        const posts = await Promise.all(thread.posts.map(async (post) => {
+            const deepPost = await Post.findById(post);
+            if (!deepPost) return null;
+            console.log(deepPost);
+            const user = await User.findById(deepPost.user, { userName: 1, avatar: 1 , color: 1});  
+            user.password = undefined;
+            
+            deepPost.user = user;
+            return  deepPost ;
+        }))
+        res.json(posts);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
@@ -141,5 +166,6 @@ module.exports = {
     createthread,
     updatethread,
     deletethread,
+    getThreadPosts,
     get50forumthreads
 }

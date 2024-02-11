@@ -33,7 +33,6 @@ const getforums = async (req, res) => {
 const getforumthreads = async (req, res) => {
     try {
         const threads = await Thread.find({ forum: req.params.id });
-        threads.sort((a, b) => { b.createdAt - a.createdAt })
 
         if (req.user.role === 'admin') {
             return res.json(threads);

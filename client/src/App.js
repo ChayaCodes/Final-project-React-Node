@@ -10,6 +10,7 @@ import LayoutPersonalArea from './features/personalArea/Layout.js';
 import Forums from './features/personalArea/community/forums.js';
 import Treads from './features/personalArea/community/Treads.js';
 import NewThread from './features/personalArea/community/NewThread.js';
+import Thread from './features/personalArea/community/Thread.js';
 
 const App = () => {
 
@@ -29,6 +30,7 @@ const App = () => {
                 <Route path='community' element={<Forums />} />
                 <Route path='community/:id' element={<Treads />} />
                 <Route path='community/:id/new-thread' element={<NewThread />} />
+                <Route path='community/:id/:threadId' element={<Thread />} />
                 
                 <Route path='zoom' element={<h1>zoom page</h1>} />
                 <Route path='*' element={<h1>404 not found</h1>} />

@@ -46,10 +46,24 @@ const createUser = async (req, res) => {
     if (!lastName) return res.status(400).json({ message: "lastName is required" })
     if (!email) return res.status(400).json({ message: "email is required" })
 
+    // יצירת צבע אקראי למשתמש
+    const colorR = Math.floor(Math.random() * 256);
+    const colorG = Math.floor(Math.random() * 256);
+    const colorB = Math.floor(Math.random() * 256);
+    // כל עוד הצבע כהה מדי נגריל צבע חדש
+    while (colorR < 100 && colorG < 100 && colorB < 100) {
+        colorR = Math.floor(Math.random() * 256);
+        colorG = Math.floor(Math.random() * 256);
+        colorB = Math.floor(Math.random() * 256);
+    }
+    const color = `rgb(${colorR},${colorG},${colorB})`;
+
+
     const user = new User({
         firstName,
         lastName,
         userName,
+        color,
         password: await bcrypt.hash(password, 10),
         email,
         role,
