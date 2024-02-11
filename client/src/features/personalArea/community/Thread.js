@@ -1,11 +1,11 @@
+import Editor from "./Editor";
+
 const Thread = () => {
 
 
     return (
-        <div>
-            
-
-        </div>
+        
+        <Editor />
     )
 }
 
