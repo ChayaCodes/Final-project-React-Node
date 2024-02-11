@@ -1,22 +1,52 @@
 const Forum = require('../models/Forum');
+const Thread = require('../models/Thread');
+
 
 const getforums = async (req, res) => {
     //משתמש מנהל יכול לראות את כל הפורומים
     //משתמש רגיל יכול לראות רק פורומים שהוא רשום אליהם או פורומים ציבוריים
     try {
-        const forums = await Forum.find().lean();
+        let forums = await Forum.find().lean();
+
+        //עבור כל פורום יישלח גם הפרטים של הנושא האחרון שנוצר בו
+        forums = await Promise.all(forums.map(async (forum) => {
+            if (forum.threads.length > 0) {
+                const lastThreadId = forum.threads[forum.threads.length - 1];
+                const lastThread = await Thread.findById(lastThreadId).lean();
+                return { ...forum, lastThread };
+            }
+            return forum;
+        }));
+        
 
         if(req.user.role === 'admin'){
             return res.json(forums);
         }
-        const userForums = req.user.user.forums;
+        const userForums = req.user.forums;
         const filteredForums = forums.filter(forum => forum.public || userForums.includes(forum.id));
         res.json(filteredForums);
+    } catch (err) {
+        res.status(500).json({ message: err.message , from: "get forums"});
+    }
+}
+
+const getforumthreads = async (req, res) => {
+    try {
+        const threads = await Thread.find({ forum: req.params.id });
+        threads.sort((a, b) => { b.createdAt - a.createdAt })
+
+        if (req.user.role === 'admin') {
+            return res.json(threads);
+        }
+        const forum = await Forum.findById(req.params.id)
+        if (forum.public || req.user.forums.includes(req.params.id)) {
+            return res.json(threads);
+        }
+        res.json([]);
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
 }
-
 
 const getforum = async (req, res) => {
     // מחזיר את הפורום רק אם המשתמש הוא אדמין או שהוא רשום לפורום זה או שהפורום הוא ציבורי
@@ -25,7 +55,7 @@ const getforum = async (req, res) => {
         const forum = await Forum.findById(req.params.id);
         if(req.user.role === 'admin'){
             return res.json(forum);
-        }if(forum.public || req.user.user.forums.includes(req.params.id)){
+        }if(forum.public || req.user.forums.includes(req.params.id)){
             return res.json(forum);
         }else{
             return res.status(401).json({ message: "You do not have permissions" });
@@ -40,7 +70,6 @@ const getforum = async (req, res) => {
 
 const createforum = async (req, res) => {
     // רק משתמש שהוא אדמין יכול ליצור פורום חדש
-    console.log(req.user.role)
     if(req.user.role !== 'admin'){
         return res.status(401).json({ message: "You do not have permissions" });
     }
@@ -125,6 +154,7 @@ const deleteforum = async (req, res) => {
 
 module.exports = {
     getforums,
+    getforumthreads,
     getforum,
     createforum,
     updateforum,

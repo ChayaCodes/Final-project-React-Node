@@ -27,6 +27,11 @@ const threadSchema = new Schema({
         type:mongoose.Schema.Types.ObjectId,
         ref:"User"
     },
+    userName:{
+        type:String,
+        required:true,
+        trim:true,
+    },
     open:{
         type:Boolean,
         default:true
