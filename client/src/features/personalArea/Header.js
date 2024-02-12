@@ -30,7 +30,15 @@ const Header = () => {
             flexDirection: "row",
             justifyContent: "space-between",
             margin: "0",
-            alignItems: "center"
+            alignItems: "center",
+            // stiky
+            stiky: "top",
+            position: "fixed",
+            top: "0",
+            zIndex: "100",
+           // width: "100%",
+            left: "0",
+            right: "0",
         }}>
             <Typography variant="h6" style={{ flexGrow: 0 }}> LOGO </Typography>
             <Breadcrumbs/>

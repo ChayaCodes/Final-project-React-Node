@@ -12,7 +12,7 @@ const Layout = () => {
             <Header/>
             <Box sx={{display: "flex"}}>
             <SideBar/>
-            <Box sx={{width: "100%", alignItems: "center"}}>
+            <Box sx={{width: "100%", alignItems: "center", paddingTop: "60px"}}>
                 <PersonalArea />
                 <Outlet />
             </Box>
