@@ -22,12 +22,12 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [loginFunc, {isError, error, isLoading, isSuccess, data}] = useLoginMutation();
+    const [loginFunc, { isError, error, isLoading, isSuccess, data }] = useLoginMutation();
 
     useEffect(() => {
         if (isSuccess) {
             console.log(data.user.user);
-            dispatch(setToken({token:data.accessToken}));
+            dispatch(setToken({ token: data.accessToken }));
             // dispatch(setUser(data.user));
             navigate("/personal-area");
         }
@@ -49,22 +49,22 @@ const Login = () => {
     };
 
     return (
-        <Box sx={{ width: "100%", maxWidth: 400, margin: "auto", marginTop: 8 }}>
+        <Box sx={{ width: "100%", maxWidth: 400, margin: "auto", marginTop: 8 , height: "60vh"}}>
             <Typography variant="h4" sx={{ textAlign: "center" }}>
                 התחברות
             </Typography>
-    <div dir="rtl">
-      <TextField
-        required
-        label="אימייל"
-        value={email}
-        sx={{ width: "100%", marginTop: 2 }}
-        variant="outlined"
-        onChange={handleEmailChange}
-        type="email"
-        
-      />
-    </div>
+            <div dir="rtl">
+                <TextField
+                    required
+                    label="אימייל"
+                    value={email}
+                    sx={{ width: "100%", marginTop: 2 }}
+                    variant="outlined"
+                    onChange={handleEmailChange}
+                    type="email"
+
+                />
+            </div>
             <TextField
                 required
                 label="סיסמא"
@@ -83,7 +83,7 @@ const Login = () => {
                     ),
                 }}
             />
-            <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }} onClick={() => loginFunc({ userName:email, password })}>
+            <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }} onClick={() => loginFunc({ userName: email, password })}>
                 התחברות
             </Button>
 

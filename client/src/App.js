@@ -11,6 +11,7 @@ import Forums from './features/personalArea/community/forums.js';
 import Treads from './features/personalArea/community/Treads.js';
 import NewThread from './features/personalArea/community/NewThread.js';
 import Thread from './features/personalArea/community/Thread.js';
+import HomePage from './features/main/HomePage.js';
 
 const App = () => {
 
@@ -37,7 +38,7 @@ const App = () => {
 
               </Route>
               <Route path="/" element={<Layout />}>
-                <Route index element={<h1>home page</h1>} />
+                <Route index element={<HomePage />} />
                 <Route path="about" element={<h1>about page</h1>} />
                 <Route path="courses" element={<h1>courses page</h1>} />
                 <Route path="tutorials" element={<h1>tutorials page</h1>} />

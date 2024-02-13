@@ -3,7 +3,6 @@ import {Outlet} from "react-router-dom";
 
 import Header from "./Header";
 import { Box } from "@mui/material";
-import SideBar from "./SideMenu";
 import PersonalArea from "./PersonalArea";
 
 const Layout = () => {
@@ -11,8 +10,7 @@ const Layout = () => {
         <div className="page">
             <Header/>
             <Box sx={{display: "flex"}}>
-            <SideBar/>
-            <Box sx={{width: "100%", alignItems: "center", paddingTop: "60px"}}>
+            <Box sx={{width: "100%", alignItems: "center"}}>
                 <PersonalArea />
                 <Outlet />
             </Box>

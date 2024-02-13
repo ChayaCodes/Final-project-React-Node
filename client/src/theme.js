@@ -3,6 +3,9 @@ import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
+import styled from '@emotion/styled';
+import TextField from '@mui/material/TextField';
+import { ThemeProvider } from '@mui/material/styles';
 
 
 const theme = createTheme({
@@ -13,18 +16,21 @@ const theme = createTheme({
         'sans-serif'
       ].join(','),
     },
-    palette: { //אפור, שחור, לבן
+    palette: { 
       primary: {
-        main: '#000000',
+        main: '#27254C',
       },
       secondary: {
-        main: '#ffffff',
+        main: '#23bbae',
       },
       tertiary: {
-        main: '#aaaaaa',
+        main: '#5c5c5c',
       },
     },
+    
   });
+
+  
 
   const cacheRtl = createCache({
     key: 'muirtl',
