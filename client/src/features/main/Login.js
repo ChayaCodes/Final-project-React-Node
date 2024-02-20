@@ -58,10 +58,14 @@ const Login = () => {
                     required
                     label="אימייל"
                     value={email}
-                    sx={{ width: "100%", marginTop: 2 }}
+                    sx={{ width: "100%", marginTop: 2,
+                    textAlign: "right",
+                    
+                    backgroundColor: "white"}}
                     variant="outlined"
                     onChange={handleEmailChange}
                     type="email"
+                    
 
                 />
             </div>
@@ -72,7 +76,7 @@ const Login = () => {
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={handlePasswordChange}
-                sx={{ width: "100%", marginTop: 2 }}
+                sx={{ width: "100%", marginTop: 2, backgroundColor: "white" }}
                 InputProps={{
                     endAdornment: (
                         <InputAdornment position="end">
@@ -91,6 +95,10 @@ const Login = () => {
                 אין לך חשבון? <Link href="/signup">הרשמה</Link>
             </Typography>
         </Box>
+
+
+
+
     );
 };
 

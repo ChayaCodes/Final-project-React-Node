@@ -1,4 +1,4 @@
-const userController = require('../controllers/userController');
+const userController = require('../controllers/usersControllers/userController');
 
 const router = require('express').Router();
 const verifyAdmin = require('../middleware/verifyAdmin');

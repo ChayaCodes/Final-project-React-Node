@@ -1,13 +1,12 @@
-const threadController = require('../controllers/threadsController');
+const threadController = require('../controllers/threadControllers/threadsController');
 
 const router = require('express').Router();
 
-router.get('/', threadController.getthreads);
-router.get('/:id', threadController.getthread);
-router.get('/:id/posts', threadController.getThreadPosts);
-router.post('/', threadController.createthread);
-router.put('/:id', threadController.updatethread);
-router.delete('/:id', threadController.deletethread);
+router.get('/', threadController.getThreads);
+router.get('/:id', threadController.getThread);
+router.post('/', threadController.createThread);
+router.put('/:id', threadController.updateThread);
+router.delete('/:id', threadController.deleteThread);
 
 module.exports = router;
 

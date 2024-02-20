@@ -12,8 +12,8 @@ const theme = createTheme({
     direction: 'rtl',
     typography: {
       fontFamily: [
-        'Arial',
-        'sans-serif'
+         "Assistant", "sans-serif"
+
       ].join(','),
     },
     palette: { 

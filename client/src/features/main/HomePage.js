@@ -2,6 +2,7 @@ import { Button } from "@mui/material";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 
+
 const HomePage = () => {
     return (
         <div>
@@ -35,7 +36,9 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-            <div></div>
+            <div>
+
+            </div>
         </div>
     );
 }
