@@ -22,7 +22,7 @@ const Login = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [showPassword, setShowPassword] = useState(false);
-    const [loginFunc, { isError, error, isLoading, isSuccess, data }] = useLoginMutation();
+    const [loginFunc, { isError, error, isSuccess, data }] = useLoginMutation();
 
     useEffect(() => {
         if (isSuccess) {

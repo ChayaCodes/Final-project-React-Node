@@ -1,19 +1,19 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Layout from "./Components/layouts/site/Layout.js"
+import Layout from "./Components/site/Layout.js";
 import theme from './theme';
 import { ThemeProvider } from "@mui/material/styles"
-import Login from './features/main/Login.js';
+import Login from './Components/site/Login.js';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
-import LayoutPersonalArea from './Components/layouts/personalArea/Layout.js';
-import Forums from './features/personalArea/community/forums.js';
-import Treads from './features/personalArea/community/Treads.js';
-import NewThread from './features/personalArea/community/NewThread.js';
-import Thread from './features/personalArea/community/Thread.js';
-import HomePage from './features/main/HomePage.js';
-import ForumBox from './features/personalArea/community/ForumBox.js';
-
+import LayoutPersonalArea from './Components/personalArea/Layout.js';
+import Forums from './Components/personalArea/community/forums.js';
+import Treads from './Components/personalArea/community/Treads.js';
+import NewThread from './Components/personalArea/community/NewThread.js';
+import Thread from './Components/personalArea/community/Thread.js';
+import HomePage from './Components/site/HomePage.js';
+import ForumBox from './Components/personalArea/community/ForumBox.js';
+import DashLayout from './Components/dash/DashLayout.js'
 const App = () => {
 
   return (
@@ -38,7 +38,11 @@ const App = () => {
                 <Route path='*' element={<h1>404 not found</h1>} />
 
               </Route>
-              <Route path='dashboard' element={<dashLayout />} >
+              <Route path='dashboard' element={<DashLayout />} >
+
+                <Route index element={""} />
+                <Route path='*' element={<h1>404 not found dashboard</h1>} />
+
 
               </Route>
               <Route path="/" element={<Layout />}>

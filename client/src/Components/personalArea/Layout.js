@@ -1,9 +1,9 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
 
-import Header from "../../../features/personalArea/Header";
+import Header from "./Header";
 import { Box } from "@mui/material";
-import PersonalArea from "../../../features/personalArea/PersonalArea";
+import PersonalArea from "./PersonalArea";
 
 const Layout = () => {
     return (

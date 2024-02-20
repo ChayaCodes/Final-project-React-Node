@@ -1,6 +1,6 @@
 import { Grid, Typography, Box } from '@mui/material';
 import Avatar from './Avatar';
-import formatDate from '../../../formatDate';
+import useFormatedDate from '../../../hooks/useFormtedDate';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDiamondTurnRight } from '@fortawesome/free-solid-svg-icons';
 

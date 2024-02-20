@@ -1,5 +1,5 @@
 import { Link, TableFooter } from "@mui/material";
-import MenuLink from "../../Components/MenuLink";
+import MenuLink from "./MenuLink";
 
 
 const Footer = () => {
