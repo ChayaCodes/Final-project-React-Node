@@ -1,6 +1,6 @@
-import { useGetThreadsQuery } from '../../../store/treads/treadsApiSlice';
+import { useGetThreadsQuery } from '../../../app/treads/treadsApiSlice';
 import { useParams } from 'react-router-dom';
-import { Box, Button, Typography } from '@mui/material';
+import { Box, Button } from '@mui/material';
 import ThreadBox from './ThreadBox';
 
 const Treads = () => {

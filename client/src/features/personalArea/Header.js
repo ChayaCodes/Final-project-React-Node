@@ -3,7 +3,7 @@ import { Typography, IconButton, Link, Toolbar, Box, Badge, MenuItem } from '@mu
 import Breadcrumbs from './Breadcumb';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faBars, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { useGetUserQuery } from '../../store/user/userApiSlice';
+import { useGetUserQuery } from '../../app/user/userApiSlice';
 import { useMediaQuery } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Breadcrumb from './Breadcumb';

@@ -1,6 +1,5 @@
 import { Link, TableFooter } from "@mui/material";
-import GrayInput from "../Components/GrayInput";
-import MenuLink from "../Components/MenuLink";
+import MenuLink from "../../Components/MenuLink";
 
 
 const Footer = () => {

@@ -9,8 +9,8 @@ import {
     IconButton,
 } from "@mui/material";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
-import { useLoginMutation } from "../../store/auth/authApiSlice";
-import { setToken } from "../../store/auth/authSlice";
+import { useLoginMutation } from "../../app/auth/authApiSlice";
+import { setToken } from "../../app/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 

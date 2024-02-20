@@ -1,6 +1,6 @@
 import React from 'react';
 import { useRef } from 'react';
-import { useCreateThreadMutation } from '../../../store/treads/treadsApiSlice';
+import { useCreateThreadMutation } from '../../../app/treads/treadsApiSlice';
 import { TextField, Button, FormGroup } from '@mui/material';
 import { useParams } from 'react-router';
 

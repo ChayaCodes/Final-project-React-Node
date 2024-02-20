@@ -1,9 +1,9 @@
 import React from "react";
 import {Outlet} from "react-router-dom";
 
-import Header from "./Header";
-import Footer from "./Footer";
-import MyComponent from "../../MyComponent"
+import Header from "../../../features/main/Header";
+import Footer from "../../../features/main/Footer";
+import MyComponent from "../../../MyComponent"
 
 const Layout = () => {
     return (

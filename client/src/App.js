@@ -1,12 +1,12 @@
 import './App.css';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Layout from "./features/main/Layout.js"
+import Layout from "./Components/layouts/site/Layout.js"
 import theme from './theme';
 import { ThemeProvider } from "@mui/material/styles"
 import Login from './features/main/Login.js';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
-import LayoutPersonalArea from './features/personalArea/Layout.js';
+import LayoutPersonalArea from './Components/layouts/personalArea/Layout.js';
 import Forums from './features/personalArea/community/forums.js';
 import Treads from './features/personalArea/community/Treads.js';
 import NewThread from './features/personalArea/community/NewThread.js';
@@ -36,6 +36,9 @@ const App = () => {
                 
                 <Route path='zoom' element={<h1>zoom page</h1>} />
                 <Route path='*' element={<h1>404 not found</h1>} />
+
+              </Route>
+              <Route path='dashboard' element={<dashLayout />} >
 
               </Route>
               <Route path="/" element={<Layout />}>

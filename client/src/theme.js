@@ -1,11 +1,7 @@
 import { createTheme } from '@mui/material/styles';
-import { CacheProvider } from '@emotion/react';
 import createCache from '@emotion/cache';
 import { prefixer } from 'stylis';
 import rtlPlugin from 'stylis-plugin-rtl';
-import styled from '@emotion/styled';
-import TextField from '@mui/material/TextField';
-import { ThemeProvider } from '@mui/material/styles';
 
 
 const theme = createTheme({

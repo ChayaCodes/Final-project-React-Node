@@ -1,5 +1,4 @@
-import Editor from "./Editor";
-import { useGetPostsQuery, useCreatePostMutation } from "../../../store/posts/postsApiSlice";
+import { useGetPostsQuery, useCreatePostMutation } from "../../../app/posts/postsApiSlice";
 import { Button } from "@mui/material";
 import { useParams } from "react-router-dom";
 import { useState } from "react";
@@ -9,7 +8,7 @@ const Thread = () => {
 
     const { data, error, isLoading, isSuccess, isError } = useGetPostsQuery(threadId);
 
-    const [createPost, { isLoading: isCreatingPost, isError: isCreatePostError, isSuccess: isCreatePostSuccess, error: createPostError, data: createPostData }] = useCreatePostMutation();
+    const [createPost, {  isSuccess: isCreatePostSuccess}] = useCreatePostMutation();
     const [postContent, setPostContent] = useState('');
 
     const handleAddPost = async () => {

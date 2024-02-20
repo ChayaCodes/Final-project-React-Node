@@ -1,10 +1,10 @@
 
 import { useDispatch } from 'react-redux';
-import { useGetUserQuery } from '../../store/user/userApiSlice';
+import { useGetUserQuery } from '../../app/user/userApiSlice';
 import { IconButton, Link } from '@mui/material';
 import { faPencil } from '@fortawesome/free-solid-svg-icons';
-import apiSlice from '../../store/apiSlice';
-import { removeToken } from '../../store/auth/authSlice';
+import apiSlice from '../../app/apiSlice';
+import { removeToken } from '../../app/auth/authSlice';
 import { faArrowLeft, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Box } from '@mui/system';
 import { useNavigate } from 'react-router';
