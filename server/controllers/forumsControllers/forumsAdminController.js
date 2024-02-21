@@ -4,7 +4,8 @@ const Forum = require('../../models/Forum');
 
 const getForums = async (req, res) => {
     try {
-        const forums = await Forum.find().lean();
+        const {page} = req.query;
+        const forums = await Forum.find().limit(50).skip(50 * (page - 1)).lean();
         res.json(forums);
     } catch (err) {
         res.status(500).json({ message: err.message });

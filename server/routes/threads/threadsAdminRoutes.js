@@ -1,4 +1,4 @@
-const threadController = require('../controllers/threadControllers/threadsController');
+const threadController = require('../../controllers/threadControllers/threadsAdminController');
 
 const router = require('express').Router();
 

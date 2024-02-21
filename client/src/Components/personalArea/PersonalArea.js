@@ -10,6 +10,7 @@ import { Box } from '@mui/system';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Typography } from '@mui/material';
+import { useSelector } from 'react-redux';
 
 
 
@@ -23,22 +24,16 @@ const PersonalArea = () => {
         navigate("/");
     }
 
-    const { data: user, isLoading, isError, isSuccess, error } = useGetUserQuery();
+    const user = useSelector((state) => state.auth.user);
+    const userName = user ? user.userName : "אורח";
 
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    }
-    if (isError) {
-        <div>
-            return <div style={{ color: "red" }}>{error.data}</div>
-        </div>
-    }
-    if (isSuccess) {
+
+    
         return (
             <div style={{ width: "100%", height: "100%", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center" }}>
                 <Typography variant='h2' weight='700' style={{ color: "black" , fontWeight: "700", fontSize: "40px", padding: "10px"}}
-                >{`שלום ${user.userName}!`}</Typography>
+                >{`שלום ${userName}!`}</Typography>
                 <Box>
                     <Link to="/personal-area/edit" style={{ color: "black", padding: "10px" }}>
                         <FontAwesomeIcon icon={faPencil} />
@@ -53,7 +48,7 @@ const PersonalArea = () => {
         )
     }
 
-}
+
 
 
 

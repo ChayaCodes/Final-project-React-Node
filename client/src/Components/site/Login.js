@@ -13,6 +13,8 @@ import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { setToken } from "../../app/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 
 const Login = () => {
@@ -26,8 +28,8 @@ const Login = () => {
 
     useEffect(() => {
         if (isSuccess) {
-            console.log(data.user.user);
-            dispatch(setToken({ token: data.accessToken }));
+            console.log("user", data.user);
+            dispatch(setToken({ token: data.accessToken , user: data.user}));
             // dispatch(setUser(data.user));
             navigate("/personal-area");
         }
@@ -48,8 +50,9 @@ const Login = () => {
         setShowPassword(!showPassword);
     };
 
+
     return (
-        <Box sx={{ width: "100%", maxWidth: 400, margin: "auto", marginTop: 8 , height: "60vh"}}>
+        <Box sx={{ width: "100%", maxWidth: 400, margin: "auto", marginTop: 8, height: "60vh" }}>
             <Typography variant="h4" sx={{ textAlign: "center" }}>
                 התחברות
             </Typography>
@@ -58,14 +61,16 @@ const Login = () => {
                     required
                     label="אימייל"
                     value={email}
-                    sx={{ width: "100%", marginTop: 2,
-                    textAlign: "right",
-                    
-                    backgroundColor: "white"}}
+                    sx={{
+                        width: "100%", marginTop: 2,
+                        textAlign: "right",
+
+                        backgroundColor: "white"
+                    }}
                     variant="outlined"
                     onChange={handleEmailChange}
                     type="email"
-                    
+
 
                 />
             </div>
@@ -87,6 +92,8 @@ const Login = () => {
                     ),
                 }}
             />
+
+            
             <Button variant="contained" color="primary" sx={{ width: "100%", marginTop: 2 }} onClick={() => loginFunc({ userName: email, password })}>
                 התחברות
             </Button>

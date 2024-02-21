@@ -12,6 +12,7 @@ import { useState } from 'react';
 import { Drawer, List, ListItem } from '@mui/material';
 import { Grid } from '@mui/material';
 import MenuIcon from '@mui/icons-material/Menu';
+import { useSelector } from 'react-redux';
 
 
 const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר']
@@ -26,19 +27,10 @@ const Header = () => {
   const [drawerOpen, setDrawerOpen] = useState(false);
 
   const isMobile = useMediaQuery('(max-width: 600px)');
-  const { data: user, isLoading, isError, isSuccess, error } = useGetUserQuery();
 
-  if (isLoading) {
-    console.log("loading");
-    return <div>Loading...</div>
-  }
-  if (isError) {
-    <div>
-      return <div style={{ color: "red" }}>{error.data}</div>
-    </div>
-  }
-  if (isSuccess) {
-    const userName = user.userName;
+
+  const user = useSelector((state) => state.auth.user);
+  const userName = user ? user.userName : "אורח";
 
     return (
       <AppBar position="sticky"
@@ -100,6 +92,6 @@ const Header = () => {
       </AppBar>
     );
   }
-};
+
 
 export default Header;

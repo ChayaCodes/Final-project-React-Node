@@ -8,6 +8,7 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../app/auth/authSlice';
 
+
 const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר']
 const links = ['/', '/about', '/courses', '/tutorials', '/community', '/contact']
 

@@ -21,12 +21,14 @@ app.get("/",(req,res)=>{
 })
 
 
-app.use("/api/admin/users",verifyJWT, require("./routes/usersRoutes"))
-app.use("/api/admin/forums",verifyJWT, require("./routes/forumsRoutes"))
-app.use("/api/admin/threads",verifyJWT, require("./routes/threadsRoutes"))
-app.use("/api/admin/posts",verifyJWT, require("./routes/postsRoutes"))
+app.use("/api/admin/users",verifyJWT, require("./routes/users/usersAdminRoutes"))
+app.use("/api/admin/forums",verifyJWT, require("./routes/forums/forumsAdminRoutes"))
+app.use("/api/admin/threads",verifyJWT, require("./routes/threads/threadsAdminRoutes"))
+app.use("/api/admin/posts",verifyJWT, require("./routes/posts/postsAdminRoutes"))
 app.use("/api/admin/me",verifyJWT, require("./routes/meRoutes"))
 app.use("/api/auth", require("./routes/authRoutes"))
+app.use("/api/forums",verifyJWT, require("./routes/forums/forumsAdvensedRoutes"))
+
 
 mongoose.connection.once('open',()=>{
     console.log("connected to DB successfully")

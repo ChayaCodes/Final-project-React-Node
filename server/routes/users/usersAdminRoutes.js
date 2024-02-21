@@ -1,7 +1,7 @@
-const userController = require('../controllers/usersControllers/userController');
+const userController = require('../../controllers/usersControllers/userAdminController');
 
 const router = require('express').Router();
-const verifyAdmin = require('../middleware/verifyAdmin');
+const verifyAdmin = require('../../middleware/verifyAdmin');
 
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);

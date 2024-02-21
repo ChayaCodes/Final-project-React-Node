@@ -1,5 +1,5 @@
-const forumsController = require('../controllers/forumsControllers/forumsController');
-const verifyAdmin = require('../middleware/verifyAdmin');
+const forumsController = require('../../controllers/forumsControllers/forumsAdminController');
+const verifyAdmin = require('../../middleware/verifyAdmin');
 
 const router = require('express').Router();
 

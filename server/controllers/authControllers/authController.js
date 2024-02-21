@@ -1,5 +1,5 @@
 const bcrypt = require("bcrypt");
-const User = require("../models/User");
+const User = require("../../models/User");
 const jwt = require("jsonwebtoken");
 
 const login = async (req, res) => {
@@ -26,7 +26,7 @@ const login = async (req, res) => {
         email:user.email,
         role:user.role,
         id:user._id,
-        forums:user.forums,
+        forums:user.forums || []
     }
     const token = jwt.sign(userInfo,process.env.ACCESS_TOKEN_SECRET)
     res.json({message:"logged in successfully",accessToken:token,user:userInfo})
