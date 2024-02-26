@@ -1,0 +1,16 @@
+.continer {
+    display: flex;
+    flex-direction: row;
+}
+
+.menu {
+    flex: 1;
+    background-color: var(--bgSoft);
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.content {
+    flex: 4;
+    padding: 20px;
+}

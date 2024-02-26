@@ -13,7 +13,7 @@ import NewThread from './Components/personalArea/community/NewThread.js';
 import Thread from './Components/personalArea/community/Thread.js';
 import HomePage from './Components/site/HomePage.js';
 import ForumBox from './Components/personalArea/community/ForumBox.js';
-import DashLayout from './Components/dash/DashLayout.js'
+import DashLayout from './Components/dash/Layout/DashLayout.js';
 const App = () => {
 
   return (
@@ -38,7 +38,7 @@ const App = () => {
                 <Route path='*' element={<h1>404 not found</h1>} />
 
               </Route>
-              <Route path='dashboard' element={<DashLayout />} >
+              <Route path='dash' element={<DashLayout />} >
 
                 <Route index element={""} />
                 <Route path='*' element={<h1>404 not found dashboard</h1>} />

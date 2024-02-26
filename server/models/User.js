@@ -24,11 +24,7 @@ const UserSchema = new Schema({
         maxlength:20,
         unique:true
     },
-    color:{
-        type:String,
-        required:true,
-        trim:true,
-    },
+
     email:{
         type:String,
         required:true,

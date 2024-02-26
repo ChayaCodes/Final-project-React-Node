@@ -13,8 +13,6 @@ import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { setToken } from "../../app/auth/authSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faEye } from "@fortawesome/free-solid-svg-icons";
 
 
 const Login = () => {
@@ -30,7 +28,6 @@ const Login = () => {
         if (isSuccess) {
             console.log("user", data.user);
             dispatch(setToken({ token: data.accessToken , user: data.user}));
-            // dispatch(setUser(data.user));
             navigate("/personal-area");
         }
         if (isError) {

@@ -1,0 +1,34 @@
+:root {
+    --bg: #151c2c;
+    --bgSaft: #182237;
+    --text: white;
+    --textSoft: #b7bac1;
+}
+
+html {
+    font-family: "Noto Sans Hebrew", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+    font-variation-settings:
+        "wdth" 100;
+    direction: rtl;
+    text-align: right;
+}
+
+body{
+    background-color: var(--bg);
+    color: var(--text);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+a{
+    text-decoration: none;
+    color: inherit;
+}
+
