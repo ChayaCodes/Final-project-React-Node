@@ -72,7 +72,7 @@ function ForumsList() {
         <div className='forums-list'>
             <div className='forum-list-top'>
                 <Search placeholder='חפש פורום' />
-                <Link to='dash/forums/add' className='forums-list-add-btn'>פורום חדש</Link>
+                <Link to='/dash/forums/add' className='forums-list-add-btn'>פורום חדש</Link>
             </div>
             <table className='forums-list-table'>
                 <thead>

@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
+import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom"
 import Layout from "./Components/site/Layout.js";
 import theme from './theme';
 import { ThemeProvider } from "@mui/material/styles"
@@ -15,6 +15,10 @@ import HomePage from './Components/site/HomePage.js';
 import ForumBox from './Components/personalArea/community/ForumBox.js';
 import DashLayout from './Components/dash/Layout/DashLayout.js';
 import ForumsList from './features/forums/list/ForumsList.js';
+import AddForum from './features/forums/add/AddForum.js';
+import EditForum from './features/forums/view/EditForum.js';
+
+
 const App = () => {
 
   return (
@@ -55,7 +59,10 @@ const App = () => {
               </Route>
               <Route path='dash' element={<DashLayout />} >
                 <Route index element={""} />
-                <Route path='forums' element={<ForumsList />} >
+                <Route path='forums' element={<Outlet />} >
+                  <Route index element={<ForumsList />} />
+                  <Route path='add' element={<AddForum />} />
+                  <Route path=':id/edit' element={<EditForum />} />
                   
                 </Route>
                 <Route path='*' element={<h1>404 not found dashboard</h1>} />
