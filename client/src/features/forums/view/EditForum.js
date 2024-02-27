@@ -1,5 +1,5 @@
 import "./edit-forum.css"
-import { useGetForumsQuery } from "../forumApiSlice";
+import { useGetForumsQuery, useUpdateForumMutation } from "../forumApiSlice";
 import { useEffect, useRef } from 'react';
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
@@ -7,6 +7,7 @@ import { useState } from 'react';
 const EditForum = () => {
   const [forum, setForum] = useState({});
   const { data: forums, isError, error, isLoading, isSuccess } = useGetForumsQuery();
+  const [updateForum, { data, isError: updateError, error: updateErrorData, isLoading: updateLoading, isSuccess: updateSuccess }] = useUpdateForumMutation();
   const forumId = useParams().id;
   const [changed, setChanged] = useState(false);
   
@@ -22,6 +23,18 @@ const EditForum = () => {
       setForum(forum);
     }
   }, [isSuccess])
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const data = {
+      _id: forumId,
+      name: nameRef.current.value,
+      description: descriptionRef.current.value,
+      public: publicRef.current.checked
+    }
+    console.log(data);
+    updateForum(data);
+  }
 
   if (isLoading) {
     console.log('loading...');
@@ -41,7 +54,7 @@ const EditForum = () => {
           <input type='checkbox' name='public' id='public' ref={publicRef} defaultChecked={forum.public} onChange={() => setChanged(true)} />
           <label htmlFor='public'> ציבורי</label>
         </div>
-        <button  className={`${changed ? 'edit-forum-submit' : 'edit-forum-submit-disabled'}`} disabled={!changed}>עדכן פורום </button>
+        <button  className={`${changed ? 'edit-forum-submit' : 'edit-forum-submit-disabled'}`} disabled={!changed} onClick={handleSubmit}>{updateLoading && <CircularProgress size={20} color='inherit' />}עדכן פורום </button>
       </form>
     </div>
   )
