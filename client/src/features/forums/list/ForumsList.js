@@ -81,6 +81,7 @@ function ForumsList() {
                         <th>שם הפורום</th>
                         <th>תיאור</th>
                         <th>נוצר בתאריך</th>
+                        <th>הגדרות</th>
                         <th>ניהול</th>
                         <th>פעולות</th>
                     </tr>
@@ -90,14 +91,19 @@ function ForumsList() {
                         <tr key={forum._id}>
                             <td>{forum.name}</td>
                             <td>{forum.description}</td>
+
                             <td>{format(new Date(forum.createdAt).toLocaleDateString('he-IL'), 'dd/MM/yyyy HH:mm', { timeZone })}</td>                
+                            <td>
+                                {forum.public ? 'ציבורי' : 'פרטי'}
+                    
+                            </td>
                             <td className='forum-list-table-link'>
                             <Link className='forum-list-link' to={`/dash/forums/${forum._id}/users`}>משתמשים</Link>
                             <Link className='forum-list-link' to={`/dash/forums/${forum._id}/treads`}>נושאים</Link>
                             </td>
                             <td className='forums-list-btns'>
-                                <Link className='forums-list-btn' to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
-                                <Link className='forums-list-btn' to={`/dash/forums/${forum._id}/delete`}>מחק</Link>
+                                <Link className='forums-list-btn edit' to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
+                                <Link className='forums-list-btn delete' to={`/dash/forums/${forum._id}/delete`}>מחק</Link>
                                 
                             </td>
 

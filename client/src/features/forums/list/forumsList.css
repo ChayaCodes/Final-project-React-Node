@@ -70,3 +70,11 @@
     color: var(--text);
     border-radius: 10px;
 }
+
+.delete{
+    background-color: crimson;
+}
+
+.edit{
+    background-color: teal;
+}
