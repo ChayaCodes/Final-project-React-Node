@@ -15,6 +15,13 @@ const forumsApiSlice = apiSlice.injectEndpoints({
                 body: forum,
             }),
         }),
+        updateForum: build.mutation({
+            query: (forum) => ({
+                url: `api/admin/forums/${forum._id}`,
+                method: 'PUT',
+                body: forum,
+            }),
+        }),
     })
 });
 

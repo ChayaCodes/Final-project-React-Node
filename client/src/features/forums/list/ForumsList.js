@@ -9,11 +9,15 @@ import { useGetForumsQuery } from '../forumApiSlice';
 function ForumsList() {
 
     const { data: forums, isError, error, isLoading } = useGetForumsQuery();
-    if (isLoading) return <div>Loading...</div>
+    if (isLoading) {
+        console.log('loading...');
+        return <div>Loading...</div>
+    }
     if (isError) {
         console.log('error', error);
         return <div>{JSON.stringify(error)}</div>
     }
+
 
 
     const timeZone = 'Asia/Jerusalem';
@@ -53,7 +57,7 @@ function ForumsList() {
                             </td>
                             <td className='forums-list-btns'>
                                 <Link className='forums-list-btn edit' to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
-                                <span  className='forums-list-btn delete' to={`/dash/forums/${forum._id}/delete`}>מחק </span>
+                                <span className='forums-list-btn delete' to={`/dash/forums/${forum._id}/delete`}>מחק </span>
 
                             </td>
 

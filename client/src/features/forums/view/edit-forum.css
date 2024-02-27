@@ -27,10 +27,11 @@
 }
 
 .edit-forum-form textarea{
+    font-family: "Noto Sans Hebrew", sans-serif;
     height: 150px;
 }
 
-.edit-forum-form button{
+.edit-forum-submit{
     padding: 10px;
     background-color: #5d57c9;
     color: var(--text);
@@ -40,9 +41,20 @@
     margin: 5px;
 }
 
-.edit-forum-form button:hover{
+.edit-forum-submit:hover{
     background-color: #4a43c9;
 }
+
+.edit-forum-submit-disabled{
+    padding: 10px;
+    background-color: #696969;
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: not-allowed;
+    margin: 5px;
+}
+
 
 .edit-forum-checkbox {
     display: flex;
