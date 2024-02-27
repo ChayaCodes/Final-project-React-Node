@@ -1,0 +1,14 @@
+import React from 'react'
+import { NavLink } from 'react-router-dom'
+
+const MenuLink = (payload) => {
+    console.log(payload.item);
+    return (
+        <NavLink to={payload.item.path} className='side-bar-menu-link' exact>
+            {payload.item.icon}
+            {payload.item.title}
+        </NavLink>
+    )
+}
+
+export default MenuLink

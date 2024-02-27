@@ -29,7 +29,9 @@ const Header = () => {
   const isMobile = useMediaQuery('(max-width: 600px)');
 
 
-  const user = useSelector((state) => state.auth.user);
+  const user = useSelector((state) => state.user);
+  console.log("header user");
+  console.log(user);
   const userName = user ? user.userName : "אורח";
 
     return (

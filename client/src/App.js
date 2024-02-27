@@ -14,6 +14,7 @@ import Thread from './Components/personalArea/community/Thread.js';
 import HomePage from './Components/site/HomePage.js';
 import ForumBox from './Components/personalArea/community/ForumBox.js';
 import DashLayout from './Components/dash/Layout/DashLayout.js';
+import ForumsList from './features/forums/list/ForumsList.js';
 const App = () => {
 
   return (
@@ -33,20 +34,14 @@ const App = () => {
                 <Route path='community/:id' element={<Treads />} />
                 <Route path='community/:id/new-thread' element={<NewThread />} />
                 <Route path='community/:id/:threadId' element={<Thread />} />
-                
+
                 <Route path='zoom' element={<h1>zoom page</h1>} />
                 <Route path='*' element={<h1>404 not found</h1>} />
 
               </Route>
-              <Route path='dash' element={<DashLayout />} >
 
-                <Route index element={""} />
-                <Route path='*' element={<h1>404 not found dashboard</h1>} />
-
-
-              </Route>
               <Route path="/" element={<Layout />}>
-                
+
                 <Route index element={<HomePage />} />
                 <Route path="about" element={<h1>about page</h1>} />
                 <Route path="courses" element={<h1>courses page</h1>} />
@@ -57,6 +52,13 @@ const App = () => {
                 <Route path='signup' element={<h1>signup page</h1>} />
                 <Route path='forum' element={<ForumBox />} />
                 <Route path="*" element={<h1>404 not found</h1>} />
+              </Route>
+              <Route path='dash' element={<DashLayout />} >
+                <Route index element={""} />
+                <Route path='forums' element={<ForumsList />} >
+                  
+                </Route>
+                <Route path='*' element={<h1>404 not found dashboard</h1>} />
               </Route>
             </Routes>
           </Router>

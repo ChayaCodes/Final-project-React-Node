@@ -11,6 +11,7 @@ import {
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 import { useLoginMutation } from "../../app/auth/authApiSlice";
 import { setToken } from "../../app/auth/authSlice";
+import { setUser } from "../../app/user/userSlice";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router";
 
@@ -27,10 +28,13 @@ const Login = () => {
     useEffect(() => {
         if (isSuccess) {
             console.log("user", data.user);
-            dispatch(setToken({ token: data.accessToken , user: data.user}));
+            dispatch(setToken({ token: data.accessToken }));
+            dispatch(setUser({ user: data.user }));
+            
             navigate("/personal-area");
         }
         if (isError) {
+            console.log("error login");
             console.log(error);
         }
     }, [isSuccess, isError]);
@@ -46,6 +50,7 @@ const Login = () => {
     const handleShowPassword = () => {
         setShowPassword(!showPassword);
     };
+
 
 
     return (
