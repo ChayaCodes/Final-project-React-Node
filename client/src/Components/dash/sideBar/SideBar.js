@@ -85,7 +85,7 @@ const SideBar = () => {
               <span className='side-bar-menu-cat'>{category.title}</span>
               {
                 category.list.map(item => (
-                  <MenuLink item={item} key={item.title}  />
+                  <MenuLink item={item} key={item.title} />
 
                 ))
               }
@@ -93,6 +93,10 @@ const SideBar = () => {
           ))
           }
         </ul>
+        <button className='side-bar-logout'>
+          <MdLogout />
+          יציאה
+        </button>
       </div>
     </div>
   )

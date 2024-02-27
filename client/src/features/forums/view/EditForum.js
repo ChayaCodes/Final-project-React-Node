@@ -10,7 +10,7 @@ const EditForum = () => {
         <input type='checkbox' name='public' id='public' />
         <label htmlFor='public'> ציבורי</label>
       </div>
-      <button className='edit-forum-submit'>צור פורום</button>
+      <button className='edit-forum-submit'>עדכן פורום</button>
     </form>
 
   </div>

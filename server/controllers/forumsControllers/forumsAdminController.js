@@ -23,6 +23,7 @@ const getForum = async (req, res) => {
 
 const createForum = async (req, res) => {
     const { name, description, threads, public } = req.body;
+    if (!name || !description) return res.status(400).json({ message: "name and description are required" });
     const newForum = new Forum({ name, description, threads, public });
     try {
         const savedForum = await newForum.save({ password: 0 });
