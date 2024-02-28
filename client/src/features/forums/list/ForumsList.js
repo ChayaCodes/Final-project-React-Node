@@ -3,12 +3,13 @@ import './forumsList.css'
 import Search from '../../../Components/dash/search/Search'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns';
-import { useGetForumsQuery } from '../forumApiSlice';
+import { useGetForumsQuery, useDeleteForumMutation } from '../forumApiSlice';
 
 
 function ForumsList() {
 
     const { data: forums, isError, error, isLoading } = useGetForumsQuery();
+    const [deleteForum, { data, isError: deleteError, error: deleteErrorData, isLoading: deleteLoading, isSuccess: deleteSuccess }] = useDeleteForumMutation();
     if (isLoading) {
         console.log('loading...');
         return <div>Loading...</div>
@@ -18,9 +19,18 @@ function ForumsList() {
         return <div>{JSON.stringify(error)}</div>
     }
 
+    const handleDelete = (e) => {
+        const forumId = e.target.id;
+        deleteForum(forumId);
+        console.log('delete', forumId);
+
+    }
+
+
 
 
     const timeZone = 'Asia/Jerusalem';
+
 
 
     return (
@@ -57,7 +67,7 @@ function ForumsList() {
                             </td>
                             <td className='forums-list-btns'>
                                 <Link className='forums-list-btn edit' to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
-                                <span className='forums-list-btn delete' to={`/dash/forums/${forum._id}/delete`}>מחק </span>
+                                <span className='forums-list-btn delete' to={`/dash/forums/${forum._id}/delete`} onClick={handleDelete} id={forum._id}>מחק</span>
 
                             </td>
 

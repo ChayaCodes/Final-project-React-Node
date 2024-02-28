@@ -1,8 +1,11 @@
 import "./edit-forum.css"
 import { useGetForumsQuery, useUpdateForumMutation } from "../forumApiSlice";
 import { useEffect, useRef } from 'react';
-import { useParams } from 'react-router-dom';
+import {useNavigate, Navigate, useParams } from 'react-router-dom';
 import { useState } from 'react';
+import CircularProgress from '@mui/material/CircularProgress';
+
+
 
 const EditForum = () => {
   const [forum, setForum] = useState({});
@@ -11,10 +14,10 @@ const EditForum = () => {
   const forumId = useParams().id;
   const [changed, setChanged] = useState(false);
   
-  
   const nameRef = useRef(forum.name);
   const descriptionRef = useRef(forum.description);
   const publicRef = useRef(forum.public);
+  const navigate = useNavigate();
 
 
   useEffect(() => {
@@ -23,6 +26,13 @@ const EditForum = () => {
       setForum(forum);
     }
   }, [isSuccess])
+
+  useEffect(() => {
+    if (updateSuccess) {
+      navigate('/dash/forums'); // use navigate function here
+    }
+  }, [updateSuccess])
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
