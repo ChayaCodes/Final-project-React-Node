@@ -17,7 +17,7 @@ const getForumThreads = async (req, res) => {
     try{
         const forumId = req.params.id
         //return all the threads of forum
-        const threads = await Thread.find({forum: forumId})
+        const threads = await Thread.find({forum: forumId}).populate('user', 'userName').lean();
         res.json(threads)
 
     }catch(err) {

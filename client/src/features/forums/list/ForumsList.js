@@ -63,7 +63,7 @@ function ForumsList() {
                             </td>
                             <td className='forums-list-btns'>
                                 <Link className='forum-list-link' to={`/dash/forums/${forum._id}/users`}>משתמשים</Link>
-                                <Link className='forum-list-link' to={`/dash/forums/${forum._id}/treads`}>נושאים</Link>
+                                <Link className='forum-list-link' to={`/dash/forums/${forum._id}/threads`}>נושאים</Link>
                             </td>
                             <td className='forums-list-btns'>
                                 <Link className='forums-list-btn edit' to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>

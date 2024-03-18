@@ -25,10 +25,10 @@ const threadsApiSlice = apiSlice.injectEndpoints({
             invalidatesTags: ['Threads'],
         }),
         updateThread: build.mutation({
-            query: (Thread) => ({
-                url: `api/admin/threads/${Thread._id}`,
+            query: (thread) => ({
+                url: `api/admin/threads/${thread._id}`,
                 method: 'PUT',
-                body: Thread,
+                body: thread,
             }),
             invalidatesTags: ['Threads'],
         }),
@@ -42,4 +42,4 @@ const threadsApiSlice = apiSlice.injectEndpoints({
     })
 });
 
-export const { useGetThreadsQuery, useAddThreadMutation, useUpdateThreadMutation, useDeleteThreadMutation } = threadsApiSlice;
+export const { useGetThreadsQuery, useGetForumThreadsQuery, useAddThreadMutation, useUpdateThreadMutation, useDeleteThreadMutation } = threadsApiSlice;

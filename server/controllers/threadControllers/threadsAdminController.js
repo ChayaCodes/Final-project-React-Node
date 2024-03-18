@@ -33,14 +33,17 @@ const createThread = async (req, res) => {
 
 const updateThread = async (req, res) => {
     try {
-        const { title, content, author, forum, public } = req.body;
+        const { title, content, author, forum, public, open, stiky} = req.body;
         const updatedThread = await Thread.findById(req.params.id);
         if(!updatedThread) res.status(404).json({ message: "Thread not found" });
         if(title) updatedThread.title = title;
         if(content) updatedThread.content = content;
         if(author) updatedThread.author = author;
         if(forum) updatedThread.forum = forum;
-        if(public) updatedThread.public = public;
+        if(public !== undefined) updatedThread.public = public;
+        if(stiky !== undefined) updatedThread.stiky = stiky;
+        if(open !== undefined) updatedThread.open = open;
+        
         const savedThread = await updatedThread.save();
         res.json(savedThread);
     }
