@@ -3,8 +3,15 @@ import apiSlice from "../../app/apiSlice";
 const threadsApiSlice = apiSlice.injectEndpoints({
     endpoints: (build) => ({
         getThreads: build.query({
-            query: (threadId) => ({
-                url: `api/admin/threads${threadId ? `/${threadId}` : ''}`,
+            query: () => ({
+                url: 'api/admin/threads',
+                method: 'GET',
+            }),
+            providesTags: ['Threads'],
+        }),
+        getForumThreads: build.query({
+            query: (forumId) => ({
+                url: `api/admin/forums/${forumId}/threads`,
                 method: 'GET',
             }),
             providesTags: ['Threads'],
