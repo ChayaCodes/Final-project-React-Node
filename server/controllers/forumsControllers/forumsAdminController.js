@@ -1,6 +1,7 @@
 /// CRUD בסיסי
 
 const Forum = require('../../models/Forum');
+const Thread = require('../../models/Thread');
 
 const getForums = async (req, res) => {
     try {
@@ -11,6 +12,19 @@ const getForums = async (req, res) => {
         res.status(500).json({ message: err.message });
     }
 };
+
+const getForumThreads = async (req, res) => {
+    try{
+        const forumId = req.params.id
+        //return all the threads of forum
+        const threads = await Thread.find({forum: forumId})
+        res.json(threads)
+
+    }catch(err) {
+        res.status(500).json({ message: err.message });
+
+    }
+}
 
 const getForum = async (req, res) => {
     try {
@@ -61,6 +75,7 @@ const deleteForum = async (req, res) => {
 module.exports = {
     getForums,
     getForum,
+    getForumThreads,
     createForum,
     updateForum,
     deleteForum

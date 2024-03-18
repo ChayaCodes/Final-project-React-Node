@@ -1,0 +1,77 @@
+.edit-forum-container{
+    background-color: var(--bgSaft);
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.edit-forum-form{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.edit-forum-form input, .edit-forum-form textarea{
+    padding: 30px;
+    background-color: var(--bg);
+    color: var(--text);
+    border-radius: 5px;
+    margin-bottom: 30px;
+    border: solid 1px var(--text);
+}
+
+.edit-forum-form input{
+    height:  10px;
+}
+
+.edit-forum-form textarea{
+    font-family: "Noto Sans Hebrew", sans-serif;
+    height: 150px;
+}
+
+.edit-forum-submit{
+    padding: 10px;
+    background-color: #5d57c9;
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.edit-forum-submit:hover{
+    background-color: #4a43c9;
+}
+
+.edit-forum-submit-disabled{
+    padding: 10px;
+    background-color: #696969;
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: not-allowed;
+    margin: 5px;
+}
+
+
+.edit-forum-checkbox {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.edit-forum-checkbox input[type='checkbox'] {
+    width: 20px;
+    height: 20px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.edit-forum-checkbox label {
+    color: var(--text);
+    cursor: pointer;
+}

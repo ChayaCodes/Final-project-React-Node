@@ -1,0 +1,91 @@
+.thread-list{
+    background-color: var(--bgSaft);
+    padding: 20px;
+    border-radius: 10px;
+
+}
+
+
+
+.thread-list-top{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 20px 0;
+}
+
+.threads-list-add-btn{
+    padding: 10px;
+    background-color: #5d57c9;
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.threads-list-btn{
+    padding: 10px;
+    background-color: #5d57c9;
+    color: var(--text);
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    margin: 5px;
+    /* width: 50px; */
+    font-size: 1rem;
+
+}
+
+.threads-list-table{
+    width: 100%;
+
+}
+
+.threads-list-table td{
+    padding: 5px;
+    height: auto;
+}
+
+.threads-list-table th{
+    padding: 10px;
+
+}
+
+.threads-list-btns{
+    width: 80px;
+    gap: 10px;
+    margin: 5px;
+
+}
+
+.thread-list-link{
+    /* links to manage users and threads */
+    margin: 5px;
+    padding: 10px;
+    border: solid 1px white;
+    border-radius: 10px;
+
+}
+
+.thread-list-link:hover{
+    background-color: var(--bgSaft);
+    color: var(--text);
+    border-radius: 10px;
+}
+
+.delete{
+    background-color: crimson;
+}
+
+.delete:hover{
+    background-color: rgb(180, 20, 60);
+}
+
+.edit{
+    background-color: teal;
+}
+
+.edit:hover{
+    background-color: rgb(0, 88, 88);
+}
+

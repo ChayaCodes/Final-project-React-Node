@@ -4,11 +4,12 @@ import Search from '../../../Components/dash/search/Search'
 import { Link } from 'react-router-dom'
 import { format } from 'date-fns';
 import { useGetThreadsQuery, useDeleteThreadMutation } from '../threadApiSlice';
+import { useParams } from 'react-router-dom';
 
 
 function ThreadsList() {
-
-    const { data: threads, isError, error, isLoading } = useGetThreadsQuery();
+    const {id: threadId} = useParams();
+    const { data: threads, isError, error, isLoading } = useGetThreadsQuery(threadId);
     const [deleteThread, {}] = useDeleteThreadMutation();
     if (isLoading) {
         console.log('loading...');
@@ -25,8 +26,6 @@ function ThreadsList() {
         console.log('delete', ThreadId);
 
     }
-
-
 
 
     const timeZone = 'Asia/Jerusalem';

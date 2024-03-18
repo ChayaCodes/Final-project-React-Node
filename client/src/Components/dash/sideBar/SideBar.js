@@ -40,7 +40,7 @@ const SideBar = () => {
         },
         {
           title: 'נושאים',
-          path: '/dash/treads',
+          path: '/dash/threads',
           icon: <IoIosDocument />
         },
         {

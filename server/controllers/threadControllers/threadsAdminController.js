@@ -9,6 +9,8 @@ const getThreads = async (req, res) => {
     }
 }
 
+
+
 const getThread = async (req, res) => {
     try {
         const thread = await Thread.findById(req.params.id).lean();

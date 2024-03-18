@@ -17,6 +17,7 @@ import DashLayout from './Components/dash/Layout/DashLayout.js';
 import ForumsList from './features/forums/list/ForumsList.js';
 import AddForum from './features/forums/add/AddForum.js';
 import EditForum from './features/forums/view/EditForum.js';
+import ThreadsList from './features/threads/list/threadsList.js';
 
 
 const App = () => {
@@ -63,8 +64,9 @@ const App = () => {
                   <Route index element={<ForumsList />} />
                   <Route path='add' element={<AddForum />} />
                   <Route path=':id/edit' element={<EditForum />} />
-                  
+                  <Route path=':id/threads' element={<ThreadsList />} />
                 </Route>
+
                 <Route path='*' element={<h1>404 not found dashboard</h1>} />
               </Route>
             </Routes>
