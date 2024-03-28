@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const cors = require('cors')
 const verifyJWT = require('./middleware/verifyJWT');
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 7001
 
@@ -15,6 +16,7 @@ connectDB()
 app.use(cors(corsOption))
 app.use(express.json())
 app.use(express.static("public"))
+app.use(cookieParser())
 
 app.get("/",(req,res)=>{
     res.send("home page")
