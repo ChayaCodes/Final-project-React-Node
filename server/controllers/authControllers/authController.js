@@ -70,4 +70,44 @@ const register = async (req, res) => {
     }
 }
 
-module.exports = { login, register };
+
+const refresh = async (req, res) => {
+    const cookie = req.cookies
+    if (!cookie?.jwt) {
+        return res.status(401).json({ message: "unauthorized", error: true, data: null })
+    }
+
+    const refreshToken = cookie.jwt
+    jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
+        if (err) {
+            return res.status(403).json({ message: "forbidden", error: true, data: null })
+        }
+        const foundUser = await User.findOne({ userName: decoded.userName }).lean()
+        if (!foundUser) {
+            return res.status(404).json({ message: "user not found", error: true, data: null })
+        }
+        const userInfo = {
+            userName: foundUser.userName,
+            firstName: foundUser.firstName,
+            lastName: foundUser.lastName,
+            email: foundUser.email,
+            role: foundUser.role,
+            avatar: foundUser.avatar,
+            id: foundUser._id,
+            forums: foundUser.forums || []
+        }
+        const refreshToken = jwt.sign({ userName: foundUser.userName }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "7d" })
+        res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 })
+        
+        const token = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "15m" })
+        res.status(200).json({ token })
+
+    })
+
+
+
+
+
+}
+
+module.exports = { login, register , refresh}
