@@ -29,8 +29,12 @@ const login = async (req, res) => {
         id: user._id,
         forums: user.forums || []
     }
-    const token = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET)
-    res.json({ message: "logged in successfully", accessToken: token, user: userInfo })
+    const token = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET, { expiresIn: "15m" })
+
+    const refreshToken = jwt.sign({userName: user.userName}, process.env.REFRESH_TOKEN_SECRET, { expiresIn: "7d" })
+
+    res.cookie("jwt", refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 })
+    res.status(200).json({ token })
 };
 
 
