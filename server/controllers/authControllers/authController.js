@@ -103,11 +103,16 @@ const refresh = async (req, res) => {
         res.status(200).json({ token })
 
     })
-
-
-
-
-
 }
 
-module.exports = { login, register , refresh}
+const logout = async (req, res) => {
+    const cookies = req.cookies
+    if (!cookies?.jwt) {
+        return res.status(204).json({ message: "no cookies", error: true, data: null })
+    }
+    res.clearCookie("jwt", { httpOnly: true })
+    res.status(200).json({ message: "logged out", error: false, data: null })
+}
+
+
+module.exports = { login, register , refresh, logout }
