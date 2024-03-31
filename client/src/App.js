@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom
 import Layout from "./Components/site/Layout.js";
 import theme from './theme';
 import { ThemeProvider } from "@mui/material/styles"
-import Login from './Components/site/Login.js';
+import Login from './features/auth/login/Login.js';
 import { CacheProvider } from '@emotion/react';
 import { cacheRtl } from './theme';
 import LayoutPersonalArea from './Components/personalArea/Layout.js';

@@ -1,0 +1,33 @@
+.MuiTextField-root.login-text-field {
+    width: 100%;
+    margin-top: 20px;
+    text-align: right;
+    height: 50px;
+
+}
+
+.login-container {
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    margin-top: 8px;
+    height: 60vh;
+    padding: 20px;
+
+}
+
+.MuiButton-root.login-button {
+    width: 100%;
+    margin-top: 20px;
+    height: 40px;
+
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 2
+}
+
+.login-title {
+    text-align: center;
+}

@@ -1,9 +1,10 @@
 
 const verifyAdmin = (req, res, next) => {
-    if (req.user.role !== "admin") {
-        return res.status(403).json({ message: "unauthorized - not an admin" });
+    if (req.user && req.user.role === "admin") {
+        next()
+    } else {
+        res.status(401).json({ message: "unauthorized - admin only" })
     }
-    next();
 }
 
 module.exports = verifyAdmin;
