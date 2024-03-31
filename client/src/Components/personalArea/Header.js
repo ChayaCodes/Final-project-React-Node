@@ -1,17 +1,13 @@
 import React from 'react';
 import { Typography, IconButton, Link, Toolbar, Box, Badge, MenuItem } from '@mui/material';
-import Breadcrumbs from './Breadcumb';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBell, faBars, faUserCircle } from '@fortawesome/free-solid-svg-icons';
-import { useGetUserQuery } from '../../app/user/userApiSlice';
 import { useMediaQuery } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Breadcrumb from './Breadcumb';
-import SideBar from './SideMenu'
 import { useState } from 'react';
 import { Drawer, List, ListItem } from '@mui/material';
 import { Grid } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
 import { useSelector } from 'react-redux';
 
 
@@ -26,10 +22,8 @@ const Header = () => {
   };
   const [drawerOpen, setDrawerOpen] = useState(false);
 
-  const isMobile = useMediaQuery('(max-width: 600px)');
 
-
-  const user = useSelector((state) => state.user);
+  const user = useSelector((state) => state.auth.user);
   console.log("header user");
   console.log(user);
   const userName = user ? user.userName : "אורח";
