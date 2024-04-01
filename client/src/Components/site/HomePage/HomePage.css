@@ -1,0 +1,31 @@
+p {
+    font-family: Almoni Neue DL 4.0 AAA;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 44.09px;
+    text-align: center;
+
+}
+
+
+
+.home-page-2-text {
+    /* 4 דיבים שתי שורות שתי עמודות */
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    margin: 20px;
+    gap: 20px;
+}
+
+.home-page-2-text div {
+    /* כל דיב יהיה באמצע */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    /* רוחב וגובה */
+
+    background-color: #d4d4d4;
+    width: 400px;
+    height: 200px;
+}

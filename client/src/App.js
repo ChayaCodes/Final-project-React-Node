@@ -11,7 +11,7 @@ import Forums from './Components/personalArea/community/forums.js';
 import Treads from './Components/personalArea/community/Treads.js';
 import NewThread from './Components/personalArea/community/NewThread.js';
 import Thread from './Components/personalArea/community/Thread.js';
-import HomePage from './Components/site/HomePage.js';
+import HomePage from './Components/site/HomePage/HomePage.js';
 import ForumBox from './Components/personalArea/community/ForumBox.js';
 import DashLayout from './Components/dash/Layout/DashLayout.js';
 import ForumsList from './features/forums/list/ForumsList.js';
