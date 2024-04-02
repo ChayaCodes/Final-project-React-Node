@@ -53,22 +53,22 @@ function Header() {
               <ListItem button onClick={handleDrawerToggle}>
                 <Link href="/personal-area/courses" style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
                   קורסים
-                  </Link>
+                </Link>
               </ListItem>
               <ListItem button onClick={handleDrawerToggle}>
                 <Link href="/personal-area/tutorials" style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
                   סרטונים
-                  </Link>
+                </Link>
               </ListItem>
               <ListItem button onClick={handleDrawerToggle}>
                 <Link href="/personal-area/community" style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
                   קהילה
-                  </Link>
+                </Link>
               </ListItem>
               <ListItem button onClick={handleDrawerToggle}>
                 <Link href="/personal-area/zoom" style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
                   הזום השבועי
-                  </Link>
+                </Link>
               </ListItem>
             </List>
           </Drawer>

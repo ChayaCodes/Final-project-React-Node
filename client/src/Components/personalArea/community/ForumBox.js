@@ -33,7 +33,7 @@ function ForumBox({ forum }) {
             <span>
               <a>מנהל</a>
               •
-<>היום בשעה 13:55</>
+              היום בשעה 13:55
             </span>
           </Grid>
         </Grid>

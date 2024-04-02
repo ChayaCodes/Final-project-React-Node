@@ -70,10 +70,10 @@ function Header() {
                 <List>
                   {pages.map((page, index) => (
                     <ListItem button key={index} onClick={handleDrawerToggle}>
-                        <Link href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
-                          {page}
-                        </Link>
-                      </ListItem>
+                      <Link href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
+                        {page}
+                      </Link>
+                    </ListItem>
                   ))}
                 </List>
               </Drawer>
@@ -91,8 +91,8 @@ function Header() {
               <Box display="flex" alignItems="center" justifyContent="center" style={{ width: '100%' }}>
                 {pages.map((page, index) => (
                   <Link key={index} href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
-                      {page}
-                    </Link>
+                    {page}
+                  </Link>
                 ))}
               </Box>
             </Grid>
