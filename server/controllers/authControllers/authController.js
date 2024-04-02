@@ -76,7 +76,7 @@ const refresh = async (req, res) => {
     return res.status(401).json({ message: 'unauthorized', error: true, data: null });
   }
 
-  const refreshToken = cookie.jwt;
+  let refreshToken = cookie.jwt;
   jwt.verify(refreshToken, process.env.REFRESH_TOKEN_SECRET, async (err, decoded) => {
     if (err) {
       return res.status(403).json({ message: 'forbidden', error: true, data: null });
@@ -85,6 +85,7 @@ const refresh = async (req, res) => {
     if (!foundUser) {
       return res.status(404).json({ message: 'user not found', error: true, data: null });
     }
+
     const userInfo = {
       userName: foundUser.userName,
       firstName: foundUser.firstName,
@@ -95,7 +96,7 @@ const refresh = async (req, res) => {
       id: foundUser._id,
       forums: foundUser.forums || [],
     };
-    const refreshToken = jwt.sign({ userName: foundUser.userName }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
+    refreshToken = jwt.sign({ userName: foundUser.userName }, process.env.REFRESH_TOKEN_SECRET, { expiresIn: '7d' });
     res.cookie('jwt', refreshToken, { httpOnly: true, maxAge: 7 * 24 * 60 * 60 * 1000 });
 
     const token = jwt.sign(userInfo, process.env.ACCESS_TOKEN_SECRET, { expiresIn: '15m' });
@@ -109,7 +110,7 @@ const logout = async (req, res) => {
     return res.status(204).json({ message: 'no cookies', error: true, data: null });
   }
   res.clearCookie('jwt', { httpOnly: true });
-  res.status(200).json({ message: 'logged out', error: false, data: null });
+  return res.status(200).json({ message: 'logged out', error: false, data: null });
 };
 
 module.exports = {

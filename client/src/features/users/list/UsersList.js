@@ -1,19 +1,14 @@
-import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { format } from 'date-fns';
 import { useGetUsersQuery, useDeleteUserMutation } from '../userApiSlice';
 import Search from '../../../Components/dash/search/Search';
 import './usersList.css';
 
-const timeZone = 'Asia/Jerusalem';
 function UsersList() {
   const {
     data: users, isError, error, isLoading,
   } = useGetUsersQuery();
 
-  const [deleteUser, {
-    data, isError: deleteError, error: deleteErrorData, isLoading: deleteLoading, isSuccess: deleteSuccess,
-  }] = useDeleteUserMutation();
+  const [deleteUser, { }] = useDeleteUserMutation();
 
   const handleDelete = (e) => {
     const userId = e.target.id;

@@ -11,9 +11,9 @@ const getThreads = async (req, res) => {
         select: 'userName avatar color',
       },
     });
-    res.status(200).json(forum.threads);
+    return res.status(200).json(forum.threads);
   } catch (err) {
-    res.status(500).json({ message: err.message });
+    return res.status(500).json({ message: err.message });
   }
 };
 
