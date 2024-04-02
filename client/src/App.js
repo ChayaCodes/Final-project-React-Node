@@ -1,25 +1,27 @@
+import React from 'react';
+
 import './App.css';
 import {
   BrowserRouter as Router, Routes, Route, Outlet,
 } from 'react-router-dom';
 import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
-import Layout from './Components/site/Layout.js';
+import Layout from './Components/site/Layout';
 import theme, { cacheRtl } from './theme';
-import Login from './features/auth/login/Login.js';
-import LayoutPersonalArea from './Components/personalArea/Layout.js';
-import Forums from './Components/personalArea/community/forums.js';
-import Treads from './Components/personalArea/community/Treads.js';
-import NewThread from './Components/personalArea/community/NewThread.js';
-import Thread from './Components/personalArea/community/Thread.js';
-import HomePage from './Components/site/HomePage/HomePage.js';
-import ForumBox from './Components/personalArea/community/ForumBox.js';
-import DashLayout from './Components/dash/Layout/DashLayout.js';
-import ForumsList from './features/forums/list/ForumsList.js';
-import AddForum from './features/forums/add/AddForum.js';
-import EditForum from './features/forums/view/EditForum.js';
-import ThreadsList from './features/threads/list/threadsList.js';
-import UsersList from './features/users/list/UsersList.js';
+import Login from './features/auth/login/Login';
+import LayoutPersonalArea from './Components/personalArea/Layout';
+import Forums from './Components/personalArea/community/forums';
+import Treads from './Components/personalArea/community/Treads';
+import NewThread from './Components/personalArea/community/NewThread';
+import Thread from './Components/personalArea/community/Thread';
+import HomePage from './Components/site/HomePage/HomePage';
+import ForumBox from './Components/personalArea/community/ForumBox';
+import DashLayout from './Components/dash/Layout/DashLayout';
+import ForumsList from './features/forums/list/ForumsList';
+import AddForum from './features/forums/add/AddForum';
+import EditForum from './features/forums/view/EditForum';
+import ThreadsList from './features/threads/list/threadsList';
+import UsersList from './features/users/list/UsersList';
 
 function App() {
   return (

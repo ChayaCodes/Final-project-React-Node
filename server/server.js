@@ -1,16 +1,16 @@
-const dotenv = require('dotenv').config();
+require('dotenv').config();
+const { default: mongoose } = require('mongoose');
+
 const express = require('express');
 
 const app = express();
 const cors = require('cors');
 const cookieParser = require('cookie-parser');
-const verifyJWT = require('./middleware/verifyJWT');
 
 const PORT = process.env.PORT || 7001;
-
 const connectDB = require('./config/connectDB');
 const corsOption = require('./config/corsOption');
-const { default: mongoose } = require('mongoose');
+const verifyJWT = require('./middleware/verifyJWT');
 
 connectDB();
 

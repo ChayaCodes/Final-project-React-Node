@@ -15,7 +15,7 @@ import './Login.css';
 
 function Login() {
   const [login, {
-    isLoading, isError, isSuccess, error, data,
+    isLoading, isError, isSuccess, error,
   }] = useLoginMutation();
   const navigate = useNavigate();
 

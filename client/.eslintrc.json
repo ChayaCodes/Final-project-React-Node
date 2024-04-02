@@ -8,6 +8,9 @@
         "ecmaVersion": "latest",
         "sourceType": "module"
     },
-    "rules": {
-    }
+    {
+        "rules": {
+          "react/jsx-filename-extension": "off"
+        }
+      }
 }
