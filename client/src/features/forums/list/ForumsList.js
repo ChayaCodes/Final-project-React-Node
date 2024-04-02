@@ -1,82 +1,80 @@
-import React from 'react'
-import './forumsList.css'
-import Search from '../../../Components/dash/search/Search'
-import { Link } from 'react-router-dom'
+import React from 'react';
+import './forumsList.css';
+import { Link } from 'react-router-dom';
 import { format } from 'date-fns';
+import Search from '../../../Components/dash/search/Search';
 import { useGetForumsQuery, useDeleteForumMutation } from '../forumApiSlice';
 
-
 function ForumsList() {
+  const {
+    data: forums, isError, error, isLoading,
+  } = useGetForumsQuery();
+  const [deleteForum, {
+    data, isError: deleteError, error: deleteErrorData, isLoading: deleteLoading, isSuccess: deleteSuccess,
+  }] = useDeleteForumMutation();
+  if (isLoading) {
+    console.log('loading...');
+    return <div>Loading...</div>;
+  }
+  if (isError) {
+    console.log('error', error);
+    return <div>{JSON.stringify(error)}</div>;
+  }
 
-    const { data: forums, isError, error, isLoading } = useGetForumsQuery();
-    const [deleteForum, { data, isError: deleteError, error: deleteErrorData, isLoading: deleteLoading, isSuccess: deleteSuccess }] = useDeleteForumMutation();
-    if (isLoading) {
-        console.log('loading...');
-        return <div>Loading...</div>
-    }
-    if (isError) {
-        console.log('error', error);
-        return <div>{JSON.stringify(error)}</div>
-    }
+  const handleDelete = (e) => {
+    const forumId = e.target.id;
+    deleteForum(forumId);
+    console.log('delete', forumId);
+  };
 
-    const handleDelete = (e) => {
-        const forumId = e.target.id;
-        deleteForum(forumId);
-        console.log('delete', forumId);
+  const timeZone = 'Asia/Jerusalem';
 
-    }
+  return (
+    <div className="forums-list">
+      <div className="forum-list-top">
+        <Search placeholder="חפש פורום" />
+        <Link to="/dash/forums/add" className="forums-list-add-btn">פורום חדש</Link>
+      </div>
+      <table className="forums-list-table">
+        <thead>
 
+          <tr>
+            <th>שם הפורום</th>
+            <th>תיאור</th>
+            <th>נוצר בתאריך</th>
+            <th>הגדרות</th>
+            <th>ניהול</th>
+            <th>פעולות</th>
+          </tr>
+        </thead>
+        <tbody>
+          {forums.map((forum) => (
+            <tr key={forum._id}>
+              <td>{forum.name}</td>
+              <td>{forum.description}</td>
 
+              <td>{format(new Date(forum.createdAt), 'dd/MM/yyyy HH:mm', { timeZone })}</td>
+              {' '}
+              <td>
+                {forum.public ? 'ציבורי' : 'פרטי'}
 
+              </td>
+              <td className="forums-list-btns">
+                <Link className="forum-list-link" to={`/dash/forums/${forum._id}/users`}>משתמשים</Link>
+                <Link className="forum-list-link" to={`/dash/forums/${forum._id}/threads`}>נושאים</Link>
+              </td>
+              <td className="forums-list-btns">
+                <Link className="forums-list-btn edit" to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
+                <span className="forums-list-btn delete" to={`/dash/forums/${forum._id}/delete`} onClick={handleDelete} id={forum._id}>מחק</span>
 
-    const timeZone = 'Asia/Jerusalem';
+              </td>
 
-
-
-    return (
-        <div className='forums-list'>
-            <div className='forum-list-top'>
-                <Search placeholder='חפש פורום' />
-                <Link to='/dash/forums/add' className='forums-list-add-btn'>פורום חדש</Link>
-            </div>
-            <table className='forums-list-table'>
-                <thead>
-
-                    <tr>
-                        <th>שם הפורום</th>
-                        <th>תיאור</th>
-                        <th>נוצר בתאריך</th>
-                        <th>הגדרות</th>
-                        <th>ניהול</th>
-                        <th>פעולות</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {forums.map((forum) => (
-                        <tr key={forum._id}>
-                            <td>{forum.name}</td>
-                            <td>{forum.description}</td>
-
-                            <td>{format(new Date(forum.createdAt), 'dd/MM/yyyy HH:mm', { timeZone })}</td>                            <td>
-                                {forum.public ? 'ציבורי' : 'פרטי'}
-
-                            </td>
-                            <td className='forums-list-btns'>
-                                <Link className='forum-list-link' to={`/dash/forums/${forum._id}/users`}>משתמשים</Link>
-                                <Link className='forum-list-link' to={`/dash/forums/${forum._id}/threads`}>נושאים</Link>
-                            </td>
-                            <td className='forums-list-btns'>
-                                <Link className='forums-list-btn edit' to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
-                                <span className='forums-list-btn delete' to={`/dash/forums/${forum._id}/delete`} onClick={handleDelete} id={forum._id}>מחק</span>
-
-                            </td>
-
-                        </tr>
-                    ))}
-                </tbody>
-            </table>
-        </div>
-    )
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
 }
 
-export default ForumsList
+export default ForumsList;

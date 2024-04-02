@@ -1,11 +1,12 @@
 import './App.css';
-import { BrowserRouter as Router, Routes, Route, Outlet } from "react-router-dom"
-import Layout from "./Components/site/Layout.js";
-import theme from './theme';
-import { ThemeProvider } from "@mui/material/styles"
-import Login from './features/auth/login/Login.js';
+import {
+  BrowserRouter as Router, Routes, Route, Outlet,
+} from 'react-router-dom';
+import { ThemeProvider } from '@mui/material/styles';
 import { CacheProvider } from '@emotion/react';
-import { cacheRtl } from './theme';
+import Layout from './Components/site/Layout.js';
+import theme, { cacheRtl } from './theme';
+import Login from './features/auth/login/Login.js';
 import LayoutPersonalArea from './Components/personalArea/Layout.js';
 import Forums from './Components/personalArea/community/forums.js';
 import Treads from './Components/personalArea/community/Treads.js';
@@ -20,9 +21,7 @@ import EditForum from './features/forums/view/EditForum.js';
 import ThreadsList from './features/threads/list/threadsList.js';
 import UsersList from './features/users/list/UsersList.js';
 
-
-const App = () => {
-
+function App() {
   return (
     <div className="App" dir="rtl">
       <CacheProvider value={cacheRtl}>
@@ -31,18 +30,18 @@ const App = () => {
           <Router>
             <Routes>
 
-              <Route path='personal-area' element={<LayoutPersonalArea />} >
-                <Route index element={""} />
-                <Route path='edit' element={<h1>edit personal detile page</h1>} />
-                <Route path='courses' element={<h1>courses page</h1>} />
-                <Route path='tutorials' element={<h1>tutorials page</h1>} />
-                <Route path='community' element={<Forums />} />
-                <Route path='community/:id' element={<Treads />} />
-                <Route path='community/:id/new-thread' element={<NewThread />} />
-                <Route path='community/:id/:threadId' element={<Thread />} />
+              <Route path="personal-area" element={<LayoutPersonalArea />}>
+                <Route index element="" />
+                <Route path="edit" element={<h1>edit personal detile page</h1>} />
+                <Route path="courses" element={<h1>courses page</h1>} />
+                <Route path="tutorials" element={<h1>tutorials page</h1>} />
+                <Route path="community" element={<Forums />} />
+                <Route path="community/:id" element={<Treads />} />
+                <Route path="community/:id/new-thread" element={<NewThread />} />
+                <Route path="community/:id/:threadId" element={<Thread />} />
 
-                <Route path='zoom' element={<h1>zoom page</h1>} />
-                <Route path='*' element={<h1>404 not found</h1>} />
+                <Route path="zoom" element={<h1>zoom page</h1>} />
+                <Route path="*" element={<h1>404 not found</h1>} />
 
               </Route>
 
@@ -55,27 +54,27 @@ const App = () => {
                 <Route path="community" element={<h1>community page</h1>} />
                 <Route path="contact" element={<h1>contact page</h1>} />
                 <Route path="login" element={<Login />} />
-                <Route path='signup' element={<h1>signup page</h1>} />
-                <Route path='forum' element={<ForumBox />} />
+                <Route path="signup" element={<h1>signup page</h1>} />
+                <Route path="forum" element={<ForumBox />} />
                 <Route path="*" element={<h1>404 not found</h1>} />
               </Route>
-              <Route path='dash' element={<DashLayout />} >
-                <Route index element={""} />
-                <Route path='forums' element={<Outlet />} >
+              <Route path="dash" element={<DashLayout />}>
+                <Route index element="" />
+                <Route path="forums" element={<Outlet />}>
                   <Route index element={<ForumsList />} />
-                  <Route path='add' element={<AddForum />} />
-                  <Route path=':id/edit' element={<EditForum />} />
-                  <Route path=':id/threads' element={<ThreadsList />} />
+                  <Route path="add" element={<AddForum />} />
+                  <Route path=":id/edit" element={<EditForum />} />
+                  <Route path=":id/threads" element={<ThreadsList />} />
 
                 </Route>
-                <Route path='threads' element={<ThreadsList />} />
-                <Route path='users' element={<Outlet />} >
+                <Route path="threads" element={<ThreadsList />} />
+                <Route path="users" element={<Outlet />}>
                   <Route index element={<UsersList />} />
-                  <Route path='add' element={<h1>add user</h1>} />
-                  <Route path=':id/edit' element={<h1>edit user</h1>} />
+                  <Route path="add" element={<h1>add user</h1>} />
+                  <Route path=":id/edit" element={<h1>edit user</h1>} />
                 </Route>
 
-                <Route path='*' element={<h1>404 not found dashboard</h1>} />
+                <Route path="*" element={<h1>404 not found dashboard</h1>} />
               </Route>
             </Routes>
           </Router>

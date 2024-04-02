@@ -1,29 +1,28 @@
-import { useGetThreadsQuery } from '../../../app/treads/treadsApiSlice';
 import { useParams } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
+import { useGetThreadsQuery } from '../../../app/treads/treadsApiSlice';
 import ThreadBox from './ThreadBox';
 
-const Treads = () => {
-    const { id: forumId } = useParams();
-    console.log(forumId);
-    const { data: threads, isLoading, isError, isSuccess, error } = useGetThreadsQuery(forumId);
+function Treads() {
+  const { id: forumId } = useParams();
+  console.log(forumId);
+  const {
+    data: threads, isLoading, isError, isSuccess, error,
+  } = useGetThreadsQuery(forumId);
 
+  if (isLoading) {
+    return <div>Loading...</div>;
+  } if (isError) {
+    console.log(error);
+    return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
+  } if (isSuccess) {
+    console.log(threads);
 
-    if (isLoading) {
-        return <div>Loading...</div>
-    } if (isError) {
-        console.log(error)
-        return <div style={{ color: "red" }}>{error && <div>{error.message}</div>}</div>
-    } if (isSuccess) {
-        console.log(threads)
-
-        return <Box>
-            <Button onClick={() => { window.location.href = `/personal-area/community/${forumId}/new-thread` }}>פתיחת נושא חדש</Button>
-            {
-                threads.map((thread) => {
-                    
-                    return <ThreadBox thread={thread} />
-                })
+    return (
+      <Box>
+        <Button onClick={() => { window.location.href = `/personal-area/community/${forumId}/new-thread`; }}>פתיחת נושא חדש</Button>
+        {
+                threads.map((thread) => <ThreadBox thread={thread} />)
 
                 // threads.map((thread) => {
                 //     return (
@@ -39,8 +38,9 @@ const Treads = () => {
 
             }
 
-        </Box>
-    }
+      </Box>
+    );
+  }
 }
 
-export default Treads;  
+export default Treads;

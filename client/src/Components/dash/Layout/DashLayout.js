@@ -1,25 +1,24 @@
-import React from 'react'
+import React from 'react';
 // import '../dash.css';
-import './dash-layout.css'
-import NavBar from '../navBar/NavBar'
-import { Outlet } from 'react-router'
-import Footer from '../Footer/Footer'
-import SideBar from '../sideBar/SideBar'
+import './dash-layout.css';
+import { Outlet } from 'react-router';
+import NavBar from '../navBar/NavBar';
+import Footer from '../Footer/Footer';
+import SideBar from '../sideBar/SideBar';
 
-const DashLayout = () => {
+function DashLayout() {
   return (
-    
-    <div className='continer dash-container ' >
-      <div className='menu'>
+    <div className="continer dash-container ">
+      <div className="menu">
         <SideBar />
       </div>
-      <div className='content'>
+      <div className="content">
         <NavBar />
         <Outlet />
         <Footer />
       </div>
     </div>
-  )
+  );
 }
 
-export default DashLayout
+export default DashLayout;

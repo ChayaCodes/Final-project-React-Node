@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import Toolbar from '@mui/material/Toolbar';
-import { Box, IconButton, Link, Drawer, List, ListItem, useMediaQuery, useTheme, Grid } from '@mui/material';
+import {
+  Box, IconButton, Link, Drawer, List, ListItem, useMediaQuery, useTheme, Grid,
+} from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -8,11 +10,10 @@ import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../app/auth/authSlice';
 
+const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר'];
+const links = ['/', '/about', '/courses', '/tutorials', '/community', '/contact'];
 
-const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר']
-const links = ['/', '/about', '/courses', '/tutorials', '/community', '/contact']
-
-const Header = () => {
+function Header() {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
@@ -25,75 +26,86 @@ const Header = () => {
   };
 
   const handleClickToPersonalArea = () => {
-    console.log("click")
+    console.log('click');
     const token = localStorage.getItem('token');
     if (token) {
-      //שומר את הטוקן בסטור - רידקס
+      // שומר את הטוקן בסטור - רידקס
       dispatch(setToken({ token }));
-      //מעביר לדף האישי
+      // מעביר לדף האישי
       navigate('/personal-area');
-      console.log("click")
+      console.log('click');
     } else {
-      //מעביר לדף ההתחברות
+      // מעביר לדף ההתחברות
       navigate('/login');
     }
-  }
+  };
 
   return (
-    <Toolbar disableGutters style={{
-      backgroundColor: 'rgba(255, 255, 255, 0.5)', position: "sticky", width: '100%', height: '100%',
-      padding: '0', top: '0', left: '0', margin: "0", display: "flex", alignItems: "center",
-      justifyContent: "center", 
-    }}>
-        <Grid container justifyContent="space-between" alignItems="center">
+    <Toolbar
+      disableGutters
+      style={{
+        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        position: 'sticky',
+        width: '100%',
+        height: '100%',
+        padding: '0',
+        top: '0',
+        left: '0',
+        margin: '0',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+      }}
+    >
+      <Grid container justifyContent="space-between" alignItems="center">
 
-          {isMobile ? (
-            <>
+        {isMobile ? (
+          <>
 
-              <Grid item>
-                <IconButton edge="end" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
-                  <MenuIcon />
-                </IconButton>
-                <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle} transitionDuration={0}>
-                  <List>
-                    {pages.map((page, index) => (
-                      <ListItem button key={index} onClick={handleDrawerToggle}>
-                        <Link href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily={'Arial'} fontSize={17} color={'#000000'} underline={'none'}>
+            <Grid item>
+              <IconButton edge="end" color="inherit" aria-label="menu" onClick={handleDrawerToggle}>
+                <MenuIcon />
+              </IconButton>
+              <Drawer anchor="left" open={drawerOpen} onClose={handleDrawerToggle} transitionDuration={0}>
+                <List>
+                  {pages.map((page, index) => (
+                    <ListItem button key={index} onClick={handleDrawerToggle}>
+                        <Link href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
                           {page}
                         </Link>
                       </ListItem>
-                    ))}
-                  </List>
-                </Drawer>
-              </Grid>
-              <Grid item>
-                <Box>LOGO</Box>
-              </Grid>
-            </>
-          ) : (
-            <>
-              <Grid item>
-                <Box>LOGO</Box>
-              </Grid>
-              <Grid item xs={8}>
-                <Box display="flex" alignItems="center" justifyContent={'center'} style={{ width: '100%' }}>
-                  {pages.map((page, index) => (
-                    <Link key={index} href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily={'Arial'} fontSize={17} color={'#000000'} underline={'none'}>
+                  ))}
+                </List>
+              </Drawer>
+            </Grid>
+            <Grid item>
+              <Box>LOGO</Box>
+            </Grid>
+          </>
+        ) : (
+          <>
+            <Grid item>
+              <Box>LOGO</Box>
+            </Grid>
+            <Grid item xs={8}>
+              <Box display="flex" alignItems="center" justifyContent="center" style={{ width: '100%' }}>
+                {pages.map((page, index) => (
+                  <Link key={index} href={links[index]} style={{ padding: '10px', color: '#00000' }} fontFamily="Arial" fontSize={17} color="#000000" underline="none">
                       {page}
                     </Link>
-                  ))}
-                </Box>
-              </Grid>
+                ))}
+              </Box>
+            </Grid>
 
-            </>
-          )}
-          <Grid item>
-            <IconButton aria-label="לאיזור האישי" size='small' edge="start" variant="outlined" style={{ padding: '5px' }} onClick={handleClickToPersonalArea}>
-              לאיזור האישי
-              <FontAwesomeIcon icon={faCircleUser} style={{ color: 'black' }} />
-            </IconButton>
-          </Grid>
+          </>
+        )}
+        <Grid item>
+          <IconButton aria-label="לאיזור האישי" size="small" edge="start" variant="outlined" style={{ padding: '5px' }} onClick={handleClickToPersonalArea}>
+            לאיזור האישי
+            <FontAwesomeIcon icon={faCircleUser} style={{ color: 'black' }} />
+          </IconButton>
         </Grid>
+      </Grid>
     </Toolbar>
   );
 }

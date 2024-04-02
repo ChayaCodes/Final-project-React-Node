@@ -1,7 +1,6 @@
 import { Breadcrumbs, Link } from '@mui/material';
 import React from 'react';
 
-
 const routes = [
   { path: 'personal-area', breadcrumb: 'איזור אישי' },
   { path: 'courses', breadcrumb: 'קורסים' },
@@ -13,26 +12,26 @@ const routes = [
 
 ];
 
-const Crumbs = () => {
+function Crumbs() {
   const location = window.location.href;
   console.log(location);
 
-  const paths = location.split('/')
-  const filteredRoutes = routes.filter(route => paths.includes(route.path));
+  const paths = location.split('/');
+  const filteredRoutes = routes.filter((route) => paths.includes(route.path));
   filteredRoutes.unshift({ path: '/', breadcrumb: 'ראשי' });
 
   return (
     <Breadcrumbs separator="/">
       {
         filteredRoutes.map((route, index) => {
-          let link = ""
-          for(let i = 1; i <= index; i++){
-            link += "/" + filteredRoutes[i].path;
+          let link = '';
+          for (let i = 1; i <= index; i++) {
+            link += `/${filteredRoutes[i].path}`;
           }
-          link+= "/"
-          
+          link += '/';
+
           return (
-            <Link key={index} href={link} underline='hover'>
+            <Link key={index} href={link} underline="hover">
               {route.breadcrumb}
             </Link>
 
@@ -41,6 +40,6 @@ const Crumbs = () => {
       }
     </Breadcrumbs>
   );
-};
+}
 
 export default Crumbs;

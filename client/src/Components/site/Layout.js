@@ -1,16 +1,16 @@
-import React from "react";
-import {Outlet} from "react-router-dom";
+import React from 'react';
+import { Outlet } from 'react-router-dom';
 
-import Header from "./Header";
-import Footer from "./Footer";
+import Header from './Header';
+import Footer from './Footer';
 
-const Layout = () => {
-    return (
-        <div className="page">
-            <Header/>
-            <Outlet/>
-            <Footer/>
-        </div>
-    );
+function Layout() {
+  return (
+    <div className="page">
+      <Header />
+      <Outlet />
+      <Footer />
+    </div>
+  );
 }
 export default Layout;
