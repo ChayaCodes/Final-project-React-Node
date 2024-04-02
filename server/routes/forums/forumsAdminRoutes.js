@@ -1,7 +1,6 @@
+const router = require('express').Router();
 const forumsController = require('../../controllers/forumsControllers/forumsAdminController');
 const verifyAdmin = require('../../middleware/verifyAdmin');
-
-const router = require('express').Router();
 
 router.use(verifyAdmin);
 
@@ -13,4 +12,3 @@ router.put('/:id', forumsController.updateForum);
 router.delete('/:id', forumsController.deleteForum);
 
 module.exports = router;
-
