@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import {
   TextField,
   Button,
@@ -15,7 +15,7 @@ import './Login.css';
 
 function Login() {
   const [login, {
-    isLoading, isError, isSuccess, error,
+    isLoading, isError, error,
   }] = useLoginMutation();
   const navigate = useNavigate();
 
@@ -33,12 +33,6 @@ function Login() {
     login(data);
     navigate('/personal-area');
   };
-
-  useEffect(() => {
-    if (isSuccess) {
-
-    }
-  }, [isSuccess]);
 
   if (isLoading) return <div>loading...</div>;
   if (isError) console.log(error);

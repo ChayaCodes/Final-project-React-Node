@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const userController = require('../../controllers/usersControllers/userAdminController');
 
-const verifyAdmin = require('../../middleware/verifyAdmin');
-
 router.get('/', userController.getUsers);
 router.get('/:id', userController.getUser);
 router.post('/', userController.createUser);

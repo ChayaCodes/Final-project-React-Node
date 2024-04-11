@@ -11,7 +11,8 @@ const verifyJWT = (req, res, next) => {
       return res.status(403).json({ message: err.message });
     }
     req.user = decode;
-    next();
+    return next();
   });
 };
+
 module.exports = verifyJWT;

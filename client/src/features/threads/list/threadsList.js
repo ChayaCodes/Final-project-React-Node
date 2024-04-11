@@ -23,13 +23,9 @@ function ThreadsList() {
   } = threadsQuery(forumId);
 
   const [deleteThread, {}] = useDeleteThreadMutation();
-  const [updateThread, {
-    data, isErrorU, errorU, isLoadingU, isSuccessU,
-  }] = useUpdateThreadMutation();
+  const [updateThread, {}] = useUpdateThreadMutation();
 
-  const {
-    data: forums, isErrorForums, errorForums, isLoadingForums,
-  } = useGetForumsQuery();
+  const { data: forums } = useGetForumsQuery();
 
   if (isLoading) {
     console.log('loading...');
