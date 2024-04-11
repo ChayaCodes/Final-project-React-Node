@@ -1,0 +1,30 @@
+
+  .sidebar-navigation.is-visible {
+    opacity: 1;
+  }
+  
+  @media (min-width: 1024px) {
+    .sidebar-navigation {
+      opacity: 1;
+    }
+  }
+
+
+  
+.sidebar-navigation ul {
+  list-style-type: none;
+  padding: 0; 
+}
+
+.sidebar-navigation li {
+  padding: 8px 16px; 
+}
+
+.sidebar-navigation li a {
+  text-decoration: none; 
+  color: black; 
+}
+
+.sidebar-navigation li a:hover {
+  color: #007bff; 
+}

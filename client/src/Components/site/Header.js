@@ -26,18 +26,7 @@ function Header() {
   };
 
   const handleClickToPersonalArea = () => {
-    console.log('click');
-    const token = localStorage.getItem('token');
-    if (token) {
-      // שומר את הטוקן בסטור - רידקס
-      dispatch(setToken({ token }));
-      // מעביר לדף האישי
-      navigate('/personal-area');
-      console.log('click');
-    } else {
-      // מעביר לדף ההתחברות
-      navigate('/login');
-    }
+    navigate('/personal-area');
   };
 
   return (
