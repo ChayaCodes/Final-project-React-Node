@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import useAuth from '../../hooks/useAuth';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -8,16 +9,15 @@ const authSlice = createSlice({
   },
   reducers: {
     setToken: (state, action) => {
+      console.log('setToken', action.payload);
       state.token = action.payload.token;
       state.user = action.payload.user;
     },
     logout: (state) => {
       state.token = null;
     },
-
   },
 });
 
 export default authSlice.reducer;
-export const { setToken, logout } = authSlice.actions;
-export const selectToken = (state) => state.auth.token;
+export const { setToken, logout, selectToken, selectUser } = authSlice.actions;

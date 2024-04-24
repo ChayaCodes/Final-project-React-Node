@@ -12,7 +12,9 @@ const authApiSlice = apiSlice.injectEndpoints({
       async onQueryStarted(args, { dispatch, queryFulfilled }) {
         try {
           const { data } = await queryFulfilled;
+          console.log("login data login", data)
           dispatch(setToken({ token: data.token, user: data.user }));
+          localStorage.setItem('token', data.token);
         } catch (error) {
           console.log(error);
         }
@@ -42,6 +44,8 @@ const authApiSlice = apiSlice.injectEndpoints({
           dispatch(logout());
           setTimeout(() => {
             dispatch(apiSlice.util.resetApiState());
+            localStorage.removeItem('token');
+
           }, 1000);
         } catch (error) {
           console.log(error);

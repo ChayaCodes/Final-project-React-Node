@@ -1,12 +1,14 @@
 import { useGetForumsQuery } from '../../../../features/forums/forumApiSlice';
 import SortBy from '../../SortBy/SortBy';
 import Search from '../../search/Search';
+import ForumBox from '../forumBox/ForumBox';
 import './forums.css';
 
 function Forums() {
   const {
     data: forums, isLoading, isError, isSuccess, error,
   } = useGetForumsQuery();
+  console.log('Forums', forums);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -23,16 +25,9 @@ function Forums() {
 
       </div>
 
-      <table>
-        {
-          forums.map((forum) => (
-            <tr key={forum._id}>
-              <td>{forum.name}</td>
-              <td>{forum.description}</td>
-            </tr>
-          ))
-        }
-      </table>
+      <div>
+        {forums.map((forum) => (<ForumBox key={forum.id} forum={forum} />))}
+      </div>
 
     </div>
   }

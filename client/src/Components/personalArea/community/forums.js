@@ -1,6 +1,6 @@
 import { Box } from '@mui/material';
 import { useGetForumsQuery } from '../../../features/forums/forumApiSlice';
-import ForumBox from './ForumBox';
+import ForumBox from './forumBox/ForumBox';
 
 function Forums() {
   const {

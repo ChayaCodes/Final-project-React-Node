@@ -1,0 +1,92 @@
+.node-body {
+    display: table;
+    table-layout: fixed;
+    width: 100%;
+}
+  
+.node-icon {
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+    width: 46px;
+    padding: 10px 10px 10px 0;
+}
+  
+.node-main {
+    display: table-cell;
+    vertical-align: middle;
+    padding: 10px;
+}
+  
+  .node-title {
+    margin: 0;
+    padding: 0;
+    font-size: 17px;
+    font-weight: 400;
+  }
+  
+  .node-description {
+    font-size: 13px;
+    color: #505050;
+  }
+  
+  .node-meta {
+    font-size: 13px;
+  }
+  .node-stats {
+    display: table-cell;
+    width: 140px;
+    vertical-align: middle;
+    text-align: center;
+    padding: 10px 0;
+  }
+  
+  .pairs {
+    padding: 0;
+    margin: 0;
+    overflow: hidden;
+  }
+  
+  .node-extra {
+    display: table-cell;
+    vertical-align: middle;
+    width: 280px;
+    padding: 10px;
+    font-size: 13px;
+  }
+  
+  .node-extra-icon {
+    padding-left: 10px;
+    float: right;
+  }
+  
+  .avatar {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    vertical-align: top;
+    overflow: hidden;
+  }
+  
+  .node-extra-row {
+    overflow: hidden;
+    white-space: nowrap;
+    word-wrap: normal;
+    text-overflow: ellipsis;
+    color: #8c8c8c;
+  }
+  
+  
+  .listInline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  
+  
+  
+  .username {
+    font-size: 14px;
+    color: #333;
+  }

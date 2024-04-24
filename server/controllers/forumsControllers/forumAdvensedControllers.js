@@ -1,22 +1,50 @@
 const Forum = require('../../models/Forum');
+const Post = require('../../models/Post');
+const User = require("../../models/User")
 
-const getThreads = async (req, res) => {
+const getForums = async (req, res) => {
+  // get forums with data: title, description, number of threads, number of posts, last post title, last post author, last post date, last post author avatar
   try {
-    if (!req.user.forums.includes(req.params.id)) { return res.status(403).json({ message: 'You are not authorized to view this forum' }); }
-    const forum = await Forum.findById(req.params.id).populate({
-      path: 'threads',
-      select: 'title createdAt user',
-      populate: {
-        path: 'user',
-        select: 'userName avatar color',
-      },
-    });
-    return res.status(200).json(forum.threads);
-  } catch (err) {
-    return res.status(500).json({ message: err.message });
+    let forums = await Forum.find().populate('threads')
+
+    const forumsData = await Promise.all(forums.map(async (forum) => {
+      console.log("forum: ", forum);
+      
+      const lastPost = forum.threads.length > 0 ? forum.threads[0] : null;
+      const lastPostUser = await User.findById(lastPost?.user)
+      console.log("lastPost", lastPost)
+      const cntThreads = forum.threads.length;
+      let cntPosts = 0;
+      forum.threads.forEach((thread) => {
+        cntPosts += thread.posts.length;
+      });
+
+      const lastPostAuthor = lastPost?.user;
+      const lastPostDate = lastPost?.date;
+      const lastPostAuthorAvatar = lastPost?.user.avatar;
+      return {
+        id: forum._id,
+        name: forum.name,
+        description: forum.description,
+        threads: cntThreads,
+        posts: cntPosts,
+        lastPost: {
+          title: lastPost?.title,
+          userName: lastPostUser?.userName,
+          date: lastPost?.updatedAt,
+          userAvatar: lastPostUser?.avatar
+        },
+      };
+
+    }));
+    res.json(forumsData);
+
+  }catch (error) {
+    console.log(error);
+    res.status(500).json({ message: `Server error: ${error}` });
   }
 };
 
 module.exports = {
-  getThreads,
+  getForums
 };

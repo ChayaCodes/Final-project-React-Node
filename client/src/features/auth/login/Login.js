@@ -13,9 +13,9 @@ import { useLoginMutation } from '../authApiSlice';
 
 import './Login.css';
 
-function Login() {
+const Login = () => {
   const [login, {
-    isLoading, isError, error,
+    isLoading, isError, error, isSuccess,
   }] = useLoginMutation();
   const navigate = useNavigate();
 
@@ -31,12 +31,11 @@ function Login() {
     const data = Object.fromEntries(formData.entries());
     console.log(data);
     login(data);
-    navigate('/personal-area');
   };
 
   if (isLoading) return <div>loading...</div>;
-  if (isError) console.log(error);
-
+  if (isError) console.log("errlogin", error);
+  if (isSuccess) navigate('/personal-area');
   return (
     <form className="login-container" onSubmit={handleLogin}>
       <Typography variant="h4" className="login-title">
@@ -68,7 +67,7 @@ function Login() {
           ),
         }}
       />
-      {isError && <Typography variant="body2" className="login-error">{error.data.message}</Typography>}
+      {isError && <div style={{ color: "red" }} variant="body2" className="login-error">{error.data.message}</div>}
 
       <Button type="submit" variant="contained" color="primary" className="login-button">
         התחברות

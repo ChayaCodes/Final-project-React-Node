@@ -1,6 +1,6 @@
 const router = require('express').Router();
-const { getThreads } = require('../../controllers/forumsControllers/forumAdvensedControllers');
+const { getForums } = require('../../controllers/forumsControllers/forumAdvensedControllers');
 
-router.get('/:id/threads', getThreads);
+router.get('/', getForums);
 
 module.exports = router;

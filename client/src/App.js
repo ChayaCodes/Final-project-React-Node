@@ -15,7 +15,6 @@ import Treads from './Components/personalArea/community/Treads';
 import NewThread from './Components/personalArea/community/NewThread';
 import Thread from './Components/personalArea/community/Thread';
 import HomePage from './Components/site/HomePage/HomePage';
-import ForumBox from './Components/personalArea/community/ForumBox';
 import DashLayout from './Components/dash/Layout/DashLayout';
 import ForumsList from './features/forums/list/ForumsList';
 import AddForum from './features/forums/add/AddForum';
@@ -57,7 +56,6 @@ function App() {
                 <Route path="contact" element={<h1>contact page</h1>} />
                 <Route path="login" element={<Login />} />
                 <Route path="signup" element={<h1>signup page</h1>} />
-                <Route path="forum" element={<ForumBox />} />
                 <Route path="*" element={<h1>404 not found</h1>} />
               </Route>
               <Route path="dash" element={<DashLayout />}>
