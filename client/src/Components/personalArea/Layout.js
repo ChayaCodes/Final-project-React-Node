@@ -4,7 +4,7 @@ import { useEffect } from 'react';
 
 import { Box } from '@mui/material';
 import Header from './Header/Header';
-import PersonalArea from './PersonalArea'
+import PersonalArea from './personalArea/PersonalArea'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import SidebarNavigation from './SidebarNavigation/SidebarNavigation';

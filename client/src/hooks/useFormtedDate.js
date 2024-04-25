@@ -2,6 +2,11 @@ import { formatDistanceToNow, parseISO } from 'date-fns';
 import { he } from 'date-fns/locale';
 
 const useFormatedDate = (dateString) => {
+  if (typeof dateString !== 'string') {
+    console.error('Invalid dateString:', dateString);
+    return '';
+  }
+
   const date = parseISO(dateString);
 
   const distanceInWords = formatDistanceToNow(date, { addSuffix: true, locale: he });

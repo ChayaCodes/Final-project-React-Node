@@ -16,7 +16,7 @@ function HomePage() {
         backgroundImage: "url('/images/homePageHigh.png')",
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        marginTop: '-10vh',
+        marginTop: '-64px',
       }}
       >
         <div style={{ position: 'absolute', right: '5vw', bottom: '5vh' }}>

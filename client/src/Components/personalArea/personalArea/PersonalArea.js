@@ -1,10 +1,9 @@
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { faPencil, faRightFromBracket } from '@fortawesome/free-solid-svg-icons';
 import { Box, Link, Typography } from '@mui/material';
 import { useNavigate } from 'react-router';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { removeToken } from '../../app/auth/authSlice';
-import { useLogoutMutation } from '../../features/auth/authApiSlice';
+import { useLogoutMutation } from '../../../features/auth/authApiSlice';
 
 function PersonalArea() {
   const [logout] = useLogoutMutation();
@@ -19,7 +18,7 @@ function PersonalArea() {
 
   return (
     <div style={{
-      width: '100%', height: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+      width: '100%', margin: '50px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
     }}
     >
       <Typography

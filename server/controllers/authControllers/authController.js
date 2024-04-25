@@ -60,7 +60,7 @@ const register = async (req, res) => {
       firstName, lastName, email, password: hashedPassword, userName,
     });
     const avatarName = newUser.userName.split(' ').join('+');
-    newUser.avatar = `https://ui-avatars.com/api/?name=${avatarName}&length=1&rounded=true&bold=true&background=random`;
+    newUser.avatar = `https://ui-avatars.com/api/?name=${avatarName}&length=1&rounded=true&bold=true&background=random&size=128`;
     const user = await newUser.save();
     const userInfo = { user, password: undefined };
 

@@ -1,4 +1,4 @@
-import { Grid, Typography, Box } from '@mui/material';
+import { Grid, Typography, Box, Avatar } from '@mui/material';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faDiamondTurnRight } from '@fortawesome/free-solid-svg-icons';
 import useFormatedDate from '../../../../hooks/useFormtedDate';
@@ -6,46 +6,46 @@ import './ForumBox.css';
 
 const ForumBox = ({ forum }) => {
   console.log(forum);
+  console.log("last post", forum.lastPost)
+  console.log("user avater", forum.lastPost?.userAvatar)
   return (
-    <div class="node-body">
-      <span class="node-icon" aria-hidden="true">
-        <FontAwesomeIcon icon={faComments} />
-      </span>
-      <div class="node-main js-nodeMain">
-        <h3 class="node-title">
-          <a href={`/forums/${forum._id}`}  data-xf-init="" data-shortcut="node-description">{forum.name}</a>
+    <div className="node-body">
+
+      <div className="node-main">
+        <h3 className="node-title">
+          <a className='node-title' href={`/forums/${forum.id}`}>{forum.name}</a>
         </h3>
-        <div class="node-description ">{forum.description}</div>
-      
+        <div className="node-description ">{forum.description}</div>
+
       </div>
-      <div class="node-stats">
-        <dl class="pairs pairs--rows">
-          <dt>נושאים</dt>
+      <div className='node-left'>
+        <div className="node-extra">
+          <div className="node-extra-icon">
+
+            <img src={forum.lastPost?.userAvatar} alt={`Avatar ${forum.lastPost?.userAvatar}`} className="avatar" />
+          </div>
+          <div className="node-extra-row">
+            <a className="node-extra-title">נושא אחרון שנפתח</a>
+          </div>
+          <div className="node-extra-row">
+            <ul className="listInline">
+              <li>
+                <time>{useFormatedDate(forum.lastPost?.date)}</time>
+              </li>
+              <li className="node-extra-user"><a className="username" dir="auto" >{forum.lastPost.userName}</a></li>
+            </ul>
+          </div>
+        </div>
+        <div className="node-stats">
+        <dl className="pairs">
+          <dt><b>נושאים</b></dt>
           <dd>{forum.threads}</dd>
         </dl>
-        <dl class="pairs pairs--rows">
-          <dt>הודעות</dt>
+        <dl className="pairs">
+          <dt><b>הודעות</b></dt>
           <dd>{forum.posts}</dd>
         </dl>
       </div>
-      <div class="node-extra">
-        <div class="node-extra-icon">
-          
-            <img src={forum.lastPost.userAvater} alt="avatar" class="avatar avatar--xxs" />
-        </div>
-        <div class="node-extra-row">
-          <a 
-          class="node-extra-title" title={forum.lastPost.title}
-          ><span class="coefficient_ai" dir="auto">עזרה</span><span class="label-append">&nbsp;</span>{forum.lastPost.title}</a>
-        </div>
-        <div class="node-extra-row">
-          <ul class="listInline listInline--bullet">
-            <li>
-              <time>{useFormatedDate(forum.lastPost.date)}</time>
-            </li>
-            <li class="node-extra-user"><a class="username " dir="auto" data-user-id="122927" data-xf-init="member-tooltip" id="js-XFUniqueId83">{forum.lastPost.userName}</a></li>
-          </ul>
-        </div>
       </div>
     </div>
   );
