@@ -67,9 +67,7 @@ function ForumsList() {
               <td className="forums-list-btns">
                 <Link className="forums-list-btn edit" to={`/dash/forums/${forum._id}/edit`}>ערוך</Link>
                 <span className="forums-list-btn delete" to={`/dash/forums/${forum._id}/delete`} onClick={handleDelete} id={forum._id}>מחק</span>
-
               </td>
-
             </tr>
           ))}
         </tbody>
