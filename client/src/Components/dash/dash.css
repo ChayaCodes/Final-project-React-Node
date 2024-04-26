@@ -16,10 +16,6 @@ html {
     text-align: right;
 }
 
-body{
-    background-color: var(--bg);
-    color: var(--text);
-}
 
 * {
     margin: 0;
