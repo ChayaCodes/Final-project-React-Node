@@ -21,7 +21,6 @@ function Layout() {
       navigate('../login');
     }
     else{
-      console.log('user is connected');
     }
   }, [user, navigate]);
 

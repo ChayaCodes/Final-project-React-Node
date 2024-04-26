@@ -8,11 +8,9 @@ const getForums = async (req, res) => {
     let forums = await Forum.find().populate('threads')
 
     const forumsData = await Promise.all(forums.map(async (forum) => {
-      console.log("forum: ", forum);
       
       const lastPost = forum.threads.length > 0 ? forum.threads[0] : null;
       const lastPostUser = await User.findById(lastPost?.user)
-      console.log("lastPost", lastPost)
       const cntThreads = forum.threads.length;
       let cntPosts = 0;
       forum.threads.forEach((thread) => {
@@ -45,6 +43,41 @@ const getForums = async (req, res) => {
   }
 };
 
+const getForum = async (req, res) => {
+  // get forum by id with data: title, threads, where each thread contains: title, author - userName, user avatar, date, last post: user - userName, user avatar, date
+  try {
+    const forum = await Forum.findById(req.params.id).populate('threads');
+    const threads = await Promise.all(forum.threads.map(async (thread) => {
+      console.log("thread", thread);
+      console.log(" thread posts !" , thread.posts);
+      const author = await User.findById(thread.user);
+      const lastPostId = thread.posts.length > 0 ? thread.posts[0] : null;
+      console.log("lastPostId", lastPostId)
+      const lastPost = await Post.findById(lastPostId).populate('user');
+      console.log("lastPost", lastPost);
+
+      return {
+        id: thread._id,
+        title: thread.title,
+        date: thread.updatedAt,
+        userName: author.userName,
+        userAvatar: author.avatar,
+        lastPost: {
+          userName: lastPost?.user.userName,
+          userAvatar: lastPost?.user.avatar,
+          date: lastPost?.updatedAt
+        }
+      };
+    }));
+    res.json({ id: forum._id, name: forum.name, threads });
+  }catch (error) {
+    console.log(error);
+    res.status(500).json({ message: `Server error: ${error}` });
+  }
+}
+
+
+
 module.exports = {
-  getForums
+  getForums, getForum
 };

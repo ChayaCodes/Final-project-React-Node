@@ -14,12 +14,35 @@
 
 }
 
+
 .node-icon {
   display: table-cell;
   vertical-align: middle;
   text-align: center;
   width: 46px;
   padding: 10px 10px 10px 0;
+}
+
+.structItem-cell-icon {
+  -webkit-text-size-adjust: 100%;
+  font: 15px / 1.4 sans-serif;
+  font-weight: 400;
+  word-wrap: break-word;
+  --input-border-heavy: #cbcbcb;
+  --input-border-light: #dfdfdf;
+  --swiper-theme-color: #007aff;
+  --swiper-navigation-size: 44px;
+  --kttPrimaryColor: #000000;
+  color: #141414;
+  border-collapse: collapse;
+  list-style: none;
+  box-sizing: border-box;
+  font-family: 'Heebo', sans-serif;
+  display: table-cell;
+  padding: 10px 8px;
+  vertical-align: top;
+  width: 52px;
+  position: relative;
 }
 
 .text {

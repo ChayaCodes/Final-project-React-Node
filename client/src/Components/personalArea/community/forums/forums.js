@@ -1,4 +1,4 @@
-import { useGetForumsQuery } from '../../../../features/forums/forumApiSlice';
+import { useGetForumsQuery } from '../../../../features/forums/forumApiSliceUser';
 import SortBy from '../../SortBy/SortBy';
 import Search from '../../search/Search';
 import ComunityHeader from '../ComunityHeader/ComunityHeader';

@@ -8,20 +8,14 @@ const useAuth = () => {
   const dispatch = useDispatch();
   try {
     const token = localStorage.getItem('token');
-
-
     if (token) {
-      console.log("success token found in useAuth");
-      console.log(token); 
       const userDecoded = jwtDecode(token);
       dispatch(setToken({ token: token, user: userDecoded }));
-      console.log(userDecoded);
       return userDecoded;
     }
     return null;
   }
   catch (error) {
-    console.log(error);
     return null;
   }
 }

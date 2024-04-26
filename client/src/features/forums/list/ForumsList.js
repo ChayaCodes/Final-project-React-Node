@@ -28,7 +28,8 @@ function ForumsList() {
   };
 
   const timeZone = 'Asia/Jerusalem';
-
+  console.log('forums');
+  console.log(forums[0]);
   return (
     <div className="forums-list">
       <div className="forum-list-top">
@@ -53,7 +54,7 @@ function ForumsList() {
               <td>{forum.name}</td>
               <td>{forum.description}</td>
 
-              <td>{format(new Date(forum.createdAt), 'dd/MM/yyyy HH:mm', { timeZone })}</td>
+              <td>{forum.createdAt}</td>
               {' '}
               <td>
                 {forum.public ? 'ציבורי' : 'פרטי'}

@@ -13,7 +13,7 @@ const ForumBox = ({ forum }) => {
 
       <div className="node-main">
         <h3 className="node-title">
-          <a className='node-title' href={`/forums/${forum.id}`}>{forum.name}</a>
+          <a className='node-title' href={`./community/${forum.id}`}>{forum.name}</a>
         </h3>
         <div className="node-description ">{forum.description}</div>
 

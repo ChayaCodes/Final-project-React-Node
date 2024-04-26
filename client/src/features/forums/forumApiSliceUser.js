@@ -1,17 +1,24 @@
 import apiSlice from '../../app/apiSlice';
 
-const forumsApiSlice = apiSlice.injectEndpoints({
+const forumsApiSliceUser = apiSlice.injectEndpoints({
   endpoints: (build) => ({
     getForums: build.query({
       query: () => ({
-        url: 'api/admin/forums',
+        url: 'api/forums',
+        method: 'GET',
+      }),
+      providesTags: ['Forums'],
+    }),
+    getForum: build.query({
+      query: (id) => ({
+        url: `api/forums/${id}`,
         method: 'GET',
       }),
       providesTags: ['Forums'],
     }),
     addForum: build.mutation({
       query: (forum) => ({
-        url: 'api/admin/forums',
+        url: 'api/forums',
         method: 'POST',
         body: forum,
       }),
@@ -19,7 +26,7 @@ const forumsApiSlice = apiSlice.injectEndpoints({
     }),
     updateForum: build.mutation({
       query: (forum) => ({
-        url: `api/admin/forums/${forum._id}`,
+        url: `api/forums/${forum._id}`,
         method: 'PUT',
         body: forum,
       }),
@@ -27,7 +34,7 @@ const forumsApiSlice = apiSlice.injectEndpoints({
     }),
     deleteForum: build.mutation({
       query: (id) => ({
-        url: `api/admin/forums/${id}`,
+        url: `api/forums/${id}`,
         method: 'DELETE',
       }),
       invalidatesTags: ['Forums'],
@@ -36,5 +43,5 @@ const forumsApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useGetForumsQuery, useAddForumMutation, useUpdateForumMutation, useDeleteForumMutation,
-} = forumsApiSlice;
+  useGetForumsQuery, useGetForumQuery, useAddForumMutation, useUpdateForumMutation, useDeleteForumMutation,
+} = forumsApiSliceUser;

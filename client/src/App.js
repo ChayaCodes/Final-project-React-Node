@@ -11,7 +11,7 @@ import theme, { cacheRtl } from './theme';
 import Login from './features/auth/login/Login';
 import LayoutPersonalArea from './Components/personalArea/Layout';
 import Forums from './Components/personalArea/community/forums/forums';
-import Treads from './Components/personalArea/community/Treads';
+import Treads from './Components/personalArea/community/threads/Threads';
 import NewThread from './Components/personalArea/community/NewThread';
 import Thread from './Components/personalArea/community/Thread';
 import HomePage from './Components/site/HomePage/HomePage';
@@ -38,6 +38,7 @@ function App() {
                 <Route path="tutorials" element={<h1>tutorials page</h1>} />
                 <Route path="community" element={<Forums />} />
                 <Route path="community/:id" element={<Treads />} />
+                
                 <Route path="community/:id/new-thread" element={<NewThread />} />
                 <Route path="community/:id/:threadId" element={<Thread />} />
 

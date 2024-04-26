@@ -14,8 +14,6 @@ const routes = [
 
 function Crumbs() {
   const location = window.location.href;
-  console.log(location);
-
   const paths = location.split('/');
   const filteredRoutes = routes.filter((route) => paths.includes(route.path));
   filteredRoutes.unshift({ path: '/', breadcrumb: 'ראשי' });
