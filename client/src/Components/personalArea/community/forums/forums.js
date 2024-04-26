@@ -1,6 +1,7 @@
 import { useGetForumsQuery } from '../../../../features/forums/forumApiSlice';
 import SortBy from '../../SortBy/SortBy';
 import Search from '../../search/Search';
+import ComunityHeader from '../ComunityHeader/ComunityHeader';
 import ForumBox from '../forumBox/ForumBox';
 import './forums.css';
 
@@ -18,17 +19,11 @@ function Forums() {
     return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
   } if (isSuccess) {
     console.log(forums);
-    return <div>
-      <div className="forums-header">
-        <Search placeholder="חפש פורום" />
-        <SortBy />
-
-      </div>
-
-      <div>
+    return <div className="forums-container">
+      <ComunityHeader placeholder="חפש פורום" />
+      <div className="forums">
         {forums.map((forum) => (<ForumBox key={forum.id} forum={forum} />))}
       </div>
-
     </div>
   }
 }

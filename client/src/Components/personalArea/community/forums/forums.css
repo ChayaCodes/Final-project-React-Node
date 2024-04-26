@@ -1,5 +1,19 @@
-.forums-header{
-    display: flex;
-    justify-content: space-between;
 
+.forums{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    width: 80%;
 }
+
+.forums-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-top: 20px;
+}
+

@@ -10,7 +10,7 @@ import Layout from './Components/site/Layout';
 import theme, { cacheRtl } from './theme';
 import Login from './features/auth/login/Login';
 import LayoutPersonalArea from './Components/personalArea/Layout';
-import Forums from './Components/personalArea/community/forums';
+import Forums from './Components/personalArea/community/forums/forums';
 import Treads from './Components/personalArea/community/Treads';
 import NewThread from './Components/personalArea/community/NewThread';
 import Thread from './Components/personalArea/community/Thread';

@@ -27,7 +27,7 @@ const getForums = async (req, res) => {
         name: forum.name,
         description: forum.description,
         threads: cntThreads,
-        posts: cntPosts,
+        posts: cntPosts + cntThreads,
         lastPost: {
           title: lastPost?.title,
           userName: lastPostUser?.userName,

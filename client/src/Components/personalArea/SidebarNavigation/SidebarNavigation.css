@@ -6,7 +6,12 @@
 .sidebar-navigation{
   height: 90vh;
   width: 25vw;
-background-color: rgb(194, 194, 194);
+background-color: #D9D9D9;
+
+
+
+
+
 }
 
   @media (min-width: 1024px) {

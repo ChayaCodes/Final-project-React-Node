@@ -1,4 +1,4 @@
-.search-continer{
+.search-continer-2{
     display: flex;
     align-items: center;
     gap: 10px;
@@ -8,12 +8,12 @@
 
 }
 
-.search-continer input{
+.search-continer-2 input{
     background-color: #ffffff;
     border: none;
 }
 
 
-.search-continer input:focus{
+.search-continer-2 input:focus{
     outline: none;
 }
