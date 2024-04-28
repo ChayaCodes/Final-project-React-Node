@@ -9,7 +9,7 @@ function SidebarNavigation({setIsSidebarOpen, isSidebarOpen}) {
 
   return (
     <div className={`sidebar-navigation ${isSidebarOpen ? 'is-visible' : ''}`}>
-      <ul>
+      <ul className='sidebar-navigation-list'>
         <li><FontAwesomeIcon icon={faChalkboardTeacher}/><Link to="/personal-area/courses">קורסים</Link></li>
         <li><FontAwesomeIcon icon={faVideo}/><Link to="/personal-area/videos">סרטונים</Link></li>
         <li><FontAwesomeIcon icon={faUsers}/><Link to="/personal-area/community">קהילה</Link></li>

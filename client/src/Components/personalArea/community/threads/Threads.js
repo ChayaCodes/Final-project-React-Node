@@ -2,6 +2,7 @@ import { useParams } from 'react-router-dom';
 import { Box, Button } from '@mui/material';
 import { useGetForumQuery } from '../../../../features/forums/forumApiSliceUser';
 import ThreadBox from '../threadBox/ThreadBox';
+import ComunityHeader from '../ComunityHeader/ComunityHeader';
 
 function Threads() {
   const { id: forumId } = useParams();
@@ -18,11 +19,13 @@ function Threads() {
 
     return (
       <Box>
+        
         <Button onClick={() => { window.location.href = `/personal-area/community/${forumId}/new-thread`; }}>פתיחת נושא חדש</Button>
+        <ComunityHeader placeholder="חיפוש נושא" />
         {
                 data.threads.map((thread) => <ThreadBox thread={thread} />)
 
-            }
+        }
 
       </Box>
     );

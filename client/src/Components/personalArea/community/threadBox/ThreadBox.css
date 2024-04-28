@@ -1,20 +1,12 @@
 .structItem{
-    -webkit-text-size-adjust: 100%;
     font: 15px / 1.4 sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    --input-border-heavy: #cbcbcb;
-    --input-border-light: #dfdfdf;
-    --swiper-theme-color: #007aff;
-    --swiper-navigation-size: 44px;
-    --kttPrimaryColor: #000000;
     color: #141414;
     box-sizing: border-box;
     font-family: 'Heebo',sans-serif;
     display: table;
     table-layout: fixed;
-    border-collapse: collapse;
-    border-top: 1px solid #e7e7e7;
     list-style: none;
     margin: 0;
     padding: 0;
@@ -48,11 +40,6 @@
     font: 15px / 1.4 sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    --input-border-heavy: #cbcbcb;
-    --input-border-light: #dfdfdf;
-    --swiper-theme-color: #007aff;
-    --swiper-navigation-size: 44px;
-    --kttPrimaryColor: #000000;
     color: #141414;
     border-collapse: collapse;
     list-style: none;
@@ -66,11 +53,6 @@
     font: 15px / 1.4 sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    --input-border-heavy: #cbcbcb;
-    --input-border-light: #dfdfdf;
-    --swiper-theme-color: #007aff;
-    --swiper-navigation-size: 44px;
-    --kttPrimaryColor: #000000;
     border-collapse: collapse;
     list-style: none;
     box-sizing: border-box;
@@ -94,11 +76,6 @@
     font: 15px / 1.4 sans-serif;
     font-weight: 400;
     word-wrap: break-word;
-    --input-border-heavy: #cbcbcb;
-    --input-border-light: #dfdfdf;
-    --swiper-theme-color: #007aff;
-    --swiper-navigation-size: 44px;
-    --kttPrimaryColor: #000000;
     color: #141414;
     border-collapse: collapse;
     list-style: none;
@@ -108,7 +85,10 @@
     padding: 10px 8px;
     vertical-align: top;
     flex: 1;
+    width: 65%;
 }
+
+
 
 .structItem-statuses{
     -webkit-text-size-adjust: 100%;

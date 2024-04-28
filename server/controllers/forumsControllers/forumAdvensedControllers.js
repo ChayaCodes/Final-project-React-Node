@@ -1,6 +1,7 @@
 const Forum = require('../../models/Forum');
 const Post = require('../../models/Post');
 const User = require("../../models/User")
+const Thread = require('../../models/Thread');
 
 const getForums = async (req, res) => {
   // get forums with data: title, description, number of threads, number of posts, last post title, last post author, last post date, last post author avatar
@@ -47,6 +48,9 @@ const getForum = async (req, res) => {
   // get forum by id with data: title, threads, where each thread contains: title, author - userName, user avatar, date, last post: user - userName, user avatar, date
   try {
     const forum = await Forum.findById(req.params.id).populate('threads');
+    if (!forum) {
+      return res.status(404).json({ message: 'Forum not found' });
+    }
     const threads = await Promise.all(forum.threads.map(async (thread) => {
       console.log("thread", thread);
       console.log(" thread posts !" , thread.posts);
@@ -76,8 +80,47 @@ const getForum = async (req, res) => {
   }
 }
 
+const getThreadById = async (req, res) => {
+  const threadId = req.params.threadId;
+  const page = parseInt(req.query.page) || 1;
 
+  const skip = (page - 1) * 20;
+  const thread = await Thread.findById(threadId)
+    .populate({
+      path: 'posts',
+      options: {
+        sort: { date: -1 },
+        limit: 20,
+        skip: skip
+      },
+    })
+
+  if (!thread) {
+    return res.status(404).json({ message: 'Thread not found' });
+  }
+  const posts = await Promise.all(thread.posts.map(async (post) => {
+    const user = await User.findById(post.user);
+    return {
+      id: post._id,
+      content: post.content,
+      date: post.updatedAt,
+      userName: user.userName,
+      userAvatar: user.avatar,
+    };
+  }));
+
+
+  const totalPosts = await Post.countDocuments({ thread: threadId });
+  const totalPages = Math.ceil(totalPosts / 20);
+
+  res.json({
+    id: thread._id,
+    title: thread.title,
+    posts: posts,
+    totalPages
+  });
+};
 
 module.exports = {
-  getForums, getForum
+  getForums, getForum, getThreadById
 };

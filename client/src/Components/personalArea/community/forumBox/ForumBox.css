@@ -97,6 +97,8 @@
   align-items: flex-start;
   flex-direction: column;
   width: 30%;
+  min-width: 280px;
+  
 }
 
 .pairs {
@@ -108,7 +110,7 @@
 .node-extra {
   display: table-cell;
   vertical-align: middle;
-  width: 280px;
+  width: 100%;
   padding: 10px;
   font-size: 13px;
 }
