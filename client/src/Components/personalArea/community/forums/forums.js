@@ -4,7 +4,7 @@ import Search from '../../search/Search';
 import ComunityHeader from '../ComunityHeader/ComunityHeader';
 import ForumBox from '../forumBox/ForumBox';
 import './forums.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function Forums() {
@@ -17,7 +17,7 @@ function Forums() {
 
   const onChangeSearch = (e) => {
     const search = e.target.value;
-    const filteredForums = forumsList.filter((forum) => forum.name.includes(search));
+    const filteredForums = forums.filter((forum) => forum.name.includes(search));
     setForumsList(filteredForums);
   }
 
@@ -32,6 +32,11 @@ function Forums() {
     }
   }
 
+  useEffect(() => {
+    if (isSuccess)
+      setForumsList(forums);
+  }, [isSuccess]);
+
   if (isLoading) {
     return <div>Loading...</div>;
   } if (isError) {
@@ -39,11 +44,10 @@ function Forums() {
     console.log(error);
     return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
   } if (isSuccess) {
-    console.log(forumsList);
     return <div className="forums-container">
       <ComunityHeader placeholder="חפש פורום" onChangeSearch={onChangeSearch} onChangeSortBy={onChangeSortBy} sortByOptions={['name', 'date']} />
       <div className="forums">
-        {forumsList.map((forum) => (<ForumBox key={forum.id} forum={forum} />))}
+        {forumsList && forumsList.map((forum) => (<ForumBox key={forum.id} forum={forum} />))}
       </div>
     </div>
   }

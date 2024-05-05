@@ -23,19 +23,43 @@ const ThreadPage = () => {
   const { data, isLoading, isError, isSuccess, error } = useGetThreadByIdQuery({ forumId, threadId, page });
   const formatedDate = useFormatedDate(data?.date);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
 
-  console.log(data);
 
   const handlePageChange = (event, value) => {
     query.set('page', value);
     navigate({ pathname: location.pathname, search: query.toString() });
   };
 
+  const [postsList, setPostsList] = useState(null);
+
+    useEffect(() => {
+        if (isSuccess)
+            setPostsList(data.posts);
+    }, [isSuccess]);
+
+    const onChangeSearch = (e) => {
+        const search = e.target.value;
+        const filteredPosts = data.posts.filter((post) => post.content.includes(search));
+        setPostsList(filteredPosts);
+    }
+
+    const onChangeSortBy = (e) => {
+        const sortBy = e.target.value;
+        if (sortBy === 'content') {
+            const sortedPosts = postsList.sort((a, b) => a.content.localeCompare(b.content));
+            setPostsList(sortedPosts);
+        } else if (sortBy === 'date') {
+            const sortedPosts = postsList.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+            setPostsList(sortedPosts);
+        }
+    }
+    if (isLoading) return <div>Loading...</div>;
+    if (isError) return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
+  
+    console.log(data);
   return (
     <div>
-      <ComunityHeader placeholder="הקלד מילת חיפוש..." />
+      <ComunityHeader placeholder="הקלד מילת חיפוש..." onChangeSearch={onChangeSearch} onChangeSortBy={onChangeSortBy} sortByOptions={['content', 'date']} />
 
             <div className="p-body-header">
                 <div className="p-title">
@@ -71,7 +95,7 @@ const ThreadPage = () => {
             <div className='posts'>
 
                 <PostBox key={data.id} post={data.content} content={content} setContent={setContent} />
-        {data.posts.map((post) => (
+        {postsList && postsList.map((post) => (
           <PostBox key={post.id} post={post} content={content} setContent={setContent} />
         ))}
         <AddPost thread={data} content={content} setContent={setContent} />

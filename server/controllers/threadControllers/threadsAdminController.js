@@ -1,4 +1,5 @@
 const Thread = require('../../models/Thread');
+const Post = require('../../models/Post');
 
 const getThreads = async (req, res) => {
   try {
@@ -25,6 +26,11 @@ const createThread = async (req, res) => {
   const newThread = new Thread({
     title, content, author, forum, isPublic,
   });
+  const firstPost = new Post({
+    content, user: author, thread: newThread._id, forum,
+  });
+  newThread.posts.push(firstPost._id);
+
   try {
     const savedThread = await newThread.save();
     res.json(savedThread);
