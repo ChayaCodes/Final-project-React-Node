@@ -112,15 +112,46 @@ const getThreadById = async (req, res) => {
 
   const totalPosts = await Post.countDocuments({ thread: threadId });
   const totalPages = Math.ceil(totalPosts / 20);
+  const user = await User.findById(thread.user);
 
   res.json({
     id: thread._id,
     title: thread.title,
     posts: posts,
-    totalPages
+    totalPages,
+    userName: user.userName,
+    userAvatar: user.avatar,
+    date: thread.createdAt,
   });
 };
 
+const createPost = async (req, res) => {
+  const threadId = req.params.threadId;
+  const { content } = req.body;
+  const user = req.user;
+  console.log("create post user ", user);
+
+  try {
+    const thread = await Thread.findById(threadId);
+    if (!thread) {
+      return res.status(404).json({ message: 'Thread not found' });
+    }
+    const post = new Post({
+      content,
+      user: user.id,
+      thread: threadId,
+    });
+    console.log("post", post);
+    await post.save();
+    thread.posts.push(post._id);
+    await thread.save();
+    res.json({ message: 'Post created' });
+  } catch (error) {
+    console.log(error);
+    res.status(500).json({ message: `Server error: ${error}` , threadId});
+  }
+};
+
 module.exports = {
-  getForums, getForum, getThreadById
+  getForums, getForum, getThreadById, createPost
 };

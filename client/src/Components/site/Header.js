@@ -9,12 +9,27 @@ import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
 import { setToken } from '../../app/auth/authSlice';
+import { useEffect } from 'react';
 
 const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר'];
 const links = ['/', '/about', '/courses', '/tutorials', '/community', '/contact'];
 
 function Header() {
   const dispatch = useDispatch();
+
+  const [isScrolled, setIsScrolled] = useState(false);
+
+useEffect(() => {
+  const handleScroll = () => {
+    const show = window.scrollY > 100;
+    if (show !== isScrolled) setIsScrolled(show);
+  };
+
+  window.addEventListener('scroll', handleScroll);
+  return () => {
+    window.removeEventListener('scroll', handleScroll);
+  };
+}, [isScrolled]);
 
   const navigate = useNavigate();
   const [drawerOpen, setDrawerOpen] = useState(false);
@@ -29,11 +44,14 @@ function Header() {
     navigate('/personal-area');
   };
 
+
   return (
     <Toolbar
       disableGutters
       style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.5)',
+        backgroundColor: isScrolled ? 'white' : 'rgba(255, 255, 255, 0.2)',
+        backdropFilter: isScrolled ? 'none' : 'blur(10px)',
+        transition: 'background-color 3s ease, backdrop-filter 3s ease',
         position: 'sticky',
         width: '100%',
         height: '100%',
@@ -44,6 +62,7 @@ function Header() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
+        zIndex: '1000',
       }}
     >
       <Grid container justifyContent="space-between" alignItems="center">
@@ -74,7 +93,8 @@ function Header() {
         ) : (
           <>
             <Grid item>
-              <Box>LOGO</Box>
+              <Box style={{ padding: '10px' }}
+              >LOGO</Box>
             </Grid>
             <Grid item xs={8}>
               <Box display="flex" alignItems="center" justifyContent="center" style={{ width: '100%' }}>
@@ -89,7 +109,7 @@ function Header() {
           </>
         )}
         <Grid item>
-          <IconButton aria-label="לאיזור האישי" size="small" edge="start" variant="outlined" style={{ padding: '5px' }} onClick={handleClickToPersonalArea}>
+          <IconButton aria-label="לאיזור האישי" size="small" edge="start" variant="outlined" style={{ padding: '10px' }} onClick={handleClickToPersonalArea}>
             לאיזור האישי
             <FontAwesomeIcon icon={faCircleUser} style={{ color: 'black' }} />
           </IconButton>

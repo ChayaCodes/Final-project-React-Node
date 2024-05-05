@@ -3,8 +3,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowLeft } from '@fortawesome/free-solid-svg-icons';
 import './HomePage.css';
 import QanaA from './Accordion/QanaA';
+import RecomendCard from './RecomendCard/RecomendCard';
 
-function HomePage() {
+const HomePage = () => {
   return (
     <div>
       <div style={{

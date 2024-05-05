@@ -2,21 +2,19 @@ import { formatDistanceToNow, parseISO } from 'date-fns';
 import { he } from 'date-fns/locale';
 
 const useFormatedDate = (dateString) => {
-  if (typeof dateString !== 'string') {
-    console.error('Invalid dateString:', dateString);
-    return '';
+  try {
+    if (typeof dateString !== 'string') {
+      return '';
+    }
+
+    const date = parseISO(dateString);
+
+    const distanceInWords = formatDistanceToNow(date, { addSuffix: true, locale: he });
+
+    return distanceInWords;
+  } catch (error) {
+    return 'תאריך לא זמין';
   }
-
-  const date = parseISO(dateString);
-
-  const distanceInWords = formatDistanceToNow(date, { addSuffix: true, locale: he });
-  console.log(distanceInWords);
-
-  if (distanceInWords.includes('יום') || distanceInWords.includes('שבוע') || distanceInWords.includes('חודש') || distanceInWords.includes('שנה')) {
-    return `${distanceInWords} בשעה ${date.getHours()}:${date.getMinutes()}`;
-  }
-
-  return `${distanceInWords} בשעה ${date.getHours()}:${date.getMinutes()}`;
 };
 
 export default useFormatedDate;

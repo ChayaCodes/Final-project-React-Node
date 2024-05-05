@@ -1,6 +1,6 @@
-* {
+/* * {
   font-family: 'Heebo', sans-serif;
-}
+} */
 
 .node-body {
   display: table;
@@ -37,7 +37,6 @@
   border-collapse: collapse;
   list-style: none;
   box-sizing: border-box;
-  font-family: 'Heebo', sans-serif;
   display: table-cell;
   padding: 10px 8px;
   vertical-align: top;
@@ -64,7 +63,6 @@
   text-decoration: none;
   font-weight: 600;
   color: #000;
-  font-family: Arial, Helvetica, sans-serif;
 }
 
 .node-extra-title {}
@@ -141,7 +139,7 @@
 
 .listInline {
   list-style: none;
-  margin: 0;
+  margin: 2;
   padding: 0;
 }
 

@@ -6,7 +6,7 @@ function Search(payload) {
   return (
     <div className="search-continer-2">
       <MdSearch size={20} />
-      <input type="text" placeholder={payload.placeholder} className="search-input" />
+      <input type="text" placeholder={payload.placeholder} className="search-input" onChange={payload.onChange} />
     </div>
   );
 }

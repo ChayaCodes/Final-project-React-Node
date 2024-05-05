@@ -28,12 +28,12 @@ const ForumBox = ({ forum }) => {
             <a className="node-extra-title">נושא אחרון שנפתח</a>
           </div>
           <div className="node-extra-row">
-            <ul className="listInline">
-              <li>
+            <div className="listInline">
+              <div>
                 <time>{useFormatedDate(forum.lastPost?.date)}</time>
-              </li>
-              <li className="node-extra-user"><a className="username" dir="auto" >{forum.lastPost.userName}</a></li>
-            </ul>
+              </div>
+              <div className="node-extra-user"><a className="username" dir="auto" >ע"י {forum.lastPost.userName}</a></div>
+            </div>
           </div>
         </div>
         <div className="node-stats">

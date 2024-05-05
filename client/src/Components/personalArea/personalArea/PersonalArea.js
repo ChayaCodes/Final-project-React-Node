@@ -17,8 +17,8 @@ function PersonalArea() {
   const userName = user ? user.userName : 'אורח';
 
   return (
-    <div style={{
-      width: '100%', margin: '50px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
+    <div className='personalArea' style={{
+      width: '100%', margin: '75px 0 20px 0', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center',
     }}
     >
       <Typography

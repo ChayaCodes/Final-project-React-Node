@@ -1,0 +1,103 @@
+.posts{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 20px;
+
+}
+
+
+.u-srOnly {
+    position: absolute;
+    height: 1px;
+    width: 1px;
+    margin: -1px;
+    padding: 0;
+    border: 0;
+    clip: rect(0 0 0 0);
+    overflow: hidden;
+}
+
+.listInline {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.listInline>li {
+    display: inline;
+    margin: 0;
+    padding: 0;
+}
+
+
+
+
+.tagList,
+.tagList>dt,
+.tagList>dd {
+    display: inline;
+    padding: 0;
+    margin: 0;
+}
+
+.p-body-header {
+    margin: 20px;
+    
+}
+
+.p-title {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    max-width: 100%;
+    margin-bottom: -5px;
+}
+
+.p-title-value {
+    padding: 0;
+    margin: 0 0 5px 0;
+    font-size: 24px;
+    font-weight: 400;
+    min-width: 0;
+    margin-left: auto;
+}
+
+.p-description {
+    margin: 5px 0 0;
+    padding: 0;
+    font-size: 13px;
+    color: #8c8c8c;
+}
+
+
+
+
+
+.p-title-value {
+    font-weight: bold;
+    font-size: 13pt;
+    color: #625f5f;
+}
+
+.far {
+    font-weight: 900 !important;
+}
+
+a.username:hover {
+    color: #141414;
+}
+
+
+
+.p-title-value {
+    font-weight: 600;
+    font-size: 18pt;
+    color: #1c556a;
+}
+
+.muirtl-1u8vfst-MuiButtonBase-root-MuiPaginationItem-root.Mui-selected{
+    background-color: #1c556a !important;
+    color: white;
+}

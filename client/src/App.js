@@ -9,10 +9,10 @@ import { CacheProvider } from '@emotion/react';
 import Layout from './Components/site/Layout';
 import theme, { cacheRtl } from './theme';
 import Login from './features/auth/login/Login';
-import LayoutPersonalArea from './Components/personalArea/Layout';
+import LayoutPersonalArea from './Components/personalArea/Layout/Layout';
 import Forums from './Components/personalArea/community/forums/forums';
 import Treads from './Components/personalArea/community/threads/Threads';
-import NewThread from './Components/personalArea/community/NewThread';
+import NewThread from './Components/personalArea/community/NewThread/NewThread';
 import Thread from './Components/personalArea/community/Thread';
 import HomePage from './Components/site/HomePage/HomePage';
 import DashLayout from './Components/dash/Layout/DashLayout';
@@ -21,6 +21,7 @@ import AddForum from './features/forums/add/AddForum';
 import EditForum from './features/forums/view/EditForum';
 import ThreadsList from './features/threads/list/threadsList';
 import UsersList from './features/users/list/UsersList';
+import ThreadPage from './Components/personalArea/community/threadPage/ThreadPage';
 
 function App() {
   return (
@@ -38,6 +39,7 @@ function App() {
                 <Route path="tutorials" element={<h1>tutorials page</h1>} />
                 <Route path="community" element={<Forums />} />
                 <Route path="community/:id" element={<Treads />} />
+                <Route path="community/:forumId/:threadId" element={<ThreadPage />} />
                 
                 <Route path="community/:id/new-thread" element={<NewThread />} />
                 <Route path="community/:id/:threadId" element={<Thread />} />

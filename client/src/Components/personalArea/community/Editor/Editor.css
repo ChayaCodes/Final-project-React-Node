@@ -1,0 +1,16 @@
+.myQuill p{
+    text-align: right;
+    font-size: 18px;
+}
+
+.myQuill{
+
+}
+
+.ql-blank{
+    min-height: 100px;
+}
+
+.ql-editor{
+    min-height: 100px;
+}

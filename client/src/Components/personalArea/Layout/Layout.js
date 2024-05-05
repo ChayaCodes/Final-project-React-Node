@@ -3,13 +3,14 @@ import { Outlet } from 'react-router-dom';
 import { useEffect } from 'react';
 
 import { Box } from '@mui/material';
-import Header from './Header/Header';
-import PersonalArea from './personalArea/PersonalArea'
+import Header from '../Header/Header';
+import PersonalArea from '../personalArea/PersonalArea'
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import SidebarNavigation from './SidebarNavigation/SidebarNavigation';
-import { selectUser } from '../../features/auth/authSlice';
-import useAuth from '../../hooks/useAuth';
+import SidebarNavigation from '../SidebarNavigation/SidebarNavigation';
+import { selectUser } from '../../../features/auth/authSlice';
+import useAuth from '../../../hooks/useAuth';
+import './Layout.css';
 
 function Layout() {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ function Layout() {
   return (
     <div className="page">
       <Header />
-      <Box sx={{ display: 'flex' }}>
+      <Box className="main-container" sx={{ display: 'flex' }} >
         <SidebarNavigation/>
         <Box sx={{ width: '100%', alignItems: 'center' }}>
           <PersonalArea />
