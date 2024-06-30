@@ -29,11 +29,6 @@ const threadSchema = new Schema({
     ref: 'User',
     required: true,
   },
-  userName: {
-    type: String,
-    required: true,
-    trim: true,
-  },
   open: {
     type: Boolean,
     default: true,

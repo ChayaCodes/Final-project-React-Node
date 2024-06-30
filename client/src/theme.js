@@ -7,7 +7,8 @@ const theme = createTheme({
   direction: 'rtl',
   typography: {
     fontFamily: [
-      'Assistant', 'sans-serif',
+      'Futurism Regular'
+
 
     ].join(','),
   },

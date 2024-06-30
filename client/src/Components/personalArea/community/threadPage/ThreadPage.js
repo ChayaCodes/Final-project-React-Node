@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useGetThreadByIdQuery } from '../../../../features/forums/forumApiSliceUser';
+import { useGetThreadQuery } from '../../../../features/forums/forumApiSliceUser';
 import { useParams, useLocation, useNavigate } from 'react-router-dom';
 
 import PostBox from '../postBox/PostBox';
@@ -20,7 +20,7 @@ const ThreadPage = () => {
   const query = new URLSearchParams(location.search);
   const page = parseInt(query.get('page')) || 1;
 
-  const { data, isLoading, isError, isSuccess, error } = useGetThreadByIdQuery({ forumId, threadId, page });
+  const { data, isLoading, isError, isSuccess, error } = useGetThreadQuery({ forumId, threadId, page });
   const formatedDate = useFormatedDate(data?.date);
 
 

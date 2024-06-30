@@ -9,7 +9,7 @@ const getForums = async (req, res) => {
     let forums = await Forum.find().populate('threads')
 
     const forumsData = await Promise.all(forums.map(async (forum) => {
-      
+
       const lastPost = forum.threads.length > 0 ? forum.threads[0] : null;
       const lastPostUser = await User.findById(lastPost?.user)
       const cntThreads = forum.threads.length;
@@ -26,7 +26,7 @@ const getForums = async (req, res) => {
         name: forum.name,
         description: forum.description,
         threads: cntThreads,
-        posts: cntPosts + cntThreads,
+        posts: cntPosts,
         lastPost: {
           title: lastPost?.title,
           userName: lastPostUser?.userName,
@@ -38,7 +38,7 @@ const getForums = async (req, res) => {
     }));
     res.json(forumsData);
 
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: `Server error: ${error}` });
   }
@@ -53,7 +53,7 @@ const getForum = async (req, res) => {
     }
     const threads = await Promise.all(forum.threads.map(async (thread) => {
       console.log("thread", thread);
-      console.log(" thread posts !" , thread.posts);
+      console.log(" thread posts !", thread.posts);
       const author = await User.findById(thread.user);
       const lastPostId = thread.posts.length > 0 ? thread.posts[0] : null;
       console.log("lastPostId", lastPostId)
@@ -74,7 +74,7 @@ const getForum = async (req, res) => {
       };
     }));
     res.json({ id: forum._id, name: forum.name, threads });
-  }catch (error) {
+  } catch (error) {
     console.log(error);
     res.status(500).json({ message: `Server error: ${error}` });
   }
@@ -89,7 +89,7 @@ const getThreadById = async (req, res) => {
     .populate({
       path: 'posts',
       options: {
-        sort: { date: -1 },
+        sort: { createdAt: 1 },
         limit: 20,
         skip: skip
       },
@@ -148,10 +148,52 @@ const createPost = async (req, res) => {
     res.json({ message: 'Post created' });
   } catch (error) {
     console.log(error);
-    res.status(500).json({ message: `Server error: ${error}` , threadId});
+    res.status(500).json({ message: `Server error: ${error}`, threadId });
+  }
+};
+
+
+const createThread = async (req, res) => {
+  try {
+    const forumId = req.params.forumId; // also fixed req.param to req.params
+
+    const { title, description } = req.body;
+    const user = req.user;
+    const forum = await Forum.findById(forumId); // added await here
+    if (!forum) {
+      return res.status(404).json({ message: 'Forum not found' });
+    }
+    const thread = new Thread({
+      title,
+      description,
+      user: user.id,
+      forum: forumId,
+      posts: [],
+    });
+
+    const firstPost = new Post({
+      content: description,
+      user: user.id,
+      thread: thread._id,
+    });
+
+    await firstPost.save();
+    thread.posts.push(firstPost._id);
+
+
+
+    await thread.save();
+    if (forum.threads)
+      forum.threads.push(thread._id);
+    else
+      forum.threads = [thread._id]
+    await forum.save(); 
+    res.json({ message: 'Thread created', thread });
+  } catch (error) {
+    res.status(500).json({ message: `Server error: ${error}` });
   }
 };
 
 module.exports = {
-  getForums, getForum, getThreadById, createPost
+  getForums, getForum, getThreadById, createPost, createThread
 };

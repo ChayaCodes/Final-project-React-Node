@@ -1,0 +1,51 @@
+
+<!-- saved from url=(0045)https://netfree.link/misc/go-payment.html?v=3 -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script type="text/javascript" src="./jquery.min(1).js.הורדה"></script>
+<script type="text/javascript">
+(function(){
+    
+    //old browser
+    if(!window.addEventListener || ![].forEach || !window.localStorage) return;
+    
+    function isIE () {
+        var myNav = window.navigator.userAgent.toLowerCase();
+        return (myNav.indexOf('msie') != -1) ? parseInt(myNav.split('msie')[1]) : false;
+    }
+    
+    if (isIE () && isIE () < 9) return;
+    
+    var localStorage = window.localStorage || {};
+    
+    
+    var timePopup = 2 * 60  * 60 * 1000; // 2h
+    var nextTime = +localStorage['next-popup-payment-netfree']  || 0;
+    
+    if( nextTime > Date.now() )
+        return;
+    
+    localStorage['next-popup-payment-netfree'] = Date.now() + timePopup;
+    
+    
+    $.ajax({
+    	type: "GET",
+    	url: "//api.internal.netfree.link/user/0" ,
+        dataType: "json"
+    }).done(function(data,status){
+        
+        if(!data && !data.userId) return;
+
+        $.ajax({
+        	type: "GET",
+        	url: "/api/user/payment/payment-status?userKey=" + data.userKey + "&r=" + Math.random()  ,
+            dataType: "json"
+        }).done(function(data,status){
+            if(data.status == 'not'){
+                window.top.postMessage({ action: 'redirect', link: window.location.origin + "/go-payment" },'*');
+            } else {
+                delete localStorage['payment-netfree-first-not-payment'];
+            }
+        });
+        
+    });
+})();
+</script></head><body></body></html>

@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faComments, faDiamondTurnRight } from '@fortawesome/free-solid-svg-icons';
 import useFormatedDate from '../../../../hooks/useFormtedDate';
 import './ForumBox.css';
+import { Link } from 'react-router-dom';
 
 const ForumBox = ({ forum }) => {
   console.log(forum);
@@ -13,7 +14,7 @@ const ForumBox = ({ forum }) => {
 
       <div className="node-main">
         <h3 className="node-title">
-          <a className='node-title' href={`./community/${forum.id}`}>{forum.name}</a>
+          <Link color='black' className='node-title' to={`/personal-area/community/${forum.id}`}>{forum.name}</Link>
         </h3>
         <div className="node-description ">{forum.description}</div>
 

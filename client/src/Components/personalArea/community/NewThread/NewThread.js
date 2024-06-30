@@ -2,11 +2,13 @@ import React from 'react';
 import { TextField, Button, Box, Card, CardContent } from '@mui/material';
 import SendIcon from '@mui/icons-material/Send';
 import { useParams } from 'react-router';
-import { useCreateThreadMutation } from '../../../../app/treads/treadsApiSlice';
+import { useCreateThreadMutation } from '../../../../features/forums/forumApiSliceUser';
 import Editor from '../Editor/Editor';
 import { useState } from 'react';
+import {useNavigate} from 'react-router-dom';
 
 function NewThread() {
+  const navigate = useNavigate();
   const [createThread, {
     data, isLoading, isError, isSuccess, error,
   }] = useCreateThreadMutation();
@@ -22,9 +24,16 @@ function NewThread() {
         title: title,
         description: content,
         forum: forumId,
+        
       };
 
-      await createThread(body);
+      const response = await createThread(body)
+      console.log('response', response);
+      console.log('response.data', response?.data);
+      console.log('response.data.thread', response?.data?.thread);
+      console.log('response.data.thread._id', response?.data?.thread?._id);
+
+      navigate(`/personal-area/community/${forumId}/${response?.data?.thread?._id}`);
     } catch (error) {
       console.error('Failed to create the thread: ', error);
     }

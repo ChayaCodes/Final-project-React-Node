@@ -9,37 +9,29 @@ import { useState } from 'react'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 
-const AddPost = ({thread, content, setContent}) => {
+const AddPost = ({ addPost, thread, content, setContent , setRefreshKey}) => {
     const user = useSelector((state) => state.auth.user);
     const navigate = useNavigate();
     const location = useLocation();
     const query = new URLSearchParams(location.search);
-    const [createPost, { isLoading, isError, isSuccessCreatePost, error }] = useCreatePostMutation();
+    const [createPost, { isLoading, isError, error }] = useCreatePostMutation();
     const handleCreatePost = async (e) => {
+        e.preventDefault();
+
+        const post = {
+            content,
+            threadId: thread.id,
+        };
+
         try {
-            e.preventDefault();
-            const post = {
-                content,
-                threadId: thread.id,
-            }
-            await createPost(post);
+            await createPost(post).unwrap();
             setContent('');
-            query.set('page', thread.totalPages);
-            navigate({ pathname: location.pathname, search: query.toString() });
-
-
+            setRefreshKey((oldKey) => oldKey + 1);
         } catch (error) {
             console.log('error', error);
         }
     };
-    if (isSuccessCreatePost) {
-        // window.location.reload();
-        // מרוקן את האדיטור
-        
-        setContent('');
-        
-        
-    }
+
     if (isError) {
         console.log('error', error);
     }
@@ -64,14 +56,14 @@ const AddPost = ({thread, content, setContent}) => {
                         <div className="formButtonGroup-primary">
                             <button onClick={handleCreatePost
                             } type="submit" className="button--primary button "><span className="button-text">
-                                <FontAwesomeIcon icon={faReply} />
-                                כתבו תגובה 
-                            </span></button>
+                                    <FontAwesomeIcon icon={faReply} />
+                                    כתבו תגובה
+                                </span></button>
                         </div>
                         <div className="formButtonGroup-extra">
-                            <span className="js-attachButton"><a className="button--link js-attachmentUpload button" data-accept=".zip,.txt,.pdf,.png,.jpg,.jpeg,.jpe,.gif,.doc,.docx,.ai,.psd,.rar,.avi,.mp3,.mpg,.mp4,.xls,.xlsx,.ppt,.pptx,.ind,.indd,.dwg,.idml,.ttf,.shx,.skp,.fla,.html,.webp,.skb,.3dm,.json,.sty,.otf,.i,.m4v,.mov,.mp4v,.mpeg,.ogv,.webm,.opus,.ogg,.wav" data-video-size="23552000"><span className="button-text"><FontAwesomeIcon icon={faPaperclip} /> צרף קבצים 
-                            </span></a><input type="file" multiple="multiple" accept=".zip,.txt,.pdf,.png,.jpg,.jpeg,.jpe,.gif,.doc,.docx,.ai,.psd,.rar,.avi,.mp3,.mpg,.mp4,.xls,.xlsx,.ppt,.pptx,.ind,.indd,.dwg,.idml,.ttf,.shx,.skp,.fla,.html,.webp,.skb,.3dm,.json,.sty,.otf,.i,.m4v,.mov,.mp4v,.mpeg,.ogv,.webm,.opus,.ogg,.wav" title="צרף קבצים" style={{visibility: 'hidden', position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', right: '-1000px'}}/></span>
-                 
+                            <span className="js-attachButton"><a className="button--link js-attachmentUpload button" data-accept=".zip,.txt,.pdf,.png,.jpg,.jpeg,.jpe,.gif,.doc,.docx,.ai,.psd,.rar,.avi,.mp3,.mpg,.mp4,.xls,.xlsx,.ppt,.pptx,.ind,.indd,.dwg,.idml,.ttf,.shx,.skp,.fla,.html,.webp,.skb,.3dm,.json,.sty,.otf,.i,.m4v,.mov,.mp4v,.mpeg,.ogv,.webm,.opus,.ogg,.wav" data-video-size="23552000"><span className="button-text"><FontAwesomeIcon icon={faPaperclip} /> צרף קבצים
+                            </span></a><input type="file" multiple="multiple" accept=".zip,.txt,.pdf,.png,.jpg,.jpeg,.jpe,.gif,.doc,.docx,.ai,.psd,.rar,.avi,.mp3,.mpg,.mp4,.xls,.xlsx,.ppt,.pptx,.ind,.indd,.dwg,.idml,.ttf,.shx,.skp,.fla,.html,.webp,.skb,.3dm,.json,.sty,.otf,.i,.m4v,.mov,.mp4v,.mpeg,.ogv,.webm,.opus,.ogg,.wav" title="צרף קבצים" style={{ visibility: 'hidden', position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', right: '-1000px' }} /></span>
+
                         </div>
                     </div>
                 </div>

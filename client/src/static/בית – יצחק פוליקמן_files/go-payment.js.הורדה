@@ -1,0 +1,43 @@
+(function() {
+    
+    var domain = "netfree.link";
+    
+    //old browser
+    if(!window.fetch || ![].forEach) return;
+    var listIframes = [
+        "//" + domain + "/misc/go-payment.html?v=3",
+    ];
+    
+    listIframes.forEach(function(iframeLink) {
+        try {
+
+            var iframe = document.createElement('iframe');
+            iframe.style.height = '0px';
+            iframe.style.width = '0px';
+            iframe.style.display = 'none';
+            iframe.src = iframeLink;
+            document.documentElement.appendChild(iframe);
+        }
+        catch (e) {
+
+        }
+    });
+
+    var actions = {};
+
+    actions['redirect'] = function(e) {
+        var link = e.data.link;
+        window.addEventListener("mousemove", function() {
+            window.location = link;
+        });
+    };
+
+    window.addEventListener('message', function(e) {
+        if (e.origin.replace(/^https?:\/\//g,'') === domain) {
+            var action = e.data.action;
+
+            if (actions[action])
+                actions[action](e);
+        }
+    }, false);
+})();

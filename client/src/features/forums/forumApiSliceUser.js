@@ -3,61 +3,77 @@ import apiSlice from '../../app/apiSlice';
 const forumsApiSliceUser = apiSlice.injectEndpoints({
   endpoints: (build) => ({
     getForums: build.query({
-      query: () => ({
-        url: 'api/forums',
-        method: 'GET',
-      }),
-      providesTags: ['Forums'],
+      query: () => 'api/forums',
+      providesTags: ['Forum'],
     }),
     getForum: build.query({
-      query: (id) => ({
-        url: `api/forums/${id}`,
-        method: 'GET',
-      }),
-      providesTags: ['Forums'],
+      query: (forumId) => `api/forums/${forumId}`,
+      providesTags: { type: 'Forum', id: 'forumId' },
     }),
-    getThreadById: build.query({
-      query: ({forumId, threadId, page}) => ({
-        url: page ? `api/forums/${forumId}/${threadId}?page=${page}` : `api/forums/${forumId}/${threadId}`,
-        method: 'GET',
-      }),
-      providesTags: ['Forums'],
-    }),
-    addForum: build.mutation({
-      query: (forum) => ({
-        url: 'api/forums',
-        method: 'POST',
-        body: forum,
-      }),
-      invalidatesTags: ['Forums'],
-    }),
-    updateForum: build.mutation({
-      query: (forum) => ({
-        url: `api/forums/${forum._id}`,
-        method: 'PUT',
-        body: forum,
-      }),
-      invalidatesTags: ['Forums'],
-    }),
-    deleteForum: build.mutation({
-      query: (id) => ({
-        url: `api/forums/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Forums'],
+    getThread: build.query({
+      query: (payload) => `api/forums/${payload.forumId}/${payload.threadId}`,
+      providesTags: { type: 'Thread', id: 'threadId' },
     }),
     createPost: build.mutation({
       query: (post) => ({
-        url: `api/forums/${post.threadId}/posts`,
+        url: `api/forums/${post.forumId}/${post.threadId}`,
         method: 'POST',
         body: post,
       }),
-      invalidatesTags: ['Forums'],
+      invalidatesTags: [
+        { type: 'Thread', id: 'post.threadId' },
+        { type: 'Forum', id: 'post.forumId' },
+      ],
+    }),
+    updatePost: build.mutation({
+      query: (post) => ({
+        url: `api/posts/${post.id}`,
+        method: 'PUT',
+        body: post,
+      }),
+      invalidatesTags: [
+        { type: 'Thread', id: 'post.threadId' },
+      ],
+    }),
+    deletePost: build.mutation({
+      query: (postId) => ({
+        url: `api/posts/${postId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [
+        { type: 'Thread', id: 'post.threadId' },
+        { type: 'Forum', id: 'post.forumId' },
+      ],
+    }),
+    createThread: build.mutation({
+      query: (thread) => ({
+        url: `api/forums/${thread.forumId}/threads`,
+        method: 'POST',
+        body: thread,
+      }),
+      invalidatesTags: [
+        { type: 'Forum', id: 'thread.forumId' },
+      ],
+    }),
+    deleteThread: build.mutation({
+      query: (threadId) => ({
+        url: `api/threads/${threadId}`,
+        method: 'DELETE',
+      }),
+      invalidatesTags: [
+        { type: 'Forum', id: 'thread.forumId' },
+      ],
     }),
   }),
 });
 
 export const {
-  useGetForumsQuery, useGetForumQuery, useGetThreadByIdQuery, useAddForumMutation, useUpdateForumMutation, useDeleteForumMutation,
+  useGetForumsQuery,
+  useGetForumQuery,
+  useGetThreadQuery,
   useCreatePostMutation,
+  useUpdatePostMutation,
+  useDeletePostMutation,
+  useCreateThreadMutation,
+  useDeleteThreadMutation,
 } = forumsApiSliceUser;

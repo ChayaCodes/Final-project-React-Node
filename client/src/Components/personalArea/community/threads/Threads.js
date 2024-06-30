@@ -59,7 +59,7 @@ function Threads() {
                 {threadsList &&  threadsList.map((thread) => <ThreadBox thread={thread} />)}
                 { (!threadsList || threadsList.length === 0) &&
                  <div style={{textAlign: 'center'}}>
-                  <h2>אין עדיין נושאים בפורום {data.name}</h2>
+                  <h2>אין עדיין נושאים בפורום "{data.name}"</h2>
                   <Button onClick={() => { window.location.href = `/personal-area/community/${forumId}/new-thread`; }}>פתיחת נושא חדש</Button>
                 </div>}
         

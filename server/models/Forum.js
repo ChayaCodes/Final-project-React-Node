@@ -20,6 +20,8 @@ const ForumSchema = new Schema({
   threads: {
     type: [mongoose.Schema.Types.ObjectId],
     ref: 'Thread',
+    required: true,
+    default: []
   },
   public: {
     type: Boolean,

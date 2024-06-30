@@ -15,6 +15,7 @@ import Treads from './Components/personalArea/community/threads/Threads';
 import NewThread from './Components/personalArea/community/NewThread/NewThread';
 import Thread from './Components/personalArea/community/Thread';
 import HomePage from './Components/site/HomePage/HomePage';
+// import HomePage2 from '/Components/personalArea/community/HomePage/HomePage2.js'
 import DashLayout from './Components/dash/Layout/DashLayout';
 import ForumsList from './features/forums/list/ForumsList';
 import AddForum from './features/forums/add/AddForum';
@@ -22,6 +23,10 @@ import EditForum from './features/forums/view/EditForum';
 import ThreadsList from './features/threads/list/threadsList';
 import UsersList from './features/users/list/UsersList';
 import ThreadPage from './Components/personalArea/community/threadPage/ThreadPage';
+
+
+
+
 
 function App() {
   return (
