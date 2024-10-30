@@ -18,7 +18,7 @@ const ThreadPage = () => {
 
   const location = useLocation();
   const query = new URLSearchParams(location.search);
-  const page = parseInt(query.get('page')) || 1;
+  const [page, setPage] = useState(query.get('page') || 1);
 
   const { data, isLoading, isError, isSuccess, error } = useGetThreadQuery({ forumId, threadId, page });
   const formatedDate = useFormatedDate(data?.date);
@@ -28,6 +28,7 @@ const ThreadPage = () => {
   const handlePageChange = (event, value) => {
     query.set('page', value);
     navigate({ pathname: location.pathname, search: query.toString() });
+    setPage(value)
   };
 
   const [postsList, setPostsList] = useState(null);
@@ -35,7 +36,7 @@ const ThreadPage = () => {
     useEffect(() => {
         if (isSuccess)
             setPostsList(data.posts);
-    }, [isSuccess]);
+    }, [isSuccess, data]);
 
     const onChangeSearch = (e) => {
         const search = e.target.value;
@@ -45,18 +46,18 @@ const ThreadPage = () => {
 
     const onChangeSortBy = (e) => {
         const sortBy = e.target.value;
+        const postsCopy = [...postsList]
         if (sortBy === 'content') {
-            const sortedPosts = postsList.sort((a, b) => a.content.localeCompare(b.content));
+            const sortedPosts = postsCopy.sort((a, b) => a.content.localeCompare(b.content));
             setPostsList(sortedPosts);
         } else if (sortBy === 'date') {
-            const sortedPosts = postsList.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+            const sortedPosts = postsCopy.sort((a, b) => new Date(b.date) - new Date(a.date));
             setPostsList(sortedPosts);
         }
     }
+
     if (isLoading) return <div>Loading...</div>;
     if (isError) return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
-  
-    console.log(data);
   return (
     <div>
       <ComunityHeader placeholder="הקלד מילת חיפוש..." onChangeSearch={onChangeSearch} onChangeSortBy={onChangeSortBy} sortByOptions={['content', 'date']} />
@@ -95,14 +96,14 @@ const ThreadPage = () => {
             <div className='posts'>
 
                 <PostBox key={data.id} post={data.content} content={content} setContent={setContent} />
-        {postsList && postsList.map((post) => (
-          <PostBox key={post.id} post={post} content={content} setContent={setContent} />
-        ))}
-        <AddPost thread={data} content={content} setContent={setContent} />
-      </div>
-      <Pagination count={data.totalPages} page={page} onChange={handlePageChange} sx={{marginBottom: '20px'}} />
-    </div>
-  );
+                {postsList && postsList.map((post) => (
+                    <PostBox key={post.id} post={post} content={content} setContent={setContent} />
+                ))}
+                <AddPost thread={data} content={content} setContent={setContent} />
+            </div>
+            <Pagination count={data.totalPages} page={page} onChange={handlePageChange} sx={{ marginBottom: '20px' }} />
+        </div>
+    );
 }
 
 export default ThreadPage;

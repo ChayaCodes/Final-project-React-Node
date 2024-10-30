@@ -5,7 +5,7 @@ const forumsApiSlice = apiSlice.injectEndpoints({
     getForums: build.query({
       query: () => ({
         url: 'api/admin/forums',
-        method: 'GET',
+                method: 'GET',
       }),
       providesTags: ['Forums'],
     }),

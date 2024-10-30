@@ -32,25 +32,23 @@ function ThreadBox({ thread }) {
 		<div class="structItem-cell structItem-cell--meta">
 			<dl class="pairs">
 				<dt>תגובות</dt>
-				<dd>33</dd>
+				<dd>{thread.countPosts}</dd>
 			</dl>
 			<dl class="pairs structItem-minor">
 				<dt>צפיות</dt>
-				<dd>16K</dd>
+				<dd>{thread.countWatch}</dd>
 			</dl>
 		</div>
 		<div class="structItem-cell structItem-cell--latest">
 
-			<a><time class="structItem-latestDate">18/2/24</time></a>
+			<p>{thread.lastPost.userName} </p>
 			<div class="structItem-minor">
-				<a>נעמי_ט</a>
+				<p>{useFormatedDate(thread.lastPost.date)}</p>
 			</div>
 		</div>
 		<div class="structItem-cell structItem-cell--icon">
 			<div class="structItem-iconContainer">
-				<a class="avatar " style={{ backgroundColor: `#5c7a1f`, color: `#b8db70` }} >
-					<span class="avatar-u117755-s" role="img" aria-label="נעמי_ט">נ</span>
-				</a>
+				<img src={thread.lastPost.userAvatar} alt={thread.lastPost.userName} width="28" height="28" loading="lazy" />
 			</div>
 		</div>
 	</div>

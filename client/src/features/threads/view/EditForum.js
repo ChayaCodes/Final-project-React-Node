@@ -42,16 +42,14 @@ function EditForum() {
       description: descriptionRef.current.value,
       public: publicRef.current.checked,
     };
-    console.log(data);
     updateForum(data);
   };
 
   if (isLoading) {
-    console.log('loading...');
     return <div>Loading...</div>;
   }
   if (isError) {
-    console.log('error', error);
+    console.error('An error occurred while update forum:', error);
     return <div>{JSON.stringify(error)}</div>;
   }
 

@@ -11,7 +11,6 @@ function Forums() {
   const {
     data: forums, isLoading, isError, isSuccess, error,
   } = useGetForumsQuery();
-  console.log('Forums', forums);
 
   const [forumsList, setForumsList] = useState(forums);
 
@@ -23,16 +22,16 @@ function Forums() {
 
   const onChangeSortBy = (e) => {
     const sortBy = e.target.value;
+    const forumCopy = [...forumsList]
     if (sortBy === 'name') {
-      const sortedForums = forumsList.sort((a, b) => a.name.localeCompare(b.name));
+      const sortedForums = forumCopy.sort((a, b) => a.name.localeCompare(b.name,));
       setForumsList(sortedForums);
     } else if (sortBy === 'date') {
-      const sortedForums = forumsList.sort((a, b) => a.createdAt.localeCompare(b.createdAt));
+      const sortedForums = forumCopy.sort((a, b) => new Date(b.lastPost.date) - new Date(a.lastPost.date));
       setForumsList(sortedForums);
     }
   }
-
-  useEffect(() => {
+    useEffect(() => {
     if (isSuccess)
       setForumsList(forums);
   }, [isSuccess]);
@@ -40,8 +39,7 @@ function Forums() {
   if (isLoading) {
     return <div>Loading...</div>;
   } if (isError) {
-    console.log('isError: ');
-    console.log(error);
+    console.error('An error occurred:', error);
     return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
   } if (isSuccess) {
     return <div className="forums-container">

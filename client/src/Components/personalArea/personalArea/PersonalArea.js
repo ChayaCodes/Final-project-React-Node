@@ -31,13 +31,16 @@ function PersonalArea() {
         {`שלום ${userName}!`}
       </Typography>
       <Box>
-        <Link to="/personal-area/edit" style={{ color: 'black', padding: '10px' }}>
+        <Link to="/personal-area/edit" style={{ color: 'black', padding: '10px', cursor: 'pointer' }}
+        onClick={() => navigate('/personal-area/edit')}
+        >
           <FontAwesomeIcon icon={faPencil} />
+          
           <span>עריכת פרטים אישיים</span>
         </Link>
         <Link
           onClick={onLogout}
-          style={{ color: 'gray', padding: '10px' }}
+          style={{ color: 'gray', padding: '10px', cursor: 'pointer' }}
         >
           <FontAwesomeIcon icon={faRightFromBracket} />
           <span>התנתקות</span>

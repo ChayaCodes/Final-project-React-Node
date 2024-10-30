@@ -13,14 +13,12 @@ function UsersList() {
   const handleDelete = (e) => {
     const userId = e.target.id;
     deleteUser(userId);
-    console.log('delete', userId);
   };
   if (isLoading) {
-    console.log('loading...');
     return <div>Loading...</div>;
   }
   if (isError) {
-    console.log('error', error);
+    console.error('An error occurred while deleting user:', error);
     return <div>{JSON.stringify(error)}</div>;
   }
 

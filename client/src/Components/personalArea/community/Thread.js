@@ -36,13 +36,16 @@ function Thread() {
   if (isLoading) {
     return <div>Loading...</div>;
   } if (isError) {
-    console.log(error);
+    console.error('An error occurred:', error);
     return <div style={{ color: 'red' }}>{error && <div>{error.message}</div>}</div>;
   } if (isSuccess) {
-    console.log(data);
     return (
       <div>
-        {
+        {data.map((post) => {
+          if (!post) return null; // This is fine, but make sure every path returns something.
+          return (
+            <div>
+              {
                 data.map((post) => {
                   if (!post) return null;
                   return (
@@ -51,12 +54,19 @@ function Thread() {
                     </div>
                   );
                 })
-            }
-        <input type="text" value={postContent} onChange={(e) => setPostContent(e.target.value)} />
-        <Button onClick={handleAddPost}>הוספת תגובה</Button>
+              }
+              <input type="text" value={postContent} onChange={(e) => setPostContent(e.target.value)} />
+              <Button onClick={handleAddPost}>הוספת תגובה</Button>
+            </div>
+
+          );
+        }
+        )}
       </div>
     );
   }
+  return null;
 }
+
 
 export default Thread;

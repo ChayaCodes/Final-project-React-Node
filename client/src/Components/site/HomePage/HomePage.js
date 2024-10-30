@@ -49,49 +49,13 @@ const HomePage = () => {
               }}
             >
               הצטרפות לקהילה
-              {' '}
+
               <FontAwesomeIcon icon={faArrowLeft} color="white" size="sm" />
             </Button>
           </div>
         </div>
       </div>
-      <div className="home-page-2">
-        <h1>כותרת</h1>
-        <div className="home-page-2-text">
-          <div>סרטונים והדרכות</div>
-          <div>הצטרפות לקהילה</div>
-          <div>הקורסים שלנו</div>
-          <div> אבחון עצמי</div>
-        </div>
 
-      </div>
-      <div className="home-page-3">
-        <h1>טעימה מסרטונים וההדרכות שלנו</h1>
-        <div className="home-page-3-videos">
-          <div className="video">
-            <img src="/images/video1.png" alt="video1" />
-            <h2>כותרת סרטון</h2>
-          </div>
-          <div className="video">
-            <img src="/images/video2.png" alt="video2" />
-            <h2>כותרת סרטון</h2>
-          </div>
-          <div className="video">
-            <img src="/images/video3.png" alt="video3" />
-            <h2>כותרת סרטון</h2>
-          </div>
-        </div>
-      </div>
-      <div className="home-page-4">
-        <h1>הצטרפות לקהילה שלנו</h1>
-        <p>ברישום לקהילה תיהנה ממפגש שבועי בזום, המפגש יקנה לך כלים עדכניים ומעשיים לעבודה יעילה ומתקדמת!</p>
-        <Button variant="contained" color="secondary">הצטרפות לקהילה</Button>
-      </div>
-      <div className="home-page-5">
-        <h1>שאלות ותשובות</h1>
-        <QanaA />
-
-      </div>
 
     </div>
   );

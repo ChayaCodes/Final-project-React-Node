@@ -41,6 +41,10 @@ const threadSchema = new Schema({
     type: Boolean,
     default: false,
   },
+  countWatch: {
+    type: Number,
+    default: 0,
+  },
 }, { timestamps: true });
 
 const Thread = mongoose.model('Thread', threadSchema);

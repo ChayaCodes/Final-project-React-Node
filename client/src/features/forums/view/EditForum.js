@@ -16,52 +16,49 @@ function EditForum() {
   const forumId = useParams().id;
   const [changed, setChanged] = useState(false);
 
-  const nameRef = useRef(forum.name);
-  const descriptionRef = useRef(forum.description);
-  const publicRef = useRef(forum.public);
+  const nameRef = useRef(forum?forum.name:null);
+  const descriptionRef = useRef(forum?forum.description:null);
+  const publicRef = useRef(forum?forum.public:null);
   const navigate = useNavigate();
 
   useEffect(() => {
     if (isSuccess) {
-      const forum = forums.find((forum) => forum._id === forumId);
+      const forum = forums.find((forum) => forum.id === forumId);
       setForum(forum);
     }
   }, [isSuccess]);
 
   useEffect(() => {
     if (updateSuccess) {
-      navigate('/dash/forums'); // use navigate function here
+      navigate('/dash/forums');
     }
   }, [updateSuccess]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     const data = {
-      _id: forumId,
+      id: forumId,
       name: nameRef.current.value,
       description: descriptionRef.current.value,
       public: publicRef.current.checked,
     };
-    console.log(data);
     updateForum(data);
   };
 
   if (isLoading) {
-    console.log('loading...');
     return <div>Loading...</div>;
   }
   if (isError) {
-    console.log('error', error);
+    console.error('An error occurred while update forum:', error);
     return <div>{JSON.stringify(error)}</div>;
   }
-
   return (
     <div className="edit-forum-container">
       <form className="edit-forum-form">
-        <input type="text" placeholder="שם הפורום" className="edit-forum-input" required name="name" defaultValue={forum.name} ref={nameRef} onChange={() => setChanged(true)} />
-        <textarea placeholder="תיאור הפורום" className="edit-forum-textarea" required name="description" defaultValue={forum.description} ref={descriptionRef} onChange={() => setChanged(true)} />
+        <input type="text" placeholder="שם הפורום" className="edit-forum-input" required name="name" defaultValue={forum?forum.name:''} ref={nameRef} onChange={() => setChanged(true)} />
+        <textarea placeholder="תיאור הפורום" className="edit-forum-textarea" required name="description" defaultValue={forum?forum.description:''} ref={descriptionRef} onChange={() => setChanged(true)} />
         <div className="edit-forum-checkbox">
-          <input type="checkbox" name="public" id="public" ref={publicRef} defaultChecked={forum.public} onChange={() => setChanged(true)} />
+          <input type="checkbox" name="public" id="public" ref={publicRef} defaultChecked={forum?forum.public:''} onChange={() => setChanged(true)} />
           <label htmlFor="public"> ציבורי</label>
         </div>
         <button className={`${changed ? 'edit-forum-submit' : 'edit-forum-submit-disabled'}`} disabled={!changed} onClick={handleSubmit}>

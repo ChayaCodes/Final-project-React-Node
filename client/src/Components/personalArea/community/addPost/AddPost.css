@@ -1,11 +1,3 @@
-
-
-
-
-
-
-
-
 .fa,
 .far {
     display: inline-block;
@@ -347,6 +339,7 @@ a.reaction:focus .reaction-text {
 
 @supports (backdrop-filter: blur(3px)) or (-webkit-backdrop-filter: blur(3px)) {
     @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {}
+
     @supports not ((-webkit-backdrop-filter: none) or (backdrop-filter: none)) {}
 }
 
@@ -628,41 +621,49 @@ img.reaction-sprite.js-reaction {
 }
 
 
- 
- 
- .formButtonGroup {
-     display: flex;
-     flex-wrap: wrap;
-     margin-top: 10px;
-     margin-bottom: -5px;
- }
- 
- .formButtonGroup-primary {
-     order: 2;
-     margin-right: auto;
-     margin-bottom: 5px;
- }
- 
- .formButtonGroup-extra {
-     order: 1;
-     margin-bottom: 5px;
- }
 
- .fr-popup .fr-checkbox input:not(:checked):focus+span,
- .fr-popup .fr-checkbox input:not(:checked):hover+span {
-     border-color: #515151;
- }
- 
- .fr-toolbar .fr-command.fr-btn.fr-open:not(:hover):not(:focus):not(:active) {
-     background: #eaf4fb;
- }
 
- 
- .button.button--link,
- a.button.button--link {
-     background: #fefefe;
-     color: #000000;
-     border-color: #e5e5e5 #cbcbcb #cbcbcb #e5e5e5;
- }
- 
-          
+.formButtonGroup {
+    display: flex;
+    flex-wrap: wrap;
+    margin-top: 10px;
+    margin-bottom: -5px;
+}
+
+.formButtonGroup-primary {
+    order: 2;
+    margin-right: auto;
+    margin-bottom: 5px;
+}
+
+.formButtonGroup-extra {
+    order: 1;
+    margin-bottom: 5px;
+}
+
+.fr-popup .fr-checkbox input:not(:checked):focus+span,
+.fr-popup .fr-checkbox input:not(:checked):hover+span {
+    border-color: #515151;
+}
+
+.fr-toolbar .fr-command.fr-btn.fr-open:not(:hover):not(:focus):not(:active) {
+    background: #eaf4fb;
+}
+
+
+.button.button--link,
+a.button.button--link {
+    background: #fefefe;
+    color: #000000;
+    border-color: #e5e5e5 #cbcbcb #cbcbcb #e5e5e5;
+}
+
+
+.add-post-btn {
+    background-color: #185886;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 5px 10px;
+    border-radius: 5px;
+}

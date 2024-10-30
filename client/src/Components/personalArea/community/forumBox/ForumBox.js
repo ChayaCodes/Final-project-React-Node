@@ -6,9 +6,6 @@ import './ForumBox.css';
 import { Link } from 'react-router-dom';
 
 const ForumBox = ({ forum }) => {
-  console.log(forum);
-  console.log("last post", forum.lastPost)
-  console.log("user avater", forum.lastPost?.userAvatar)
   return (
     <div className="node-body">
 

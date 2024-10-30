@@ -12,7 +12,6 @@ const PostBox = ({post, content, setContent}) => {
         setContent(`<blockquote>${post.content}</blockquote>` + content)
         window.scrollTo(0,document.body.scrollHeight);
     }
-    console.log(post)
     if (!post) return null
 
     return (
@@ -49,8 +48,7 @@ const PostBox = ({post, content, setContent}) => {
                         <div className="message-actionBar actionBar">
                             <div className="actionBar-set actionBar-set--external">
 
-                                <a className="actionBar-action"> <FontAwesomeIcon icon={faThumbsUp} /> תודה</a>
-                                <a className="actionBar-action "> <FontAwesomeIcon icon={faQuoteRight} /> ציטוט</a>
+
                                 <a onClick={handleReply} className="actionBar-action"> <FontAwesomeIcon icon={faReply} /> השב</a>
                             </div>
                         </div>

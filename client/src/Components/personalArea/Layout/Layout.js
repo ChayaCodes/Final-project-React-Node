@@ -24,12 +24,17 @@ function Layout() {
     else{
     }
   }, [user, navigate]);
+  const isMobile = window.innerWidth < 600;
+  const initialSidebarState = !isMobile ;
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(initialSidebarState);
+
+
 
   return (
     <div className="page">
-      <Header />
+      <Header setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
       <Box className="main-container" sx={{ display: 'flex' }} >
-        <SidebarNavigation/>
+        <SidebarNavigation setIsSidebarOpen={setIsSidebarOpen} isSidebarOpen={isSidebarOpen} />
         <Box sx={{ width: '100%', alignItems: 'center' }}>
           <PersonalArea />
           <Outlet />

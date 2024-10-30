@@ -1,6 +1,8 @@
 import apiSlice from '../../app/apiSlice';
 
+
 const threadsApiSlice = apiSlice.injectEndpoints({
+
   endpoints: (build) => ({
     getThreads: build.query({
       query: () => ({

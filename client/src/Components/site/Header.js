@@ -8,7 +8,6 @@ import { faCircleUser } from '@fortawesome/free-solid-svg-icons';
 import MenuIcon from '@mui/icons-material/Menu';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { setToken } from '../../app/auth/authSlice';
 import { useEffect } from 'react';
 
 const pages = ['בית', 'אודות', 'קורסים', 'הדרכות', 'קהילה', 'צור קשר'];

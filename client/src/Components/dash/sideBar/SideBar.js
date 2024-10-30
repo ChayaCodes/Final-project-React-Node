@@ -15,8 +15,17 @@ import { IoIosDocument } from 'react-icons/io';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import MenuLink from './MenuLink';
+import { useLogoutMutation } from '../../../features/auth/authApiSlice';
+import { useNavigate } from 'react-router-dom';
 
 function SideBar() {
+  const [logout] = useLogoutMutation();
+  const navigate = useNavigate();
+  const onLogout = () => {
+    logout();
+    navigate('/');
+  };
+
   const menuItems = [{
     title: 'דפים',
     list: [
@@ -87,7 +96,7 @@ function SideBar() {
             </li>
           ))}
         </ul>
-        <button className="side-bar-logout">
+        <button className="side-bar-logout" onClick={onLogout}>
           <MdLogout />
           יציאה
         </button>

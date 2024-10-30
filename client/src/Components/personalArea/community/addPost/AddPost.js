@@ -28,12 +28,12 @@ const AddPost = ({ addPost, thread, content, setContent , setRefreshKey}) => {
             setContent('');
             setRefreshKey((oldKey) => oldKey + 1);
         } catch (error) {
-            console.log('error', error);
+            console.error('An error occurred:', error);
         }
     };
 
     if (isError) {
-        console.log('error', error);
+        console.error('An error occurred:', error);
     }
 
     return (
@@ -55,16 +55,16 @@ const AddPost = ({ addPost, thread, content, setContent , setRefreshKey}) => {
                     <div className="formButtonGroup ">
                         <div className="formButtonGroup-primary">
                             <button onClick={handleCreatePost
-                            } type="submit" className="button--primary button "><span className="button-text">
+                            } type="submit" className="button--primary button add-post-btn"><span className="button-text">
                                     <FontAwesomeIcon icon={faReply} />
                                     כתבו תגובה
                                 </span></button>
                         </div>
-                        <div className="formButtonGroup-extra">
+                        {/* <div className="formButtonGroup-extra">
                             <span className="js-attachButton"><a className="button--link js-attachmentUpload button" data-accept=".zip,.txt,.pdf,.png,.jpg,.jpeg,.jpe,.gif,.doc,.docx,.ai,.psd,.rar,.avi,.mp3,.mpg,.mp4,.xls,.xlsx,.ppt,.pptx,.ind,.indd,.dwg,.idml,.ttf,.shx,.skp,.fla,.html,.webp,.skb,.3dm,.json,.sty,.otf,.i,.m4v,.mov,.mp4v,.mpeg,.ogv,.webm,.opus,.ogg,.wav" data-video-size="23552000"><span className="button-text"><FontAwesomeIcon icon={faPaperclip} /> צרף קבצים
                             </span></a><input type="file" multiple="multiple" accept=".zip,.txt,.pdf,.png,.jpg,.jpeg,.jpe,.gif,.doc,.docx,.ai,.psd,.rar,.avi,.mp3,.mpg,.mp4,.xls,.xlsx,.ppt,.pptx,.ind,.indd,.dwg,.idml,.ttf,.shx,.skp,.fla,.html,.webp,.skb,.3dm,.json,.sty,.otf,.i,.m4v,.mov,.mp4v,.mpeg,.ogv,.webm,.opus,.ogg,.wav" title="צרף קבצים" style={{ visibility: 'hidden', position: 'absolute', width: '1px', height: '1px', overflow: 'hidden', right: '-1000px' }} /></span>
 
-                        </div>
+                        </div> */}
                     </div>
                 </div>
             </div>

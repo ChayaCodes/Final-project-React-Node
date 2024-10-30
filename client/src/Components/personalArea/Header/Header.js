@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
 import { useMediaQuery } from '@mui/material';
 import { IconButton, Badge } from '@mui/material';
@@ -20,6 +20,9 @@ function Header({setIsSidebarOpen, isSidebarOpen}) {
 
   const isMobile = useMediaQuery('(max-width:600px)');
 
+  const avatar = user? user.avatar : null;
+  
+
   if (isMobile) {
     return (
       <header position="sticky" className="header">
@@ -31,13 +34,6 @@ function Header({setIsSidebarOpen, isSidebarOpen}) {
           <Breadcrumb />
         </div>
         <div className='btns'>
-          <div className='paddingBox'>
-            <IconButton color="inherit">
-              <Badge badgeContent={4} color="secondary">
-                <FontAwesomeIcon icon={faBell} color="black" />
-              </Badge>
-            </IconButton>
-          </div>
           <div className='userBox'>
             <FontAwesomeIcon icon={faUserCircle} style={{ marginLeft: '5px' }} />
             {`היי ${userName}`}
@@ -57,15 +53,8 @@ function Header({setIsSidebarOpen, isSidebarOpen}) {
         <Breadcrumb />
       </div>
       <div className='btns'>
-        <div className='paddingBox'>
-          <IconButton color="inherit">
-            <Badge badgeContent={4} color="secondary">
-              <FontAwesomeIcon icon={faBell} color="black" />
-            </Badge>
-          </IconButton>
-        </div>
         <div className='userBox'>
-          <FontAwesomeIcon icon={faUserCircle} style={{ marginLeft: '5px' }} />
+         <FontAwesomeIcon icon={faUserCircle} style={{ marginLeft: '5px' }} />
           {`היי ${userName}`}
         </div>
       </div>

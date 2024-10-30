@@ -8,22 +8,19 @@ const forumsApiSliceUser = apiSlice.injectEndpoints({
     }),
     getForum: build.query({
       query: (forumId) => `api/forums/${forumId}`,
-      providesTags: { type: 'Forum', id: 'forumId' },
+      providesTags: ['Thread', 'Forum']
     }),
     getThread: build.query({
-      query: (payload) => `api/forums/${payload.forumId}/${payload.threadId}`,
-      providesTags: { type: 'Thread', id: 'threadId' },
+      query: (payload) => `api/forums/${payload.forumId}/${payload.threadId}?page=${payload.page}`,
+      providesTags: ['Thread'],
     }),
     createPost: build.mutation({
       query: (post) => ({
-        url: `api/forums/${post.forumId}/${post.threadId}`,
+        url: `api/forums/${post.threadId}/posts`,
         method: 'POST',
         body: post,
       }),
-      invalidatesTags: [
-        { type: 'Thread', id: 'post.threadId' },
-        { type: 'Forum', id: 'post.forumId' },
-      ],
+      invalidatesTags: ['Thread', 'Forum'],
     }),
     updatePost: build.mutation({
       query: (post) => ({
@@ -31,19 +28,14 @@ const forumsApiSliceUser = apiSlice.injectEndpoints({
         method: 'PUT',
         body: post,
       }),
-      invalidatesTags: [
-        { type: 'Thread', id: 'post.threadId' },
-      ],
+      invalidatesTags: ['Thread', 'Forum'],
     }),
     deletePost: build.mutation({
       query: (postId) => ({
         url: `api/posts/${postId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [
-        { type: 'Thread', id: 'post.threadId' },
-        { type: 'Forum', id: 'post.forumId' },
-      ],
+      invalidatesTags: ['Thread', 'Forum'],
     }),
     createThread: build.mutation({
       query: (thread) => ({
@@ -51,18 +43,14 @@ const forumsApiSliceUser = apiSlice.injectEndpoints({
         method: 'POST',
         body: thread,
       }),
-      invalidatesTags: [
-        { type: 'Forum', id: 'thread.forumId' },
-      ],
+      invalidatesTags: [ 'Forum' ],
     }),
     deleteThread: build.mutation({
       query: (threadId) => ({
         url: `api/threads/${threadId}`,
         method: 'DELETE',
       }),
-      invalidatesTags: [
-        { type: 'Forum', id: 'thread.forumId' },
-      ],
+      invalidatesTags: ['Thread', 'Forum'],
     }),
   }),
 });

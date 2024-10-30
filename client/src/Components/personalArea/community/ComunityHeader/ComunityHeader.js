@@ -7,7 +7,7 @@ const ComunityHeader = (payload) => {
     return (
         <div className="comunity-header">
             <Search placeholder={payload.placeholder} onChange={payload.onChangeSearch}/>
-            <SortBy onChange={payload.onChangeSort} sortByOptions={payload.sortByOptions}/>
+            <SortBy onChange={payload.onChangeSortBy} sortByOptions={payload.sortByOptions}/>
         </div>
     )
 }

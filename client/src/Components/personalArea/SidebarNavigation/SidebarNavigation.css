@@ -1,7 +1,5 @@
 
-  .sidebar-navigation.is-visible {
-    opacity: 1;
-  }
+
   
 .sidebar-navigation{
   height: 90vh;
@@ -21,7 +19,14 @@ right: 0; */
   }
 
   @media screen and (max-width: 580px) {
-    .sidebar-navigation {
+    .sidebar-navigation.is-visible {
+      opacity: 1;
+      width: 50vw;
+      position: fixed;
+      right: 0;
+      top: 0;
+    }
+    .sidebar-navigation.not-visible {
       display: none;
     }
     

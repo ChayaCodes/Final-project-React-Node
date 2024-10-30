@@ -14,7 +14,6 @@ const authSlice = createSlice({
       state.user = user;
       state.isUserLoggedIn = true;
       localStorage.setItem('token', token);
-      console.log('token', token);
     },
     removeToken: (state) => {
       state.token = null;

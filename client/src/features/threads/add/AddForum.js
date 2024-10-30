@@ -20,7 +20,6 @@ function AddForum() {
       description: descriptionRef.current.value,
       public: publicRef.current.checked,
     };
-    console.log(data);
     addForum(data);
   };
 
@@ -29,7 +28,7 @@ function AddForum() {
       navigate('/dash/forums');
     }
     if (isError) {
-      console.log('error', error);
+      console.error('An error occurred while adding forum:', error)
     }
   });
 

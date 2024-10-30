@@ -5,10 +5,10 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChalkboardTeacher, faVideo, faUsers, faCalendarWeek } from '@fortawesome/free-solid-svg-icons';
 
 function SidebarNavigation({setIsSidebarOpen, isSidebarOpen}) {
-  
+  console.log('isSidebarOpen', isSidebarOpen);
 
   return (
-    <div className={`sidebar-navigation ${isSidebarOpen ? 'is-visible' : ''}`}>
+    <div className={`sidebar-navigation ${isSidebarOpen ? 'is-visible' : 'not-visible'}`}>
       <ul className='sidebar-navigation-list'>
         <li><FontAwesomeIcon icon={faChalkboardTeacher}/><Link to="/personal-area/courses">קורסים</Link></li>
         <li><FontAwesomeIcon icon={faVideo}/><Link to="/personal-area/videos">סרטונים</Link></li>
